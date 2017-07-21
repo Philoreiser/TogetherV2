@@ -14,6 +14,8 @@ class openGroupVC: UIViewController {
         super.viewDidLoad()
 
         
+        ///dev3 7branch
+        
         //dev
         // Do any additional setup after loading the view.
     }
