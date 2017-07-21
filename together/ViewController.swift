@@ -27,6 +27,14 @@ class ViewController: UIViewController {
     
     
     
+    //大家可以回家的segue
+    @IBAction func home(_sender:UIStoryboardSegue){
+        
+        print("back home")
+    }
+    
+    
+    
     @IBAction func Gotomyile(_ sender: Any) {
         //let vc = storyboard?.instantiateViewController(withIdentifier: "MainView")
        // show(vc!, sender: self)
