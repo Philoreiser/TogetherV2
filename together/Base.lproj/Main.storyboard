@@ -542,6 +542,7 @@
                         <outlet property="btnPicOutlet" destination="29c-cc-nKs" id="rfp-Ll-eeA"/>
                         <outlet property="classLabel" destination="wuT-rJ-4wY" id="s4I-JN-MLj"/>
                         <outlet property="classTextField" destination="1fY-tH-g42" id="3gK-Q0-E8a"/>
+                        <outlet property="imgViewSubject" destination="KQw-ch-hQr" id="4uS-2A-v4m"/>
                         <outlet property="textFieldEndDate" destination="Inf-ht-6iC" id="aaE-QW-7of"/>
                         <outlet property="textFieldStartDate" destination="OqT-Om-h6i" id="SoV-Ki-L3Z"/>
                         <outlet property="textFieldSubject" destination="cRP-yZ-gee" id="jrK-pz-a2D"/>
