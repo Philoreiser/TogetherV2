@@ -422,7 +422,7 @@
                                                     <action selector="btnTakePic:" destination="3zc-2m-efB" eventType="touchUpInside" id="Qwf-dc-dd2"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4i5-ZZ-fZS">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-ch-hQr">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="98"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRm-U9-w8t">
@@ -531,7 +531,6 @@
                         <outlet property="btnPicOutlet" destination="29c-cc-nKs" id="rfp-Ll-eeA"/>
                         <outlet property="classLabel" destination="wuT-rJ-4wY" id="s4I-JN-MLj"/>
                         <outlet property="classTextField" destination="1fY-tH-g42" id="3gK-Q0-E8a"/>
-                        <outlet property="imgViewSbj" destination="4i5-ZZ-fZS" id="c1g-Tm-m23"/>
                         <outlet property="textFieldEndDate" destination="Inf-ht-6iC" id="aaE-QW-7of"/>
                         <outlet property="textFieldStartDate" destination="OqT-Om-h6i" id="SoV-Ki-L3Z"/>
                         <outlet property="textFieldSubject" destination="cRP-yZ-gee" id="jrK-pz-a2D"/>
@@ -561,5 +560,44 @@
             </objects>
             <point key="canvasLocation" x="620" y="1281"/>
         </scene>
+<<<<<<< HEAD
+=======
+        <!--Test2VC-->
+        <scene sceneID="06u-os-zS8">
+            <objects>
+                <viewController storyboardIdentifier="test2vc" id="2dx-S1-4Ug" customClass="test2VC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="47j-Su-4lW"/>
+                        <viewControllerLayoutGuide type="bottom" id="4eu-XY-az7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8mz-GO-je5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tmF-vs-dqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410" y="1257"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rNq-rM-ZHA">
+            <objects>
+                <viewController id="3Na-GP-jf6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NqU-9N-JQO"/>
+                        <viewControllerLayoutGuide type="bottom" id="PLW-po-Gr9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MxS-i5-Spw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcC-n9-0px" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2633" y="1317"/>
+        </scene>
+>>>>>>> 2f8223cb2f360d112a38a02fead2b0f4aabb8e90
     </scenes>
 </document>
