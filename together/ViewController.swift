@@ -237,9 +237,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //navagationBar
+        
+        self.navigationItem.title = "123"
+        
+        
+        
+        
         isLogin = true
         addMemberOrLogin()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        
+        
     }
 
     
