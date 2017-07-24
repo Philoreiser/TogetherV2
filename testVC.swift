@@ -10,17 +10,19 @@ import UIKit
 
 class testVC: UIViewController {
     func article() {
-//        self.navigationController?.pushViewController(
-//            ArticleViewController(), animated: true)
+        self.navigationController?.pushViewController(
+            test2VC(), animated: true)
     }
     
     func check() {
         print("check button action")
     }
     
-    func setting() {
-//        self.navigationController?.pushViewController(
-//            SettingViewController(), animated: true)
+    func gotoTest2() {
+        self.navigationController?.pushViewController(test2VC(), animated: true)
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "test2vc")
+//        
+//        show(vc!, sender: self)
     }
     
     
@@ -48,7 +50,7 @@ class testVC: UIViewController {
         // Create left and right button for navigation item
         let leftButton =  UIBarButtonItem(title: leftBtnTitle, style:   .plain, target: self, action: #selector(self.btn_clicked(_:)))
         
-        let rightButton = UIBarButtonItem(title: rightBtnTitle, style: .plain, target: self, action: nil)
+        let rightButton = UIBarButtonItem(title: rightBtnTitle, style: .plain, target: self, action: #selector(self.article))
         
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -69,7 +71,7 @@ class testVC: UIViewController {
         
         
        
-        addNavigationBar(mainTitle: "123", leftBtnTitle: "456", rightBtnTitle: "789")
+        addNavigationBar(mainTitle: "testVC", leftBtnTitle: "back", rightBtnTitle: "gotovc2")
         
         
         

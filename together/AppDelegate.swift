@@ -38,8 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
         
         
-        
-        
+        let nav = UINavigationController(
+            rootViewController: testVC())
+        let naviController = UINavigationController(rootViewController: testVC())
 
         
         return true
