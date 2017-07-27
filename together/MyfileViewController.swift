@@ -8,50 +8,62 @@
 
 import UIKit
 
-class MyfileViewController: UIViewController {
+class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate {
 
     let app = UIApplication.shared.delegate as! AppDelegate
     var nametext:String?
     var detailtext:String?
+    var personalpic:String?
+    var imgDataBase64String:String?
+    var subjectpic:Array<String> = []
+    var groupimg:Array<String> = []
     
     
+    @IBOutlet weak var mygroupControl: UIPageControl!
+    @IBOutlet weak var mygroupImage: UIImageView!
     @IBOutlet weak var testlabel: UITextView!
-    @IBOutlet weak var nickTest: UILabel!
-    @IBAction func editBtn(_ sender: Any) {
+        @IBAction func editBtn(_ sender: Any) {
         
         let nickname = nameText.text!
-        let description = detailText.text!
+        let description = testlabel.text!
         
-        
-        do {
-            
-            let url = URL(string: "https://together-seventsai.c9users.io/resumeEdit.php")
-            let session = URLSession(configuration: .default)
-            var request = URLRequest(url:url!)
-            request.httpBody = "account=\(app.account!)&nickname=\(nickname)&description=\(description)".data(using: .utf8)
-            request.httpMethod = "POST"
-            
-            let task = session.dataTask(with: request, completionHandler: {(data, response , error) in
+        let q = DispatchQueue.global()
+        q.sync {
+            do {
                 
+                let url = URL(string: "https://together-seventsai.c9users.io/resumeEdit.php")
+                let session = URLSession(configuration: .default)
+                var request = URLRequest(url:url!)
+                request.httpBody = "account=\(self.app.account!)&nickname=\(nickname)&description=\(description)".data(using: .utf8)
+                request.httpMethod = "POST"
                 
-                
-                
-                if  error != nil {
-                    print("gg")
-                }else{
-                    print("success")
+                let task = session.dataTask(with: request, completionHandler: {(data, response , error) in
                     
-                }
+                    
+                    
+                    
+                    if  error != nil {
+                        print("gg")
+                    }else{
+                        print("success")
+                        
+                    }
+                    
+                    
+                })
                 
                 
-            })
-            
-            
-            task.resume()
-            loadDB()
-            
-        }catch{
-            print(error)
+                task.resume()
+                
+                
+            }catch{
+                print(error)
+            }
+
+        }
+        q.async {
+            sleep(1)
+            self.loadDB()
         }
         
     }
@@ -61,7 +73,101 @@ class MyfileViewController: UIViewController {
     
     @IBOutlet weak var nameText: UITextField!
     
-    @IBOutlet weak var detailText: UITextField!
+    
+    
+    @IBAction func uploadsubmit(_ sender: Any) {
+        
+        personalpic = imgDataBase64String
+        let url = URL(string: "https://together-seventsai.c9users.io/personalfileSavePic.php")
+        let session = URLSession(configuration: .default)
+        var req = URLRequest(url: url!)
+        req.httpBody = "account=\(app.account!)&data=\(personalpic!)".data(using:.utf8)
+        req.httpMethod = "POST"
+        let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
+            if error == nil {
+                print("add success")
+                print(data)
+            }else{
+                print(error)
+            }
+        })
+        task.resume()
+    }
+    
+    
+    @IBAction func takepic(_ sender: Any) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "use camera", style: .default, handler: {(action) in
+            openCamera()
+        })
+        let libraryAction = UIAlertAction(title: "use library", style: .default, handler: {(action) in
+            openLibrary()
+        
+        
+        })
+        let cancelAction = UIAlertAction(title: "cancel", style: .destructive, handler: {(action) in
+           self.dismiss(animated: true, completion: nil)
+        })
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(libraryAction)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController{
+            popoverController.sourceView = view as? UIView
+            popoverController.sourceRect = CGRect(x : self.view.bounds.midX, y : self.view.bounds.midY, width: 0, height: 0)
+        }
+        self.present(alertController, animated: true, completion: nil)
+        
+        func openCamera(){
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                
+                let imgPickerTakeVC = UIImagePickerController()
+                imgPickerTakeVC.sourceType = .camera
+                imgPickerTakeVC.delegate = self
+                
+                show(imgPickerTakeVC, sender: self)
+            }
+        }
+        
+        func openLibrary(){
+            let imgPickGetVC = UIImagePickerController()
+            imgPickGetVC.sourceType = .photoLibrary
+            imgPickGetVC.delegate = self
+            
+            if let popoverController = alertController.popoverPresentationController{
+                popoverController.sourceView = view as? UIView
+                popoverController.sourceRect = CGRect(x : self.view.bounds.midX, y : self.view.bounds.midY, width : 0 ,height : 0)
+            }
+            present(imgPickGetVC, animated: true, completion: nil)
+        }
+        
+        func imagePickerController(_picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+            print("")
+            let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
+            imageView.image = imgTaken
+            
+            let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
+            
+            let imgDataBase64 = imgData?.base64EncodedData()
+            
+            imgDataBase64String = imgData?.base64EncodedString()
+            
+            dismiss(animated: true, completion: nil)
+        }
+        
+        func imagePickerControllerDidCancel(_picker: UIImagePickerController){
+            dismiss(animated: true, completion: nil)
+        }
+        
+        
+        
+        
+        
+        
+    }
+    
+   
     
     
     func loadDB(){
@@ -91,7 +197,8 @@ class MyfileViewController: UIViewController {
                         for a in  jsonobj as! [[String:String]] {
                             var nickname = a["nickname"]!
                             var description = a["description"]
-                            self.nickTest.text = nickname
+                            
+                            self.nameText.text = nickname
                             self.testlabel.text = description
                         }
                         
@@ -115,36 +222,91 @@ class MyfileViewController: UIViewController {
             //沒輸入帳號直接跑到的話 給他一個假帳號
             print("no account")
             
-            //192.168.1.136
-            //            169.254.227.115
-            //            let url = URL(string: "http://127.0.0.1/walkdog/getTable.php?account=1234")
-            //            let url = URL(string: "http://10.2.12.133/walkdog/getTable.php?account=1234")
-            //            do{
-            //                let  data = try Data(contentsOf: url!)
-            //                let jsonobj = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            //                
-            //                for a in  jsonobj as! [[String:String]] {
-            //                    print(a["account"]!)
-            //                    mydata.append(a["account"]!)                }
-            //
-            //            }catch {
-            //                print(error)
-            //            }
-            //            
+            
         }
         
     }
     
-    
-    
-    
-    
-    
-    
+    func loadmygroup(){
+        
+        
+        if let account = app.account {
+            
+            //c9資料庫 post
+            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+            let session = URLSession(configuration: .default)
+            
+            
+            var req = URLRequest(url: url!)
+            
+            req.httpMethod = "POST"
+            req.httpBody = "account=\(account)".data(using: .utf8)
+            
+            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+                let source = String(data: data!, encoding: .utf8)
+                
+                //                print(source!)
+                
+                DispatchQueue.main.async {
+                    do{
+                        
+                        
+                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        for a in  jsonobj as! [[String:String]] {
+                            
+                            var subjectpic = a["subjectpic"]!
+                            
+                            
+                        }
+                        
+                        
+                        //self.tbView.reloadData()
+                        
+                    }catch {
+                        print("thisis \(error)")
+                    }}
+                
+                
+                
+                
+                
+            })
+            
+            task.resume()
+            
+        }else {
+            
+            //沒輸入帳號直接跑到的話 給他一個假帳號
+            print("no account")
+            
+            
+        }
+        
+        
+        sleep(1)
+        
+        
+        
+        do{
+            
+           
+            
+            
+            
+            
+            
+
+        }catch{
+          print(error)
+        }
+                
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDB()
+        loadmygroup()
         // Do any additional setup after loading the view.
     }
 

@@ -422,7 +422,7 @@
                                                     <action selector="btnTakePic:" destination="3zc-2m-efB" eventType="touchUpInside" id="Qwf-dc-dd2"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4i5-ZZ-fZS">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-ch-hQr">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="98"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRm-U9-w8t">
@@ -531,7 +531,6 @@
                         <outlet property="btnPicOutlet" destination="29c-cc-nKs" id="rfp-Ll-eeA"/>
                         <outlet property="classLabel" destination="wuT-rJ-4wY" id="s4I-JN-MLj"/>
                         <outlet property="classTextField" destination="1fY-tH-g42" id="3gK-Q0-E8a"/>
-                        <outlet property="imgViewSbj" destination="4i5-ZZ-fZS" id="c1g-Tm-m23"/>
                         <outlet property="textFieldEndDate" destination="Inf-ht-6iC" id="aaE-QW-7of"/>
                         <outlet property="textFieldStartDate" destination="OqT-Om-h6i" id="SoV-Ki-L3Z"/>
                         <outlet property="textFieldSubject" destination="cRP-yZ-gee" id="jrK-pz-a2D"/>
