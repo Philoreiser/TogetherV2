@@ -81,7 +81,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         
         
-        let url = URL(string: "https://together-seventsai.c9users.io/openSubject.php")
+        let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
         req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)

@@ -9,6 +9,41 @@
 import UIKit
 
 class applyGroupVC: UIViewController {
+    /////先假裝給一個mid及tid
+    let mid = "000"
+    let tid = "000"
+    
+    
+    @IBAction func applyForGroup(_ sender: Any) {
+        
+        
+        
+        
+        //https://together-seventsai.c9users.io/applyGroup.php
+        
+        
+        let url = URL(string: "https://together-seventsai.c9users.io/applyGroup.php")
+        let session = URLSession(configuration: .default)
+        var req = URLRequest(url: url!)
+        
+        req.httpBody = "mid=\(mid)&tid=\(tid)".data(using: .utf8)
+        
+        req.httpMethod = "POST"
+        
+        let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+        print(data)
+            
+            let source  =  String(data: data!, encoding: .utf8)
+            
+            print(source!)
+            
+            
+            
+        })
+        
+        task.resume()
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
