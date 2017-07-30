@@ -10,7 +10,10 @@ import UIKit
 
 class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var tbView: UITableView!
+    @IBOutlet weak var segmentOutlet: UISegmentedControl!
+    @IBOutlet weak var segmentManageGroup: UIView!
 
+    @IBOutlet weak var segmentManageApply: UIView!
     
     var mydataGroup:Array<String> = []
     var mydataMaid:Array<String> = []
@@ -20,15 +23,21 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
      let mid = "0"
     
     
-    //拒絕 入團申請
-    @IBAction func deny(_ sender: Any) {
+    
+    
+    @IBAction func segmetAction(_ sender: Any) {
+        switch segmentOutlet.selectedSegmentIndex {
+        case 0:
+            apperaPage1()
+        case 1:
+            apperaPage2()
+        default:
+            break
+        }
+        
     }
-    //允許入團申請
-    @IBAction func admit(_ sender: Any) {
-        
-        
-        
-    }
+    
+    
 
     
     //ＴＢV數量
@@ -41,23 +50,32 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
   
     //ＴＢ內容
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+    //////////這是table 我的揪團審核用的
     let cell = tbView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! openGroupTbViCell
-        cell.labelCell.text = mydataGroup[indexPath.row]
-//        cell.labelStatus.text = "0"
-        if mydataStatus[indexPath.row] == "0" {
-        cell.labelStatus.text = "待審核"
-        cell.labelStatus.textColor = UIColor.blue
+        
+       
+            cell.labelCell.text = mydataGroup[indexPath.row]
+            //        cell.labelStatus.text = "0"
+            //        if mydataStatus[indexPath.row] == "0" {
+            cell.labelStatus.text = "待審核"
+            cell.labelStatus.textColor = UIColor.blue
+            
+            //        }
+            //        else if mydataStatus[indexPath.row] == "1" {
+            //        cell.labelStatus.text = "通過申請"
+            //            cell.labelStatus.textColor = UIColor.black
+            //
+            //        }else if mydataStatus[indexPath.row] == "2" {
+            //            cell.labelStatus.text = "拒絕申請"
+            //            cell.labelStatus.textColor = UIColor.black
+            //        }
 
-        }else if mydataStatus[indexPath.row] == "1" {
-        cell.labelStatus.text = "通過申請"
-            cell.labelStatus.textColor = UIColor.black
         
-        }else if mydataStatus[indexPath.row] == "2" {
-            cell.labelStatus.text = "拒絕申請"
-            cell.labelStatus.textColor = UIColor.black
-        }
         
+        
+        ////////////這是table 我的申請 用的
+       
+     
         
         return cell
         
@@ -68,34 +86,48 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     //選擇ＴＢV的實作
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //測試
 //        print(indexPath.row)
 //        print(mydata[indexPath.row])
 //        print(myidtoimg[indexPath.row])
 //        self.app.sentToDetailId = myidtoimg[indexPath.row]
 //        print(self.app.sentToDetailId)
 //        gowhere(whichVC: indexPath.row)
+        
+        
+        
+        //table 我的揪團審核用
+        
         let cell = tbView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! openGroupTbViCell
         cell.labelCell.text = mydataGroup[indexPath.row]
 //        cell.labelStatus.text = "0"
         
-        if mydataStatus[indexPath.row] == "0" {
+        //如果mastatus 狀態 = 0的時候可以點選
+//        if mydataStatus[indexPath.row] == "0" {
             cell.labelStatus.text = "待審核"
             cell.labelStatus.textColor = UIColor.blue
 
         alertAdmitOrDeny(selectWhich:indexPath.row)
-        }else if mydataStatus[indexPath.row] == "1" {
-            cell.labelStatus.text = "通過申請"
-            cell.labelStatus.textColor = UIColor.black
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            
-        }else if mydataStatus[indexPath.row] == "2" {
-            cell.labelStatus.text = "拒絕申請"
-            cell.labelStatus.textColor = UIColor.black
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-        }
+//        }
+//        else if mydataStatus[indexPath.row] == "1" {
+//            cell.labelStatus.text = "通過申請"
+//            cell.labelStatus.textColor = UIColor.black
+//            cell.selectionStyle = UITableViewCellSelectionStyle.none
+//            
+//        }else if mydataStatus[indexPath.row] == "2" {
+//            cell.labelStatus.text = "拒絕申請"
+//            cell.labelStatus.textColor = UIColor.black
+//            cell.selectionStyle = UITableViewCellSelectionStyle.none
+//        }
     
     
+        
+        ///table 我的申請揪團用
+        
+        ////////////這是table 我的申請 用的
+     
+ 
+        
     
        
     }
@@ -120,7 +152,7 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let maidForManage = self.mydataMaid[selectWhich]
             let openGroupMid = self.mid
             let admitordeny = "1"
-            //1 表狀態為通過申請
+            //1 表狀態為審核結束
             let mastatus = "1"
 //            let maidForManage = "5"
 //            let openGroupMid = "0"
@@ -159,10 +191,12 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         //deny拒絕申請
         let denyAction = UIAlertAction(title: "拒絕申請", style: .default, handler: {(action) in
             
-            //2 表狀態為拒絕
-            let mastatus = "2"
+            //mastatus  1表狀態為審核結束
+            let mastatus = "1"
             let maidForManage = self.mydataMaid[selectWhich]
             let openGroupMid = self.mid
+            
+            //表狀態為拒絕
             let admitordeny = "0"
             
             //            let maidForManage = "5"
@@ -244,10 +278,8 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                     
                     for a in  jsonobj as! [[String:String]] {
-                        //                        print(a["account"]!)
+                       
                         
-                        
-                        //                           print (a["mastername"]! + "正在" + a["doing"]! + "於" + a["createdate"]!)
                         
                         var maid = a["maid"]!
                         var mastatus = a["mastatus"]!
@@ -256,23 +288,29 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         var openGroupmId = a["opengroupmid"]!
                         var subject = a["subject"]!
                         
-                        var displayLebel = "id:\(maid)的揪團主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
+//                        var displayLebel = "id:\(maid)的揪團主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
+                     
+                         var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
                         
-                        print("manageid:\(maid)")
+//                        print("manageid:\(maid)")
                         print("mastatus:\(mastatus)")
-                        print("揪團主題是\(subject)")
-                        print("揪團ＩＤ是\(applyGrouptId)")
-                        print("創辦者是\(openGroupmId)")
-                        print("申請者是\(applyUsermId)")
+//                        print("揪團主題是\(subject)")
+//                        print("揪團ＩＤ是\(applyGrouptId)")
+//                        print("創辦者是\(openGroupmId)")
+//                        print("申請者是\(applyUsermId)")
                         print("-----------")
                        
                         //全部顯示用
-                        self.mydataGroup.append("\(displayLebel)")
-                        self.mydataStatus.append("\(mastatus)")
+                       
+
+                        
                         
                         //
-                        self.mydataMaid.append("\(maid)")
-                        
+                        if mastatus == "0" &&  openGroupmId == self.mid {
+                            self.mydataStatus.append("\(mastatus)")
+                            self.mydataGroup.append("\(displayLebel)")
+                            self.mydataMaid.append("\(maid)")
+                        }
                         
                     }
     
@@ -305,7 +343,14 @@ class manageGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tbView.reloadData()
     }
     
-    
+    func apperaPage1(){
+    segmentManageGroup.isHidden = false
+    segmentManageApply.isHidden = true
+    }
+    func apperaPage2(){
+        segmentManageGroup.isHidden = true
+        segmentManageApply.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

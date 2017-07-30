@@ -61,8 +61,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             detail = textViewDetail.text
         }
         
-        
-        subjectpicString = imgDataBase64String
+       
         
         
         print(subject!)
@@ -84,7 +83,25 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
-        req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+        
+        ////STRING == 拍照或擷取相簿的base64String
+        subjectpicString = imgDataBase64String
+        
+        //如果subjectpicString != nil 傳data參數至後端
+        if subjectpicString != nil {
+             req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+            
+            
+            print("has photo")
+        }else {
+            ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
+             req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+            print("no photo")
+        }
+        
+        
+        
+       
         req.httpMethod = "POST"
         
         
@@ -94,14 +111,16 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             if error == nil {
                 
                 print("add success")
-                print(data)
+                let source = String(data: data!, encoding: .utf8)
+                print(source!)
                 
             }else{ print(error)}
             
             
         })
+            task.resume()
+       
         
-        task.resume()
         
     }
     

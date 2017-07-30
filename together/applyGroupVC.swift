@@ -10,8 +10,11 @@ import UIKit
 
 class applyGroupVC: UIViewController {
     /////先假裝給一個mid及tid
-    let mid = "000"
-    let tid = "000"
+    
+    //申請者是
+    let mid = "1"
+    //申請加入的團是
+    let tid = "2"
     
     
     @IBAction func applyForGroup(_ sender: Any) {
@@ -31,7 +34,7 @@ class applyGroupVC: UIViewController {
         req.httpMethod = "POST"
         
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-        print(data)
+//        print(data)
             
             let source  =  String(data: data!, encoding: .utf8)
             

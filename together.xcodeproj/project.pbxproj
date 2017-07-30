@@ -18,6 +18,8 @@
 		14F2E8401F2BA77800855362 /* applyGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2E83F1F2BA77800855362 /* applyGroupVC.swift */; };
 		14F2E8421F2BD9C100855362 /* openGroupTbViCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2E8411F2BD9C100855362 /* openGroupTbViCell.swift */; };
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
+		14FF85AB1F2E54BE005B9DF5 /* applyGroupTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF85AA1F2E54BE005B9DF5 /* applyGroupTBVCell.swift */; };
+		14FF85B11F2E7A0C005B9DF5 /* manageApplyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF85B01F2E7A0C005B9DF5 /* manageApplyVC.swift */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
 		4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,8 @@
 		14F2E83F1F2BA77800855362 /* applyGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = applyGroupVC.swift; sourceTree = "<group>"; };
 		14F2E8411F2BD9C100855362 /* openGroupTbViCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupTbViCell.swift; sourceTree = "<group>"; };
 		14F439531F1CA27D0060D839 /* openGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupVC.swift; sourceTree = "<group>"; };
+		14FF85AA1F2E54BE005B9DF5 /* applyGroupTBVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = applyGroupTBVCell.swift; sourceTree = "<group>"; };
+		14FF85B01F2E7A0C005B9DF5 /* manageApplyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manageApplyVC.swift; sourceTree = "<group>"; };
 		4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyfileViewController.swift; sourceTree = "<group>"; };
 		4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditresumeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +88,8 @@
 				14F2E83D1F2B957D00855362 /* manageGroupVC.swift */,
 				14F2E83F1F2BA77800855362 /* applyGroupVC.swift */,
 				14F2E8411F2BD9C100855362 /* openGroupTbViCell.swift */,
+				14FF85AA1F2E54BE005B9DF5 /* applyGroupTBVCell.swift */,
+				14FF85B01F2E7A0C005B9DF5 /* manageApplyVC.swift */,
 			);
 			path = together;
 			sourceTree = "<group>";
@@ -171,6 +177,8 @@
 				14F2E83E1F2B957D00855362 /* manageGroupVC.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,
 				1407D39B1F22AEFB0084AF64 /* classPickerVC.swift in Sources */,
+				14FF85B11F2E7A0C005B9DF5 /* manageApplyVC.swift in Sources */,
+				14FF85AB1F2E54BE005B9DF5 /* applyGroupTBVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
