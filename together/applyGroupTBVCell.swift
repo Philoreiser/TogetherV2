@@ -10,6 +10,7 @@ import UIKit
 
 class applyGroupTBVCell: UITableViewCell {
     @IBOutlet weak var labelCell: UILabel!
+    @IBOutlet weak var labelStatus: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

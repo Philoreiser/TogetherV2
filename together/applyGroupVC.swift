@@ -12,7 +12,7 @@ class applyGroupVC: UIViewController {
     /////先假裝給一個mid及tid
     
     //申請者是
-    let mid = "1"
+    let mid = "0"
     //申請加入的團是
     let tid = "2"
     
