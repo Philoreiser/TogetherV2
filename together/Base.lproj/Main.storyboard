@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -151,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--Search ResultVC-->
         <scene sceneID="jOF-sc-HDX">
             <objects>
-                <viewController storyboardIdentifier="mapandlistvc" id="RCp-yW-nzL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapandlistvc" id="RCp-yW-nzL" customClass="searchResultVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uNS-Hv-YEg"/>
                         <viewControllerLayoutGuide type="bottom" id="swS-rs-luW"/>
@@ -162,12 +162,67 @@
                     <view key="view" contentMode="scaleToFill" id="h5E-uC-Ez5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khp-OA-8Pj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="7Dg-nW-Jbd">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" title="回前頁" id="yF1-UL-BPu">
+                                            <connections>
+                                                <segue destination="So9-VO-4M3" kind="unwind" unwindAction="homeWith_sender:" id="I36-9n-zBX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="FC9-YN-Xtl">
+                                            <rect key="frame" x="146" y="8" width="83" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="清單"/>
+                                                <segment title="地圖"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="changeShowMode:" destination="RCp-yW-nzL" eventType="valueChanged" id="5Hr-FA-HZN"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TaQ-ht-Kns" userLabel="contViewList">
+                                <rect key="frame" x="16" y="64" width="343" height="599"/>
+                                <connections>
+                                    <segue destination="czR-xr-9ZV" kind="embed" id="2H5-t4-Jfd"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZC-kU-nNO" userLabel="contViewMap">
+                                <rect key="frame" x="16" y="64.5" width="343" height="599"/>
+                                <connections>
+                                    <segue destination="JED-hl-AUu" kind="embed" id="Iab-FT-Vwg"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Khp-OA-8Pj" firstAttribute="top" secondItem="uNS-Hv-YEg" secondAttribute="bottom" id="2tB-2x-YXn"/>
+                            <constraint firstItem="cZC-kU-nNO" firstAttribute="centerY" secondItem="TaQ-ht-Kns" secondAttribute="centerY" id="4G1-a3-rz5"/>
+                            <constraint firstItem="swS-rs-luW" firstAttribute="top" secondItem="TaQ-ht-Kns" secondAttribute="bottom" constant="4" id="673-bY-2dH"/>
+                            <constraint firstItem="TaQ-ht-Kns" firstAttribute="leading" secondItem="h5E-uC-Ez5" secondAttribute="leadingMargin" id="6gb-6M-WPH"/>
+                            <constraint firstAttribute="trailing" secondItem="Khp-OA-8Pj" secondAttribute="trailing" id="9Oc-rn-Kob"/>
+                            <constraint firstItem="cZC-kU-nNO" firstAttribute="leading" secondItem="TaQ-ht-Kns" secondAttribute="leading" id="Fm6-ba-V9B"/>
+                            <constraint firstItem="cZC-kU-nNO" firstAttribute="width" secondItem="TaQ-ht-Kns" secondAttribute="width" id="O5H-oT-jbI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TaQ-ht-Kns" secondAttribute="trailing" id="PN3-Iq-KJN"/>
+                            <constraint firstItem="cZC-kU-nNO" firstAttribute="height" secondItem="TaQ-ht-Kns" secondAttribute="height" id="Px4-kp-Hb4"/>
+                            <constraint firstItem="TaQ-ht-Kns" firstAttribute="top" secondItem="Khp-OA-8Pj" secondAttribute="bottom" id="eqO-mJ-XUv"/>
+                            <constraint firstItem="Khp-OA-8Pj" firstAttribute="leading" secondItem="h5E-uC-Ez5" secondAttribute="leading" id="xV3-Fv-WzD"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="FC9-YN-Xtl" id="fwZ-nF-nbu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bt-wW-OuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="So9-VO-4M3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1372" y="-472"/>
+            <point key="canvasLocation" x="-2839" y="-388"/>
         </scene>
         <!--Editresume View-->
         <scene sceneID="7EX-4K-2JA">
@@ -560,6 +615,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvC-wX-U7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="1281"/>
+        </scene>
+        <!--Search Result ListVC-->
+        <scene sceneID="ic5-eX-geV">
+            <objects>
+                <viewController storyboardIdentifier="listvc" id="czR-xr-9ZV" customClass="searchResultListVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lwY-nZ-gPK">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="599"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2jj-Du-2sN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3908" y="-650"/>
+        </scene>
+        <!--Search Result MapVC-->
+        <scene sceneID="Ror-IR-oLM">
+            <objects>
+                <viewController storyboardIdentifier="mapvc" id="JED-hl-AUu" customClass="searchResultMapVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Osr-Vu-iq3">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="599"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8iu-WQ-CZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3953" y="334"/>
         </scene>
     </scenes>
 </document>

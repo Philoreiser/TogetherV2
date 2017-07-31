@@ -17,6 +17,9 @@
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
 		4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */; };
+		84AFC2251F2CE68F00E80AE9 /* searchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFC2241F2CE68F00E80AE9 /* searchResultVC.swift */; };
+		84AFC2271F2D0B1400E80AE9 /* searchResultListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFC2261F2D0B1400E80AE9 /* searchResultListVC.swift */; };
+		84AFC2291F2D0C4200E80AE9 /* searchResultMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFC2281F2D0C4200E80AE9 /* searchResultMapVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		14F439531F1CA27D0060D839 /* openGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupVC.swift; sourceTree = "<group>"; };
 		4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyfileViewController.swift; sourceTree = "<group>"; };
 		4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditresumeView.swift; sourceTree = "<group>"; };
+		84AFC2241F2CE68F00E80AE9 /* searchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchResultVC.swift; sourceTree = "<group>"; };
+		84AFC2261F2D0B1400E80AE9 /* searchResultListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchResultListVC.swift; sourceTree = "<group>"; };
+		84AFC2281F2D0C4200E80AE9 /* searchResultMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchResultMapVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,9 @@
 				14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */,
 				14AAD73F1F1C694F00BC6E9E /* ViewController.swift */,
 				14AAD7411F1C694F00BC6E9E /* Main.storyboard */,
+				84AFC2281F2D0C4200E80AE9 /* searchResultMapVC.swift */,
+				84AFC2261F2D0B1400E80AE9 /* searchResultListVC.swift */,
+				84AFC2241F2CE68F00E80AE9 /* searchResultVC.swift */,
 				4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */,
 				4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */,
 				14AAD7441F1C694F00BC6E9E /* Assets.xcassets */,
@@ -156,7 +165,10 @@
 				14AAD7401F1C694F00BC6E9E /* ViewController.swift in Sources */,
 				14AAD73E1F1C694F00BC6E9E /* AppDelegate.swift in Sources */,
 				4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */,
+				84AFC2291F2D0C4200E80AE9 /* searchResultMapVC.swift in Sources */,
 				4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */,
+				84AFC2251F2CE68F00E80AE9 /* searchResultVC.swift in Sources */,
+				84AFC2271F2D0B1400E80AE9 /* searchResultListVC.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,
 				1407D39B1F22AEFB0084AF64 /* classPickerVC.swift in Sources */,
 			);
