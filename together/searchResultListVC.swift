@@ -27,7 +27,7 @@ class searchResultListVC: UIViewController, UITableViewDelegate, UITableViewData
         cell.groupTitle.text = "DaBuIN"
         cell.groupContent.text = "我的老天鵝啊"
         cell.groupDistance.text = "100m"
-        cell.groupStatus.text = "火熱揪團"
+        cell.groupStatus.text = "Hot"
         
         
         return cell

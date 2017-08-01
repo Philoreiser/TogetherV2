@@ -11,6 +11,8 @@ import UIKit
 class searchResultVC: UIViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var contViewList: UIView!
+    @IBOutlet weak var contViewMap: UIView!
     
     
     @IBAction func changeShowMode(_ sender: UISegmentedControl) {
@@ -19,11 +21,21 @@ class searchResultVC: UIViewController {
         case 0:
             print("List")
             
+            contViewMap.isHidden = true
+            contViewList.isHidden = false
             
         case 1:
             print("Map")
+            
+            contViewMap.isHidden = false
+            contViewList.isHidden = true
+            
         default:
             print("Map")
+            
+            contViewMap.isHidden = false
+            contViewList.isHidden = true
+            
             break
         }
         
@@ -33,7 +45,7 @@ class searchResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.selectedSegmentIndex = 1 // Map
         
         // Do any additional setup after loading the view.
     }

@@ -216,6 +216,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contViewList" destination="TaQ-ht-Kns" id="JRf-rS-hiA"/>
+                        <outlet property="contViewMap" destination="cZC-kU-nNO" id="jd8-hD-zsg"/>
                         <outlet property="segmentedControl" destination="FC9-YN-Xtl" id="fwZ-nF-nbu"/>
                     </connections>
                 </viewController>
@@ -640,28 +642,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cC-Um-hs3" userLabel="groupTitle">
-                                                    <rect key="frame" x="19" y="23" width="35" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqm-sv-Ap9" userLabel="groupDistance">
-                                                    <rect key="frame" x="203" y="24" width="35" height="21"/>
+                                                    <rect key="frame" x="19" y="23" width="57" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="狀態" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6f-fC-md4" userLabel="groupStatus">
-                                                    <rect key="frame" x="261" y="24" width="35" height="21"/>
+                                                    <rect key="frame" x="261" y="24" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="揪團內容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvC-sJ-QbP" userLabel="groupContent">
-                                                    <rect key="frame" x="84" y="24" width="70" height="21"/>
+                                                    <rect key="frame" x="84" y="24" width="94" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqm-sv-Ap9" userLabel="groupDistance">
+                                                    <rect key="frame" x="186" y="23" width="50" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -710,8 +712,22 @@
                     <view key="view" contentMode="scaleToFill" id="Osr-Vu-iq3">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mW8-Rm-BMc">
+                                <rect key="frame" x="20" y="4" width="303" height="591"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="44a-H9-Pzm" firstAttribute="top" secondItem="mW8-Rm-BMc" secondAttribute="bottom" constant="4" id="C1L-3g-cRC"/>
+                            <constraint firstItem="mW8-Rm-BMc" firstAttribute="top" secondItem="7cl-4B-yKJ" secondAttribute="bottom" constant="4" id="V0Y-lO-dxI"/>
+                            <constraint firstItem="mW8-Rm-BMc" firstAttribute="leading" secondItem="Osr-Vu-iq3" secondAttribute="leadingMargin" constant="4" id="xI3-cC-55m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mW8-Rm-BMc" secondAttribute="trailing" constant="4" id="xaF-4r-qak"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="mW8-Rm-BMc" id="iHY-oO-O6E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iu-WQ-CZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
