@@ -13,6 +13,7 @@ import UIKit
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
 class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    @IBOutlet weak var imgViewSbj: UIImageView!
     @IBOutlet weak var btnPicOutlet: UIButton!
     @IBOutlet weak var textFieldStartDate: UITextField!
     @IBOutlet weak var textFieldEndDate: UITextField!
@@ -21,7 +22,6 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 
     @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var textViewDetail: UITextView!
-    
     
     
     var listClass = [String]()  //class list的空陣列
@@ -37,16 +37,19 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var endtime:String?
     var classType:String?
     var detail:String?
-    var subjectpic:String?
+    var subjectpicString:String?
     
-
+    //會員id
+    var mid:String?
+    //    var imgTaken:UIImage?
+    var imgDataBase64String:String?
     
     
     
     
     
     /////////submit按鈕
-
+    
     @IBAction func submit(_ sender: Any) {
         
         subject = textFieldSubject.text
@@ -58,8 +61,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             detail = textViewDetail.text
         }
         
-        
-        subjectpic = "nopic"
+       
         
         
         print(subject!)
@@ -68,12 +70,38 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         print(endtime!)
         print(classType!)
         print(detail!)
-        print(subjectpic!)
+        //        print(subjectpicString!)
         
-        let url = URL(string: "https://together-seventsai.c9users.io/openSubject.php")
+        
+        
+        
+        
+        
+        
+        
+        
+        let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
-        req.httpBody = "subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&subjectpic=\(subjectpic!)".data(using: .utf8)
+        
+        ////STRING == 拍照或擷取相簿的base64String
+        subjectpicString = imgDataBase64String
+        
+        //如果subjectpicString != nil 傳data參數至後端
+        if subjectpicString != nil {
+             req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+            
+            
+            print("has photo")
+        }else {
+            ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
+             req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+            print("no photo")
+        }
+        
+        
+        
+       
         req.httpMethod = "POST"
         
         
@@ -83,20 +111,22 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             if error == nil {
                 
                 print("add success")
-                
+                let source = String(data: data!, encoding: .utf8)
+                print(source!)
                 
             }else{ print(error)}
             
             
         })
+            task.resume()
+       
         
-        task.resume()
         
     }
     
     
     ////拍照按鈕
-
+    
     @IBAction func btnTakePic(_ sender: AnyObject) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "使用相機", style: .default, handler: {(action) in
@@ -126,7 +156,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         
         
-        //相機拍照
+        //相機拍照function
         
         func openCamera(){
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -138,15 +168,15 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
                 show(imgPickerTakeVC, sender: self)
                 
             }
-    }
-    
-        //取library
+        }
+        
+        //取library function
         func openLibrary(){
             let imgPickGetVC = UIImagePickerController()
             imgPickGetVC.sourceType = .photoLibrary
             imgPickGetVC.delegate = self
             
-            //規定要跳出
+            //規定要跳出(ipad需要)
             
             if let popoverController = alertController.popoverPresentationController {
                 popoverController.sourceView = view as? UIView
@@ -154,7 +184,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
                 
             }
             present(imgPickGetVC, animated: true, completion: nil)
-    
+            
             
             //        imgPickGetVC.modalPresentationStyle = .popover
             //        let popover = imgPickGetVC.popoverPresentationController
@@ -172,49 +202,57 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     //拍照finish 實作
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("mid:\(mid!)")
+        
         let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        //        imgViewSubject.image = imgTaken
+        
+        imgViewSbj.image = imgTaken
+        
+        
+        
         
         //將UIImage 變為 jpeg   即為data
         let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
         
         
         
-        
-        
+      
         
         let imgDataBase64 =  imgData?.base64EncodedData()
-        
-        let imgDataBase64String = imgData?.base64EncodedString()
-        
-        
-        //            print("aaaaaaa\(imgDataBase64)")
-        
-        print("bbbbbbbbbb\(imgDataBase64String!)")
+        //將imgData 轉為base64字串
+        imgDataBase64String = imgData?.base64EncodedString()
         
         
+        
+        //                    print("aaaaaaa\(imgDataBase64)")
+        
+        //        print("bbbbbbbbbb\(imgDataBase64String!)")
+        
+        
+        
+        //            print(imgDataBase64String)
+        
+        //        let url = URL(string: "https://together-seventsai.c9users.io/savePhoto.php")
+        //        //
+        //        let session = URLSession(configuration: .default)
+        //        var req = URLRequest(url: url!)
+        //        // 將base64字串以字串形式傳到後端
+        //        req.httpBody = "mid=\(mid!)&data=\(imgDataBase64String!)".data(using: .utf8)
+        //        req.httpMethod = "POST"
         //
-        //    print(imgDataBase64String)
+        //        let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
+        //            if error != nil{
+        //                print(data)
+        //                print(response)
+        //            }
         //
-        let url = URL(string: "https://together-seventsai.c9users.io/testPhoto.php")
+        //        })
         //
-        let session = URLSession(configuration: .default)
-        var req = URLRequest(url: url!)
-        req.httpBody = "data=\(imgDataBase64String!)".data(using: .utf8)
-        req.httpMethod = "POST"
-        
-        let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
-            if error != nil{
-                print(data)
-            }
-            
-        })
-        
-        
-        
-        
-        task.resume()
+        //
+        //
+        //
+        //        task.resume()
         
         
         
@@ -229,7 +267,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         //https://together-seventsai.c9users.io/photo/groupimg/
         
         //時間
-        let interval = Date.timeIntervalSinceReferenceDate
+        //        let interval = Date.timeIntervalSinceReferenceDate
         //                let docDir = NSHomeDirectory() + "/Documents"
         
         //        let imgRelativePath = "/saveimg/\(app.account!)_\(interval).jpg"
@@ -261,13 +299,6 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         //        }
         
         
-        
-        
-        
-        
-        
-        
-        
         dismiss(animated: true, completion: nil)
         
     }
@@ -276,6 +307,10 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
     
     // class Picker API。建構一個classPicker
     func setClassPicker(array:Array<String>){
@@ -502,21 +537,32 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         self.view.endEditing(true)
     }
-
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let app = UIApplication.shared.delegate as! AppDelegate
+        if app.id == nil {
+            mid = "0"
+        }else {
+            mid = app.id
+        }
+        
+        
         
         //        let imgBtn = UIImage(named: "cat.png")
         //
         //        btnPicOutlet.setImage(imgBtn, for: .normal)
         
         
-        
+        //取得screenSize 似乎沒用到
         let fullScreenSize = UIScreen.main.bounds.size
         
         
+        
+        //class的選擇清單
         listClass.append("美食")
         listClass.append("運動")
         listClass.append("旅遊")
@@ -526,10 +572,11 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         ////////////class PickerView 用
         setClassPicker(array: listClass)
         
-        //startdate picker  參數為 要作為點選的textfield 與  要紀錄的變數
+        //startdate picker API  參數為 要作為點選的textfield 與  要紀錄的變數 此為textFieldStartDate這個textField(storyboard拉的)
+        
         
         setStartDatePicker(textField: textFieldStartDate)
-        //enddate picker
+        //enddate picker API
         setEndDatePicker(textField: textFieldEndDate)
         
         
@@ -543,22 +590,21 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         self.view.addGestureRecognizer(tapBack)
         
-            }
-
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
