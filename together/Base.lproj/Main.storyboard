@@ -184,6 +184,11 @@
                                                 <action selector="changeShowMode:" destination="RCp-yW-nzL" eventType="valueChanged" id="5Hr-FA-HZN"/>
                                             </connections>
                                         </segmentedControl>
+                                        <barButtonItem key="rightBarButtonItem" title="選地點測試" id="aQr-Ob-o6x">
+                                            <connections>
+                                                <action selector="testChoosePlace:" destination="RCp-yW-nzL" id="MeX-9b-CRD"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -644,28 +649,28 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cC-Um-hs3" userLabel="groupTitle">
                                                     <rect key="frame" x="19" y="23" width="57" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="狀態" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6f-fC-md4" userLabel="groupStatus">
-                                                    <rect key="frame" x="261" y="24" width="42" height="21"/>
+                                                    <rect key="frame" x="212" y="14" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="揪團內容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvC-sJ-QbP" userLabel="groupContent">
-                                                    <rect key="frame" x="84" y="24" width="94" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqm-sv-Ap9" userLabel="groupDistance">
-                                                    <rect key="frame" x="186" y="23" width="50" height="21"/>
+                                                    <rect key="frame" x="212" y="39" width="50" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="揪團內容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvC-sJ-QbP" userLabel="groupContent">
+                                                    <rect key="frame" x="84" y="23" width="94" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -731,7 +736,100 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iu-WQ-CZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3953" y="334"/>
+            <point key="canvasLocation" x="-3908" y="14"/>
+        </scene>
+        <!--Test Pick MapVC-->
+        <scene sceneID="8sJ-AQ-P9r">
+            <objects>
+                <viewController storyboardIdentifier="testPickMapVC" id="xg8-lc-w6w" customClass="testPickMapVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6oZ-xb-hey"/>
+                        <viewControllerLayoutGuide type="bottom" id="I7u-pr-ZRW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RLN-no-Wm7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-PK-b06">
+                                <rect key="frame" x="162" y="69" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="選好了!"/>
+                                <connections>
+                                    <segue destination="UIY-5s-PPK" kind="unwind" identifier="segChosenPlace" unwindAction="backPickPlaceTestWithSender:" id="rwH-bB-jvg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTX-xa-ZE2">
+                                <rect key="frame" x="247" y="69" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="修改測試"/>
+                                <connections>
+                                    <segue destination="UIY-5s-PPK" kind="unwind" identifier="segEditPlace" unwindAction="backPickPlaceTestWithSender:" id="h8o-Wk-YWb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sf0-3t-sUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UIY-5s-PPK" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-3961" y="789"/>
+        </scene>
+        <!--Test Choose PlaceVC-->
+        <scene sceneID="bQy-Qn-bLb">
+            <objects>
+                <viewController storyboardIdentifier="testPickVC" id="OyB-xt-Llt" customClass="testChoosePlaceVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lMx-11-NvH"/>
+                        <viewControllerLayoutGuide type="bottom" id="bcI-Dl-KPQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0wj-B6-yoq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kH3-S7-KPC">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="選地點測試" id="L6k-uv-SRZ">
+                                        <barButtonItem key="leftBarButtonItem" title="地圖與清單" id="vT8-jb-NPj">
+                                            <connections>
+                                                <segue destination="KtD-ug-dhs" kind="unwind" unwindAction="backMapListWithSender:" id="2Wa-t3-CqO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="217-vk-Eaf">
+                                <rect key="frame" x="162" y="180" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="選地點!"/>
+                                <connections>
+                                    <action selector="pickPlace:" destination="OyB-xt-Llt" eventType="touchUpInside" id="9jl-kQ-HJ5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="輸入中的資料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnT-6F-c51">
+                                <rect key="frame" x="51" y="127" width="104" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYJ-R3-ceP">
+                                <rect key="frame" x="182" y="122" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O2A-Uf-NWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KtD-ug-dhs" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-3161" y="790"/>
         </scene>
     </scenes>
 </document>

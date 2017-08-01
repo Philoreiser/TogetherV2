@@ -10,10 +10,18 @@ import UIKit
 
 class searchResultVC: UIViewController {
 
+    @IBAction func backMapList(sender: UIStoryboardSegue) {
+        print("Map and List!")
+    }
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var contViewList: UIView!
     @IBOutlet weak var contViewMap: UIView!
     
+    @IBAction func testChoosePlace(_ sender: UIBarButtonItem) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "testPickVC") as! testChoosePlaceVC
+        show(vc, sender: self)
+    }
     
     @IBAction func changeShowMode(_ sender: UISegmentedControl) {
 
