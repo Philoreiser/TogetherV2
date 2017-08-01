@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1407D39B1F22AEFB0084AF64 /* classPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1407D39A1F22AEFB0084AF64 /* classPickerVC.swift */; };
-		147AE86C1F265A99004A5AA9 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 147AE86B1F265A99004A5AA9 /* b.png */; };
 		149CC0801F2EC41F001FFCBD /* manageGroupViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC07F1F2EC41F001FFCBD /* manageGroupViewVC.swift */; };
 		149CC0821F2EC459001FFCBD /* manageApplyViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CC0811F2EC459001FFCBD /* manageApplyViewVC.swift */; };
 		14AAD73E1F1C694F00BC6E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		1407D39A1F22AEFB0084AF64 /* classPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = classPickerVC.swift; sourceTree = "<group>"; };
-		147AE86B1F265A99004A5AA9 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 		149CC07F1F2EC41F001FFCBD /* manageGroupViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = manageGroupViewVC.swift; path = ../manageGroupViewVC.swift; sourceTree = "<group>"; };
 		149CC0811F2EC459001FFCBD /* manageApplyViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = manageApplyViewVC.swift; path = ../manageApplyViewVC.swift; sourceTree = "<group>"; };
 		14AAD73A1F1C694F00BC6E9E /* together.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = together.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +74,6 @@
 		14AAD73C1F1C694F00BC6E9E /* together */ = {
 			isa = PBXGroup;
 			children = (
-				147AE86B1F265A99004A5AA9 /* b.png */,
 				14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */,
 				14AAD73F1F1C694F00BC6E9E /* ViewController.swift */,
 				14AAD7411F1C694F00BC6E9E /* Main.storyboard */,
@@ -159,7 +156,6 @@
 			files = (
 				14AAD7481F1C694F00BC6E9E /* LaunchScreen.storyboard in Resources */,
 				14AAD7451F1C694F00BC6E9E /* Assets.xcassets in Resources */,
-				147AE86C1F265A99004A5AA9 /* b.png in Resources */,
 				14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
