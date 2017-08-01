@@ -10,6 +10,7 @@ import UIKit
 
 class testPickMapVC: UIViewController {
 
+    var saySomething:String = "I'm storyboard \"testPickMapVC\""
     
     
     override func viewDidLoad() {

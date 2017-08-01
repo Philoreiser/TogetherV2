@@ -11,13 +11,19 @@ import MapKit
 
 class testChoosePlaceVC: UIViewController, MKMapViewDelegate {
 
+    var count:Int? = 0
     var lat:CLLocationDegrees?
     var lng:CLLocationDegrees?
     
     @IBAction func backPickPlaceTest( sender: UIStoryboardSegue) {
         if lat != nil && lng != nil {
-            print("lat: \(lat!), lng: \(lng!)")
+            let segueId:String = sender.identifier!
+            let vc = sender.source as! testPickMapVC
+            
+            print("Message transferred with segue:" + vc.saySomething)
+            print("segue:\(segueId) lat: \(lat!), lng: \(lng!), count: \(count!)")
         }
+        
     }
     
     @IBAction func pickPlace(_ sender: Any) {
@@ -31,6 +37,11 @@ class testChoosePlaceVC: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        count! += 1
     }
 
     override func didReceiveMemoryWarning() {
