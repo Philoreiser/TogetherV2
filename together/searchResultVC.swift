@@ -19,6 +19,7 @@ class searchResultVC: UIViewController {
         case 0:
             print("List")
             
+            
         case 1:
             print("Map")
         default:
