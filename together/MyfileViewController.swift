@@ -15,12 +15,14 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var detailtext:String?
     var personalpic:String?
     var imgDataBase64String:String?
-    var subjectpic:Array<String> = []
+    var subjectpic:Array<Any> = []
     var groupimg:Array<String> = []
+    var images = [UIImage]()
     
     
+    @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
-    @IBOutlet weak var mygroupImage: UIImageView!
+    @IBOutlet weak var Mygroupimage: UIImageView!
     @IBOutlet weak var testlabel: UITextView!
         @IBAction func editBtn(_ sender: Any) {
         
@@ -255,9 +257,10 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         for a in  jsonobj as! [[String:String]] {
                             
-                            var subjectpic = a["subjectpic"]!
+                            //var varsubjectpic = (a["subjectpic"]!)
+                            self.subjectpic.append(a["subjectpic"])
                             
-                            
+                            //print(self.subjectpic)
                         }
                         
                         
@@ -266,10 +269,6 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                     }catch {
                         print("thisis \(error)")
                     }}
-                
-                
-                
-                
                 
             })
             
@@ -282,31 +281,107 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             
         }
-        
-        
-        sleep(1)
-        
-        
-        
-        do{
-            
-           
-            
-            
-            
-            
-            
-
-        }catch{
-          print(error)
-        }
-                
     }
+    
+    func putimage() {
+        
+        
+            do{
+                
+                for i in 0..<app.subjectpic.count {
+                    
+                    var temp = app.subjectpic[i] as? String ?? ""
+                    //print(type(of:temp))
+                    //print(temp)
+                    if temp != "" {
+                        
+                        let url = URL(string:"\(temp)")
+                        
+                        if url != nil {
+                            let data = try Data(contentsOf: url!)
+                            images.append(UIImage(data: data)!)
+                        }
+                        //let data = try Data(contentsOf: url!)
+                        //images.append(UIImage(data: data)!)
+                        
+                        
+                    }else {
+                        print("ok")
+                        images.append(UIImage(named: "question.jpg")!)
+                    }
+                }
+                
+                
+                
+                
+                
+            }catch{
+                print(error)
+            }
+        
+        
+        
+        //print(subjectpic)
+        //print(images)
+        Mygroupimage.image = images[0]
+        groupname.text =  app.subject[0]
+        mygroupControl.numberOfPages = images.count
+        
+        
+    }
+    
+    func loadimages(){
+        print(images)
+    }
+    
+    @IBAction func loaddetail(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+        show(vc!, sender: self)
+        
+        
+    }
+    
+    
+    @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.left:
+            //left swipe
+            if mygroupControl.currentPage < images.count {
+                mygroupControl.currentPage += 1
+            }
+        case UISwipeGestureRecognizerDirection.right:
+            //right swipe
+            if mygroupControl.currentPage > 0 {
+                mygroupControl.currentPage -= 1
+            }
+        default:
+            return
+        }
+        Mygroupimage.image = images[mygroupControl.currentPage]
+        groupname.text = app.subject[mygroupControl.currentPage]
+    }
+    
+    
+    
+    
+    //let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+    //show(vc!, sender: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDB()
-        loadmygroup()
+        //loadmygroup()
+        //putimage()
+        print(app.subject)
+        
+        DispatchQueue.global().sync {
+            putimage()
+        }
+        DispatchQueue.global().async {
+            sleep(2)
+            self.loadimages()
+        }
+        //print(app.subjectpic)
         // Do any additional setup after loading the view.
     }
 

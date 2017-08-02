@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -16,6 +18,12 @@ class ViewController: UIViewController {
     var account:String?
     var isLogin = true
     var id:String?
+    var subjectpic:Array<Any> = []
+    var subjectpic2:Array<Any> = []
+    var groupimg:Array<String> = []
+    var images = [UIImage]()
+    var subject:Array<String> = []
+    
     
     // test commit 1707777777
     // test commit 1708888888
@@ -79,6 +87,9 @@ class ViewController: UIViewController {
     
     
     
+    
+    
+    
     @IBAction func login(_ sender: Any) {
         do {
            
@@ -111,6 +122,21 @@ class ViewController: UIViewController {
             print(error)
         }
         alertSuccesslogin()
+        
+        Auth.auth().signIn(withEmail: self.accountText.text!, password: self.passwdText.text!) { (user, error) in
+            
+            Properties.user = User1(authData: user!)
+        //    if let user = user {
+                
+         //       let uid = user.uid
+       //         let email = user.email
+                
+       //     }
+            
+         //  self.performSegue(withIdentifier: "testvc", sender: nil)
+       }
+        
+        
         
     }
     //新增會員
@@ -160,6 +186,14 @@ class ViewController: UIViewController {
         }else {
             print("no words")
             alertEmpty()
+        }
+        
+        
+         Auth.auth().createUser(withEmail: self.addaccountText.text!, password: self.addpasswdText.text!) { (user, error) in
+            if error != nil {
+                
+                print("error")
+            }
         }
         
         
@@ -264,7 +298,7 @@ class ViewController: UIViewController {
             show(vc!, sender: self)
         }
         
-        
+        loadmygroup()
         loadDB()
         alertController.addAction(okaction)
         self.present(alertController, animated: true, completion: nil)
@@ -339,6 +373,110 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    
+    //loadtogether
+    
+    
+    func loadmygroup(){
+        
+        
+        if let account = app.account {
+            
+            //c9資料庫 post
+            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+            let session = URLSession(configuration: .default)
+            
+            
+            var req = URLRequest(url: url!)
+            
+            req.httpMethod = "POST"
+            req.httpBody = "account=\(account)".data(using: .utf8)
+            
+            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+                let source = String(data: data!, encoding: .utf8)
+                
+                //                print(source!)
+                
+                DispatchQueue.main.async {
+                    do{
+                        
+                        
+                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        for a in  jsonobj as! [[String:String]] {
+                            
+                            //var varsubjectpic = (a["subjectpic"]!)
+                            self.subjectpic2.append(a["subjectpic"])
+                            self.app.subjectpic = self.subjectpic2
+                            self.app.subject.append(a["subject"]!)
+                            
+                           // print(self.subjectpic)
+                        }
+                        
+                        
+                        //self.tbView.reloadData()
+                        
+                    }catch {
+                        print("thisis \(error)")
+                    }}
+                
+            })
+            
+            task.resume()
+            
+        }else {
+            
+            //沒輸入帳號直接跑到的話 給他一個假帳號
+            print("no account")
+            
+            
+        }
+        
+        
+      //  sleep(1)
+        
+        
+       // func putimage() {
+            
+            
+      //      do{
+                
+        //        for i in 0..<subjectpic.count {
+        //            let url = URL(string:"\(subjectpic[i])")
+                    
+                    //let url = URL(string:"")
+        //            let data = try Data(contentsOf: url!)
+       //             images.append(UIImage(data: data)!)
+                    //mygroupImage.image = UIImage(data: data)
+                    //mygroupControl.numberOfPages = subjectpic.count
+                    
+                    
+        //        }
+                
+                
+       //     }catch{
+       //         print(error)
+       //     }
+            
+            //print(subjectpic)
+            //print(images)
+            //mygroupImage.image = images[0]
+            //mygroupControl.numberOfPages = images.count
+            
+            
+      //  }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,10 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var id:String?
     var mastername:String?
     var sentToDetailId:String?
+    var subjectpic:Array<Any> = []
+    var subject:Array<String> = []
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+        
         return true
     }
 
