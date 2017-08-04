@@ -13,6 +13,12 @@
 		14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AAD7411F1C694F00BC6E9E /* Main.storyboard */; };
 		14AAD7451F1C694F00BC6E9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14AAD7441F1C694F00BC6E9E /* Assets.xcassets */; };
 		14AAD7481F1C694F00BC6E9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AAD7461F1C694F00BC6E9E /* LaunchScreen.storyboard */; };
+		14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6941F341057006FA954 /* applyGroupVC.swift */; };
+		14CBB69D1F341057006FA954 /* manageGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6971F341057006FA954 /* manageGroupVC.swift */; };
+		14CBB69E1F341057006FA954 /* manageApplyViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6981F341057006FA954 /* manageApplyViewVC.swift */; };
+		14CBB69F1F341057006FA954 /* manageGroupViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6991F341057006FA954 /* manageGroupViewVC.swift */; };
+		14CBB6A41F341545006FA954 /* openGroupTbViCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6A21F341545006FA954 /* openGroupTbViCell.swift */; };
+		14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6A31F341545006FA954 /* applyGroupTBVCell.swift */; };
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
 		1745F92F455B811D0C2306A6 /* Pods_together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
@@ -40,6 +46,12 @@
 		14AAD7441F1C694F00BC6E9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14AAD7471F1C694F00BC6E9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14AAD7491F1C694F00BC6E9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14CBB6941F341057006FA954 /* applyGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = applyGroupVC.swift; sourceTree = "<group>"; };
+		14CBB6971F341057006FA954 /* manageGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manageGroupVC.swift; sourceTree = "<group>"; };
+		14CBB6981F341057006FA954 /* manageApplyViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manageApplyViewVC.swift; sourceTree = "<group>"; };
+		14CBB6991F341057006FA954 /* manageGroupViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manageGroupViewVC.swift; sourceTree = "<group>"; };
+		14CBB6A21F341545006FA954 /* openGroupTbViCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupTbViCell.swift; sourceTree = "<group>"; };
+		14CBB6A31F341545006FA954 /* applyGroupTBVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = applyGroupTBVCell.swift; sourceTree = "<group>"; };
 		14F439531F1CA27D0060D839 /* openGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupVC.swift; sourceTree = "<group>"; };
 		27CA076D43421851F4BB5085 /* Pods-together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.release.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.release.xcconfig"; sourceTree = "<group>"; };
 		42866690544DDE4F6930258B /* Pods-together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.debug.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,7 +135,13 @@
 				F73D8F1C1F2A404D006951F7 /* GoogleService-Info.plist */,
 				14F439531F1CA27D0060D839 /* openGroupVC.swift */,
 				1407D39A1F22AEFB0084AF64 /* classPickerVC.swift */,
+				14CBB6A21F341545006FA954 /* openGroupTbViCell.swift */,
+				14CBB6A31F341545006FA954 /* applyGroupTBVCell.swift */,
 				F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */,
+				14CBB6941F341057006FA954 /* applyGroupVC.swift */,
+				14CBB6971F341057006FA954 /* manageGroupVC.swift */,
+				14CBB6981F341057006FA954 /* manageApplyViewVC.swift */,
+				14CBB6991F341057006FA954 /* manageGroupViewVC.swift */,
 			);
 			path = together;
 			sourceTree = "<group>";
@@ -262,16 +280,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CBB69F1F341057006FA954 /* manageGroupViewVC.swift in Sources */,
 				F75B3E391F32320F00ECC498 /* loginViewController.swift in Sources */,
 				F747565B1F2C739D00AF3631 /* Properties.swift in Sources */,
+				14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */,
 				F73D8F1F1F2A4093006951F7 /* messageboard.swift in Sources */,
 				F75B3E3B1F32325900ECC498 /* registerViewController.swift in Sources */,
+				14CBB69D1F341057006FA954 /* manageGroupVC.swift in Sources */,
+				14CBB69E1F341057006FA954 /* manageApplyViewVC.swift in Sources */,
 				14AAD7401F1C694F00BC6E9E /* ViewController.swift in Sources */,
 				14AAD73E1F1C694F00BC6E9E /* AppDelegate.swift in Sources */,
 				F7748D121F2CE565007CF316 /* Groupdetail.swift in Sources */,
 				4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */,
+				14CBB6A41F341545006FA954 /* openGroupTbViCell.swift in Sources */,
 				F74756591F2C734900AF3631 /* user.swift in Sources */,
 				4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */,
+				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,
 				F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */,
 				F75B3E3D1F3233BA00ECC498 /* FirstViewController.swift in Sources */,
 				F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */,
