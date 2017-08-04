@@ -18,9 +18,9 @@ class testChoosePlaceVC: UIViewController, MKMapViewDelegate {
     @IBAction func backPickPlaceTest( sender: UIStoryboardSegue) {
         if lat != nil && lng != nil {
             let segueId:String = sender.identifier!
-            let vc = sender.source as! testPickMapVC
+//            let vc = sender.source as! testPickMapVC
             
-            print("Message transferred with segue:" + vc.saySomething)
+//            print("Message transferred with segue:" + vc.saySomething)
             print("segue:\(segueId) lat: \(lat!), lng: \(lng!), count: \(count!)")
         }
         

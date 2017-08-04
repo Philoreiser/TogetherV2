@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -751,29 +752,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-PK-b06">
-                                <rect key="frame" x="162" y="69" width="51" height="30"/>
+                                <rect key="frame" x="74" y="20" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="選好了!"/>
                                 <connections>
                                     <segue destination="UIY-5s-PPK" kind="unwind" identifier="segChosenPlace" unwindAction="backPickPlaceTestWithSender:" id="rwH-bB-jvg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTX-xa-ZE2">
-                                <rect key="frame" x="247" y="69" width="62" height="30"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="V56-tE-5ot">
+                                <rect key="frame" x="16" y="58" width="343" height="433"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="修改測試"/>
-                                <connections>
-                                    <segue destination="UIY-5s-PPK" kind="unwind" identifier="segEditPlace" unwindAction="backPickPlaceTestWithSender:" id="h8o-Wk-YWb"/>
-                                </connections>
-                            </button>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rGa-5a-jPB" userLabel="stackView">
+                                <rect key="frame" x="16" y="592.5" width="343" height="66.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yb7-5J-JVe">
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="66.5"/>
+                                        <state key="normal" title="我的位置"/>
+                                        <connections>
+                                            <action selector="mapZoomToCurrentLoc:" destination="xg8-lc-w6w" eventType="touchUpInside" id="iO9-jC-u6F"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3d-EV-zR2">
+                                        <rect key="frame" x="114.5" y="0.0" width="114" height="66.5"/>
+                                        <state key="normal" title="地圖放大"/>
+                                        <connections>
+                                            <action selector="mapZoomIn:" destination="xg8-lc-w6w" eventType="touchUpInside" id="Jc7-dr-Ghg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjp-Jt-CwC">
+                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="66.5"/>
+                                        <state key="normal" title="地圖縮小"/>
+                                        <connections>
+                                            <action selector="mapZoomOut:" destination="xg8-lc-w6w" eventType="touchUpInside" id="D6x-rF-xHo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rGa-5a-jPB" secondAttribute="trailing" id="HEa-cO-aUG"/>
+                            <constraint firstItem="rGa-5a-jPB" firstAttribute="leading" secondItem="RLN-no-Wm7" secondAttribute="leadingMargin" id="aR5-LR-g9D"/>
+                            <constraint firstItem="I7u-pr-ZRW" firstAttribute="top" secondItem="rGa-5a-jPB" secondAttribute="bottom" constant="8" id="ctS-eZ-jzK"/>
+                            <constraint firstItem="rGa-5a-jPB" firstAttribute="height" secondItem="RLN-no-Wm7" secondAttribute="height" multiplier="0.1" id="uRx-v5-aXQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="V56-tE-5ot" id="eOv-VE-QDd"/>
+                        <outlet property="stackView" destination="rGa-5a-jPB" id="LOY-zf-0lj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf0-3t-sUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UIY-5s-PPK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3961" y="789"/>
+            <point key="canvasLocation" x="-3967.1999999999998" y="788.45577211394311"/>
         </scene>
         <!--Test Choose PlaceVC-->
         <scene sceneID="bQy-Qn-bLb">
