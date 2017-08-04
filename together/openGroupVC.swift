@@ -9,6 +9,7 @@
 ///////////**********開揪團頁面
 
 import UIKit
+import MapKit
 
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
 class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -39,10 +40,26 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var detail:String?
     var subjectpic:String?
     
+    var locationAddr:String?
+    var locationLat:CLLocationDegrees?
+    var locationLng:CLLocationDegrees?
+    
 
     
+    // 選取地點
+    @IBAction func pickMapPlace(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "opengroupmapvc") as! openGroupMapPickVC
+        show(vc, sender: self)
+    }
     
-    
+    @IBAction func pickPlaceDone(_ sender: UIStoryboardSegue) {
+        let segId:String = sender.identifier!
+        print(segId)
+        if segId == "segPickPlaceDone" {
+            print("取得地點座標及地址")
+            print("經度: \(locationLat!), 緯度: \(locationLng!)")
+        }
+    }
     
     
     /////////submit按鈕

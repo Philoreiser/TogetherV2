@@ -23,6 +23,12 @@
 		1745F92F455B811D0C2306A6 /* Pods_together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
 		4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */; };
+		84E0EC0B1F345085007D370F /* openGroupMapPickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */; };
+		84E0EC0D1F3475B6007D370F /* resultMapListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */; };
+		84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */; };
+		84E0EC111F347C76007D370F /* resultListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC101F347C76007D370F /* resultListVC.swift */; };
+		84E0EC131F347CA8007D370F /* resultMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC121F347CA8007D370F /* resultMapVC.swift */; };
+		84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC141F347F9E007D370F /* resultListTbCell.swift */; };
 		F73D8F1D1F2A404D006951F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F73D8F1C1F2A404D006951F7 /* GoogleService-Info.plist */; };
 		F73D8F1F1F2A4093006951F7 /* messageboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D8F1E1F2A4093006951F7 /* messageboard.swift */; };
 		F74756571F2C5D0200AF3631 /* question.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74756561F2C5D0200AF3631 /* question.jpg */; };
@@ -56,6 +62,12 @@
 		42866690544DDE4F6930258B /* Pods-together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.debug.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.debug.xcconfig"; sourceTree = "<group>"; };
 		4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyfileViewController.swift; sourceTree = "<group>"; };
 		4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditresumeView.swift; sourceTree = "<group>"; };
+		84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupMapPickVC.swift; sourceTree = "<group>"; };
+		84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultMapListVC.swift; sourceTree = "<group>"; };
+		84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchGroupVC.swift; sourceTree = "<group>"; };
+		84E0EC101F347C76007D370F /* resultListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultListVC.swift; sourceTree = "<group>"; };
+		84E0EC121F347CA8007D370F /* resultMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultMapVC.swift; sourceTree = "<group>"; };
+		84E0EC141F347F9E007D370F /* resultListTbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultListTbCell.swift; sourceTree = "<group>"; };
 		F73D8F1C1F2A404D006951F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F73D8F1E1F2A4093006951F7 /* messageboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messageboard.swift; sourceTree = "<group>"; };
 		F74756561F2C5D0200AF3631 /* question.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = question.jpg; sourceTree = "<group>"; };
@@ -119,6 +131,12 @@
 				F74756581F2C734900AF3631 /* user.swift */,
 				F747565A1F2C739D00AF3631 /* Properties.swift */,
 				14AAD7411F1C694F00BC6E9E /* Main.storyboard */,
+				84E0EC141F347F9E007D370F /* resultListTbCell.swift */,
+				84E0EC121F347CA8007D370F /* resultMapVC.swift */,
+				84E0EC101F347C76007D370F /* resultListVC.swift */,
+				84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */,
+				84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */,
+				84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */,
 				F75B3E3A1F32325900ECC498 /* registerViewController.swift */,
 				F7748D111F2CE565007CF316 /* Groupdetail.swift */,
 				F75B3E381F32320F00ECC498 /* loginViewController.swift */,
@@ -279,6 +297,7 @@
 			files = (
 				14CBB69F1F341057006FA954 /* manageGroupViewVC.swift in Sources */,
 				F75B3E391F32320F00ECC498 /* loginViewController.swift in Sources */,
+				84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */,
 				F747565B1F2C739D00AF3631 /* Properties.swift in Sources */,
 				14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */,
 				F73D8F1F1F2A4093006951F7 /* messageboard.swift in Sources */,
@@ -290,13 +309,18 @@
 				F7748D121F2CE565007CF316 /* Groupdetail.swift in Sources */,
 				4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */,
 				14CBB6A41F341545006FA954 /* openGroupTbViCell.swift in Sources */,
+				84E0EC131F347CA8007D370F /* resultMapVC.swift in Sources */,
 				F74756591F2C734900AF3631 /* user.swift in Sources */,
 				4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */,
+				84E0EC0D1F3475B6007D370F /* resultMapListVC.swift in Sources */,
+				84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */,
 				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,
 				F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */,
 				F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */,
 				F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */,
+				84E0EC111F347C76007D370F /* resultListVC.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,
+				84E0EC0B1F345085007D370F /* openGroupMapPickVC.swift in Sources */,
 				1407D39B1F22AEFB0084AF64 /* classPickerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
