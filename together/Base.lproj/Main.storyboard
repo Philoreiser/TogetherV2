@@ -1028,6 +1028,10 @@
         <scene sceneID="MPq-Lp-b6T">
             <objects>
                 <viewController id="fiK-QK-RfO" customClass="manageApplyViewVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oEY-qd-DEW"/>
+                        <viewControllerLayoutGuide type="bottom" id="JGv-VV-AhL"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="egk-cQ-I4t">
                         <rect key="frame" x="0.0" y="0.0" width="333" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1102,6 +1106,10 @@
         <scene sceneID="Nme-6Z-orn">
             <objects>
                 <viewController id="2hm-1h-afQ" customClass="manageGroupViewVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j1E-57-1pC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Af2-P0-TkH"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wa3-wE-7Ne">
                         <rect key="frame" x="0.0" y="0.0" width="354" height="507"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
