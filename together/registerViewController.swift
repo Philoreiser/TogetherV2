@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+
 class registerViewController: UIViewController {
 
     let app = UIApplication.shared.delegate as! AppDelegate
@@ -38,7 +40,7 @@ class registerViewController: UIViewController {
             Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
                 if error != nil {
                     self.alertWrong()
-                    print("error")
+                    print(error)
                 }else {
                     
                     //      }

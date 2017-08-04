@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var account:String?
     var passwd:String?
-    var id:String?
+    var mid:String?
     var mastername:String?
     var sentToDetailId:String?
     var subjectpic:Array<Any> = []
     var subject:Array<String> = []
+    
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

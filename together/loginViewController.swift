@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class loginViewController: UIViewController {
 
@@ -63,7 +64,7 @@ class loginViewController: UIViewController {
                     if source == "pass" {
                         self.app.account = account
                         self.app.passwd = passwd
-                        self.app.id = self.id
+                        //self.app.id = self.id
                         
                         
                         //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
@@ -82,14 +83,14 @@ class loginViewController: UIViewController {
                 }
                 
                 
-                print("189709175089045")
-                self.alertSuccesslogin()
+                
+                //self.alertSuccesslogin()
                 
                 
                 
                 Properties.user = User1(authData: user!)
                 
-                
+                self.alertSuccesslogin()
                 
                 
             }
@@ -209,8 +210,10 @@ class loginViewController: UIViewController {
             show(vc!, sender: self)
         }
         
-        loadmygroup()
-        loadDB()
+        
+        app.mid = Properties.user?.uid
+        //loadmygroup()
+        //loadDB()
         alertController.addAction(okaction)
         self.present(alertController, animated: true, completion: nil)
     }

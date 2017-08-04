@@ -110,7 +110,7 @@ class ViewController: UIViewController {
     
     
     
-    
+    /////////////登入按鈕
     @IBAction func login(_ sender: Any) {
         
         if accountText.text == "" || passwdText.text == "" {
@@ -138,6 +138,8 @@ class ViewController: UIViewController {
                      var account = self.accountText.text!
                      var passwd = self.passwdText.text!
                     
+                    self.app.account = account
+                    self.app.passwd = passwd
                     
                     
                     let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
@@ -403,8 +405,10 @@ class ViewController: UIViewController {
             show(vc!, sender: self)
         }
         
-        loadmygroup()
-        loadDB()
+        
+        //app.mid = Properties.user?.uid
+        //loadmygroup()
+        //loadDB()
         alertController.addAction(okaction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -445,11 +449,7 @@ class ViewController: UIViewController {
                     }catch {
                         print("thisis \(error)")
                     }}
-                
-                
-                
-                
-                
+    
             })
             
             task.resume()
@@ -471,6 +471,8 @@ class ViewController: UIViewController {
         
         
         if let account = app.account {
+            
+            
             
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
@@ -498,8 +500,8 @@ class ViewController: UIViewController {
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic2.append(a["subjectpic"])
                             self.app.subjectpic = self.subjectpic2
-                            self.app.subject.append(a["subject"]!)
-                            
+//                            self.app.subject.append(a["subject"]!)
+                                self.app.subject.append(a["tid"]!)
                            // print(self.subjectpic)
                         }
                         
@@ -508,8 +510,19 @@ class ViewController: UIViewController {
                         
                     }catch {
                         print("thisis \(error)")
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            
+//                            //var varsubjectpic = (a["subjectpic"]!)
+//                            //self.subjectpic2.append(a["subjectpic"])
+//                            //self.app.subjectpic = self.subjectpic2
+//                            
+//                            self.app.subject.append(a["subject"]!)
+//                            
+//                            // print(self.subjectpic)
+//                        }
                     }}
-                
             })
             
             task.resume()

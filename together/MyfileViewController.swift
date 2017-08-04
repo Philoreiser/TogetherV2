@@ -18,13 +18,14 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var subjectpic:Array<Any> = []
     var groupimg:Array<String> = []
     var images = [UIImage]()
+    var subject:Array<String> = []
     
     
     @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
     @IBOutlet weak var Mygroupimage: UIImageView!
     @IBOutlet weak var testlabel: UITextView!
-        @IBAction func editBtn(_ sender: Any) {
+    @IBAction func editBtn(_ sender: Any) {
         
         let nickname = nameText.text!
         let description = testlabel.text!
@@ -261,12 +262,15 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic.append(a["subjectpic"])
-                            
-                            //print(self.subjectpic)
+                            self.subject.append(a["tid"]!)
+                           // print(self.subjectpic)
+                           // print(self.subject)
                         }
                         
+                        sleep(1)
+                        self.putimage()
+                        print("我是紗布傑克\(self.subject)")
                         
-                        //self.tbView.reloadData()
                         
                     }catch {
                         print("thisis \(error)")
@@ -283,16 +287,21 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             
         }
+        
+        //print(Properties.user?.uid)
+        
+        
     }
     
+    
+
     func putimage() {
         
-        
-            do{
+        do{
                 
-                for i in 0..<app.subjectpic.count {
+                for i in 0..<self.subjectpic.count {
                     
-                    var temp = app.subjectpic[i] as? String ?? ""
+                    var temp = self.subjectpic[i] as? String ?? ""
                     //print(type(of:temp))
                     //print(temp)
                     if temp != "" {
@@ -301,6 +310,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         if url != nil {
                             let data = try Data(contentsOf: url!)
+                            
                             images.append(UIImage(data: data)!)
                         }
                         //let data = try Data(contentsOf: url!)
@@ -312,13 +322,10 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         images.append(UIImage(named: "question.jpg")!)
                     }
                 }
-                
-                
-                
-                
-                
             }catch{
                 print(error)
+                images.append(UIImage(named: "question.jpg")!)
+              
             }
         
         
@@ -326,14 +333,22 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         //print(subjectpic)
         //print(images)
         Mygroupimage.image = images[0]
-        groupname.text =  app.subject[0]
+        groupname.text = subject[0]
         mygroupControl.numberOfPages = images.count
-        
-        
+//        print(images)
+//        print(subject)
     }
     
+    
+
+    
     func loadimages(){
-        print(images)
+        
+        app.mid = Properties.user?.uid
+        
+        print(app.mid)
+       // print(images)
+       // print(subject)
     }
     
     @IBAction func loaddetail(_ sender: Any) {
@@ -359,8 +374,11 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             return
         }
-        Mygroupimage.image = images[mygroupControl.currentPage]
-        groupname.text = app.subject[mygroupControl.currentPage]
+        DispatchQueue.main.async {
+            self.Mygroupimage.image = self.images[self.mygroupControl.currentPage]
+            self.groupname.text = self.subject[self.mygroupControl.currentPage]
+        }
+        
     }
     
     
@@ -372,19 +390,21 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDB()
-        //loadmygroup()
-        //putimage()
-        print(app.subject)
+        loadmygroup()
+        //loadimages()
         
-        DispatchQueue.global().sync {
-            putimage()
-        }
-        DispatchQueue.global().async {
-            sleep(2)
-            self.loadimages()
-        }
+        
+        print("我是：\(app.mid!)")
+        //putimage()
+//        print(app.subject)
         //print(app.subjectpic)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+//        putimage()
+    
     }
 
     override func didReceiveMemoryWarning() {
