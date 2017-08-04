@@ -789,6 +789,7 @@
                         <outlet property="btnPicOutlet" destination="29c-cc-nKs" id="rfp-Ll-eeA"/>
                         <outlet property="classLabel" destination="wuT-rJ-4wY" id="s4I-JN-MLj"/>
                         <outlet property="classTextField" destination="1fY-tH-g42" id="3gK-Q0-E8a"/>
+                        <outlet property="imgViewSbj" destination="KQw-ch-hQr" id="ZKd-Vt-0A9"/>
                         <outlet property="textFieldEndDate" destination="Inf-ht-6iC" id="aaE-QW-7of"/>
                         <outlet property="textFieldStartDate" destination="OqT-Om-h6i" id="SoV-Ki-L3Z"/>
                         <outlet property="textFieldSubject" destination="cRP-yZ-gee" id="jrK-pz-a2D"/>
@@ -933,7 +934,7 @@
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8ta-MB-p0z" id="SWb-k6-2xV">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL3-cC-MoB">
@@ -1012,7 +1013,7 @@
                                         <rect key="frame" x="0.0" y="28" width="317" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Vp-yi-Xp9" id="eMJ-K7-ByO" customClass="applyGroupTBVCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="317" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FGS-6c-K8X">
@@ -1090,7 +1091,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqi-jH-975" id="dbL-Ez-uyk" customClass="openGroupTbViCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V02-FS-1aP">
@@ -1243,6 +1244,10 @@
         <scene sceneID="vBv-1U-Jo0">
             <objects>
                 <viewController storyboardIdentifier="resultlistvc" id="31z-sg-4aJ" customClass="resultListVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ry4-qH-Kks"/>
+                        <viewControllerLayoutGuide type="bottom" id="eEo-rD-rlA"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NnC-Ix-08u">
                         <rect key="frame" x="0.0" y="0.0" width="303" height="494"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1256,7 +1261,7 @@
                                         <rect key="frame" x="0.0" y="28" width="271" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JpF-0K-m0v" id="5ZV-QH-naK" userLabel="contView">
-                                            <rect key="frame" x="0.0" y="0.0" width="271" height="67.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-66-OBz">
@@ -1316,6 +1321,10 @@
         <scene sceneID="Goc-CR-GtM">
             <objects>
                 <viewController storyboardIdentifier="resultmapvc" id="ZDg-Xb-rX1" customClass="resultMapVC" customModule="together" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QYJ-Vg-MtS"/>
+                        <viewControllerLayoutGuide type="bottom" id="aep-Ac-o3Y"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OwX-WA-x1P">
                         <rect key="frame" x="0.0" y="0.0" width="303" height="494"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
