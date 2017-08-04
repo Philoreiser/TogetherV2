@@ -31,7 +31,6 @@
 		F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747565C1F2C7EA300AF3631 /* Msgviewitem.swift */; };
 		F75B3E391F32320F00ECC498 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B3E381F32320F00ECC498 /* loginViewController.swift */; };
 		F75B3E3B1F32325900ECC498 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B3E3A1F32325900ECC498 /* registerViewController.swift */; };
-		F75B3E3D1F3233BA00ECC498 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B3E3C1F3233BA00ECC498 /* FirstViewController.swift */; };
 		F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */; };
 		F7748D121F2CE565007CF316 /* Groupdetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7748D111F2CE565007CF316 /* Groupdetail.swift */; };
 		F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */; };
@@ -65,7 +64,6 @@
 		F747565C1F2C7EA300AF3631 /* Msgviewitem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Msgviewitem.swift; sourceTree = "<group>"; };
 		F75B3E381F32320F00ECC498 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		F75B3E3A1F32325900ECC498 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
-		F75B3E3C1F3233BA00ECC498 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupReviewTableViewCell.swift; sourceTree = "<group>"; };
 		F7748D111F2CE565007CF316 /* Groupdetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Groupdetail.swift; sourceTree = "<group>"; };
 		F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgtableViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			children = (
 				14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */,
 				14AAD73F1F1C694F00BC6E9E /* ViewController.swift */,
-				F75B3E3C1F3233BA00ECC498 /* FirstViewController.swift */,
 				F747565C1F2C7EA300AF3631 /* Msgviewitem.swift */,
 				F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */,
 				F74756581F2C734900AF3631 /* user.swift */,
@@ -297,7 +294,6 @@
 				4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */,
 				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,
 				F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */,
-				F75B3E3D1F3233BA00ECC498 /* FirstViewController.swift in Sources */,
 				F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */,
 				F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,

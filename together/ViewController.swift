@@ -25,18 +25,6 @@ class ViewController: UIViewController {
     var subject:Array<String> = []
     
     
-    // test commit 1707777777
-    // test commit 1708888888
-    // test commit 1697979797
-    ///test branch testt2
-    
-    
-    ///test by seven
-
-    // test commit by Dylan
-    
-    
-    
     //大家可以回家的segue
     @IBAction func home(_sender:UIStoryboardSegue){
         
@@ -69,21 +57,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var addpasswdText: UITextField!
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
-    @IBAction func segmentLoginRegister(_ sender: Any) {
-        switch segmentedController.selectedSegmentIndex {
-        case 1:
-            isLogin = false
-            addMemberOrLogin()
-        case 0:
-            isLogin = true
-            addMemberOrLogin()
-        default:
-            isLogin = false
-            addMemberOrLogin()
-            
-        }
+    
+    @IBOutlet weak var loginView: UIView!
+    
+    @IBOutlet weak var registerView: UIView!
+    
+    @IBAction func segmentValue(_ sender: UISegmentedControl) {
         
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.loginView.isHidden = false
+            self.registerView.isHidden = true
+        case 1:
+            self.registerView.isHidden = false
+            self.loginView.isHidden = true
+        default:
+            break
+        }
     }
+//    @IBAction func segmentLoginRegister(_ sender: Any) {
+//        switch segmentedController.selectedSegmentIndex {
+//        case 1:
+//            isLogin = false
+//            addMemberOrLogin()
+//        case 0:
+//            isLogin = true
+//            addMemberOrLogin()
+//        default:
+//            isLogin = false
+//            addMemberOrLogin()
+//            
+//        }
+//        
+//    }
     
     
     
@@ -553,8 +559,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isLogin = true
-        addMemberOrLogin()
+        self.loginView.isHidden = false
+        self.registerView.isHidden = true
+        
+        
+        //isLogin = true
+        //addMemberOrLogin()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

@@ -33,8 +33,8 @@ class loginViewController: UIViewController {
             
             passwordText.isSecureTextEntry = true
             
-            let account = emailText.text!
-            let passwd = passwordText.text!
+            //let account = emailText.text!
+            //let passwd = passwordText.text!
         }
         
         Auth.auth().signIn(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
@@ -48,17 +48,17 @@ class loginViewController: UIViewController {
                     
                     //passwdText.isSecureTextEntry = true
                     
-                    // let account = accountText.text!
-                    // let passwd = passwdText.text!
+                     let account = self.emailText.text!
+                     let passwd = self.passwordText.text!
                     
                     
                     
-                    let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(self.account)&passwd=\(self.passwd)"
+                    let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
                     let url = URL(string:urlString)
                     let source = try String(contentsOf: url!, encoding: .utf8)
                     if source == "pass" {
-                        self.app.account = self.account
-                        self.app.passwd = self.passwd
+                        self.app.account = account
+                        self.app.passwd = passwd
                         self.app.id = self.id
                         //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
                         //show(vc!, sender: self)
