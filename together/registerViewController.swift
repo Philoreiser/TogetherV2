@@ -142,7 +142,7 @@ class registerViewController: UIViewController {
         
         func go(){
             
-            let vc = storyboard?.instantiateViewController(withIdentifier: "loginView")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "MainView")
             show(vc!, sender: self)
         }
         

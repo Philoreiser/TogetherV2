@@ -68,24 +68,45 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var addpasswdText: UITextField!
     
+    @IBOutlet weak var registerView: UIView!
+    @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
-    @IBAction func segmentLoginRegister(_ sender: Any) {
-        switch segmentedController.selectedSegmentIndex {
-        case 1:
-            isLogin = false
-            addMemberOrLogin()
+    
+    
+    @IBAction func segmentedvalue(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
         case 0:
-            isLogin = true
-            addMemberOrLogin()
+            self.loginView.isHidden = false
+            self.registerView.isHidden = true
+        case 1:
+            self.registerView.isHidden = false
+            self.loginView.isHidden = true
         default:
-            isLogin = false
-            addMemberOrLogin()
+            break    }
+    
+    
+   // @IBAction func segmentLoginRegister(_ sender: Any) {
             
-        }
+        
+//        switch segmentedController.selectedSegmentIndex {
+//        case 1:
+//            isLogin = false
+//            addMemberOrLogin()
+//        case 0:
+//            isLogin = true
+//            addMemberOrLogin()
+//        default:
+//            isLogin = false
+//            addMemberOrLogin()
+//            
+//        }
         
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     
     
@@ -553,8 +574,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isLogin = true
-        addMemberOrLogin()
+        self.loginView.isHidden = false
+        self.registerView.isHidden = true
+
+        //isLogin = true
+        //addMemberOrLogin()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
