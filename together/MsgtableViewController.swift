@@ -24,7 +24,7 @@ class MsgtableViewController: UIViewController {
     @IBAction func save(_ sender: Any) {
         
         if self.review.text == "" {
-            //super.showMsg("請輸入評論", showMsgStatus: .loginFail, handler: nil)
+            alertEmpty()
             return
         }
         
@@ -32,6 +32,13 @@ class MsgtableViewController: UIViewController {
         let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("groupId-0000001")
         let childRef: DatabaseReference = reference.childByAutoId() // 隨機生成的節點唯一識別碼，用來當儲存時的key值
         
+        // get date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/M/d H:m"
+        let string = formatter.string(from: Date())
+        
+        
+        //id name 再修正為團名以及ID        
         var movieReview: [String : AnyObject] = [String : AnyObject]()
         movieReview["groupId"] = "groupId-0000001" as AnyObject
         movieReview["childId"] = childRef.key as AnyObject
@@ -39,7 +46,10 @@ class MsgtableViewController: UIViewController {
         movieReview["groupReview"] = self.review.text as AnyObject
         movieReview["userId"] = (Properties.user?.uid)! as AnyObject
         movieReview["userEmail"] = (Properties.user?.email)! as AnyObject
-        movieReview["createDate"] = "20170424" as AnyObject
+        movieReview["createDate"] = "\(string)" as AnyObject
+        
+        
+        
         
         let movieReviewReference = reference.child(childRef.key)
         movieReviewReference.updateChildValues(movieReview) { (err, ref) in
@@ -51,8 +61,12 @@ class MsgtableViewController: UIViewController {
             print(ref.description())
             
             // 返回上一頁
-            _ = self.navigationController?.popViewController(animated: true)
+            //_ = self.navigationController?.popViewController(animated: true)
+            self.go()
+            
+            
         }
+        
  
         
         
@@ -60,6 +74,31 @@ class MsgtableViewController: UIViewController {
         
         
     }
+    
+    
+    func go(){
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "testvc")
+        show(vc!, sender: self)
+    }
+    
+    
+    func alertEmpty() {
+        
+        let alertController = UIAlertController(title: "請輸入評論", message: "不能空白喔！", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "確認", style: .default, handler: {(action) in
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        
+        alertController.addAction(okaction)
+        self.present(alertController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

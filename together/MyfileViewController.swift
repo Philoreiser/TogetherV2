@@ -178,7 +178,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
             let session = URLSession(configuration: .default)
-            
+            print("123465")
             
             var req = URLRequest(url: url!)
             
@@ -202,6 +202,8 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             
                             self.nameText.text = nickname
                             self.testlabel.text = description
+                            
+                            print("987654")
                         }
                         
                         

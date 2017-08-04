@@ -86,69 +86,153 @@ class ViewController: UIViewController {
     }
     
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        <#code#>
+    }
     
     
     
     @IBAction func login(_ sender: Any) {
-        do {
+        
+        if accountText.text == "" || passwdText.text == "" {
+            alertWrong()
            
-            passwdText.isSecureTextEntry = true
-            
-            let account = accountText.text!
-            let passwd = passwdText.text!
-           
-            
-            
-            let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
-            let url = URL(string:urlString)
-            let source = try String(contentsOf: url!, encoding: .utf8)
-            if source == "pass" {
-                self.app.account = account
-                self.app.passwd = passwd
-                self.app.id = id
-                //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
-                //show(vc!, sender: self)
-                print("ok")
-            }else if source == "passwdwrong"{
-                print("抱歉，密碼錯誤．")
-                alertWrong()
-            }else if source == "accountwrong"{
-                print("抱歉，帳號錯誤．")
-                alertWrong()
-            }
-            
-        }catch{
-            print(error)
         }
-        alertSuccesslogin()
+        
+        passwdText.isSecureTextEntry = true
+        
+        //let account = accountText.text!
+        //let passwd = passwdText.text!
+        
         
         Auth.auth().signIn(withEmail: self.accountText.text!, password: self.passwdText.text!) { (user, error) in
             
-            Properties.user = User1(authData: user!)
-        //    if let user = user {
+            
+            if error != nil {
+                self.alertWrong()
+            }else {
                 
-         //       let uid = user.uid
-       //         let email = user.email
+                do {
+                    
+                    //passwdText.isSecureTextEntry = true
+                    
+                     var account = self.accountText.text!
+                     var passwd = self.passwdText.text!
+                    
+                    
+                    
+                    let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
+                    let url = URL(string:urlString)
+                    let source = try String(contentsOf: url!, encoding: .utf8)
+                    if source == "pass" {
+                        self.app.account = account
+                        self.app.passwd = passwd
+                        
+                        //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
+                        //show(vc!, sender: self)
+                        print("ok")
+                    }else if source == "passwdwrong"{
+                        print("抱歉，密碼錯誤．")
+                        self.alertWrong()
+                    }else if source == "accountwrong"{
+                        print("抱歉，帳號錯誤．")
+                        self.alertWrong()
+                    }
+                    
+                }catch{
+                    print(error)
+                }
+                self.alertSuccesslogin()
                 
-       //     }
+                
+                
+                Properties.user = User1(authData: user!)
+                
+                
+                
+                
+            }
+            
+        
+        
+            //  self.performSegue(withIdentifier: "testvc", sender: nil)
+        }
+       
+        
+        
+        //do {
+           
+            //passwdText.isSecureTextEntry = true
+            
+           // let account = accountText.text!
+           // let passwd = passwdText.text!
+           
+            
+            
+       //     let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
+       //     let url = URL(string:urlString)
+        //    let source = try String(contentsOf: url!, encoding: .utf8)
+       //     if source == "pass" {
+      //          self.app.account = account
+      //          self.app.passwd = passwd
+      //          self.app.id = id
+                //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
+                //show(vc!, sender: self)
+      //          print("ok")
+     //       }else if source == "passwdwrong"{
+     //           print("抱歉，密碼錯誤．")
+     //           alertWrong()
+     //       }else if source == "accountwrong"{
+     //           print("抱歉，帳號錯誤．")
+     //           alertWrong()
+     //       }
+            
+     //   }catch{
+     //       print(error)
+     //   }
+    //    alertSuccesslogin()
+        
+        //Auth.auth().signIn(withEmail: self.accountText.text!, password: self.passwdText.text!) { (user, error) in
+            
+        //    Properties.user = User1(authData: user!)
+        
             
          //  self.performSegue(withIdentifier: "testvc", sender: nil)
-       }
+      // }
         
         
         
     }
+    
+    
+    func isPasswordValid(_ password : String) -> Bool{
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
+           return passwordTest.evaluate(with: password)
+    }
+    
+    
     //新增會員
+    //修正為信箱帳號登入
     @IBAction func addMember(_ sender: Any) {
         let url = URL(string: "https://together-seventsai.c9users.io/addMember.php")
         var request = URLRequest(url: url!)
-        if addaccountText.text != "" && addpasswdText.text != "" {
+        if addaccountText.text != "" && addpasswdText.text != "" && isPasswordValid(addpasswdText.text!){
             
             addpasswdText.isSecureTextEntry = true
             
             let account = addaccountText.text!
             let passwd = addpasswdText.text!
+            
+            
+            Auth.auth().createUser(withEmail: self.addaccountText.text!, password: self.addpasswdText.text!) { (user, error) in
+                if error != nil {
+                    self.alertWrong()
+                    print("error")
+                }else {
+                    
+          //      }
+        //    }
+            
             
             do {
                 let urlGet = URL(string: "https://together-seventsai.c9users.io/addMember.php?account=\(account)&passwd=\(passwd)")
@@ -161,14 +245,14 @@ class ViewController: UIViewController {
 //                    let vc = storyboard?.instantiateViewController(withIdentifier: "MainView")
 //                    show(vc!, sender: self)
                     
-                    alertSuccess()
+                    self.alertSuccess()
                     print("show")
                     
                     
                 }else if source == "accountexist" {
                     
                     print("exist")
-                    alertExist()
+                    self.alertExist()
                     
                     
                 }else {
@@ -180,21 +264,23 @@ class ViewController: UIViewController {
                 print(error)
             }
             
-            
+                }
+            }
             
             
         }else {
             print("no words")
             alertEmpty()
         }
+            
         
         
-         Auth.auth().createUser(withEmail: self.addaccountText.text!, password: self.addpasswdText.text!) { (user, error) in
-            if error != nil {
+   //      Auth.auth().createUser(withEmail: self.addaccountText.text!, password: self.addpasswdText.text!) { (user, error) in
+   //         if error != nil {
                 
-                print("error")
-            }
-        }
+    //            print("error")
+    //        }
+  //      }
         
         
     }
@@ -354,23 +440,7 @@ class ViewController: UIViewController {
             //沒輸入帳號直接跑到的話 給他一個假帳號
             print("no account")
             
-            //192.168.1.136
-            //            169.254.227.115
-            //            let url = URL(string: "http://127.0.0.1/walkdog/getTable.php?account=1234")
-            //            let url = URL(string: "http://10.2.12.133/walkdog/getTable.php?account=1234")
-            //            do{
-            //                let  data = try Data(contentsOf: url!)
-            //                let jsonobj = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            //
-            //                for a in  jsonobj as! [[String:String]] {
-            //                    print(a["account"]!)
-            //                    mydata.append(a["account"]!)                }
-            //
-            //            }catch {
-            //                print(error)
-            //            }
-            //
-        }
+            }
         
     }
     

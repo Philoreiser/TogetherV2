@@ -22,6 +22,10 @@ struct GroupReviewItem {
     init(snapshot: DataSnapshot) {
         print(snapshot)
          //取出snapshot的值(JSON)
+        //date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/M/d H:m"
+        let string = formatter.string(from: Date())
         
         let snapshotValue: [String: AnyObject] = snapshot.value as! [String: AnyObject]
         self.childId = snapshotValue["childId"] as! String
