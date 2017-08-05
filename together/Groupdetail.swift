@@ -42,17 +42,17 @@ class Groupdetail: UIViewController {
     func loadmygroup(){
         
         
-        if let account = app.account {
+        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
             
             //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+            let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
             let session = URLSession(configuration: .default)
             
             
             var req = URLRequest(url: url!)
             
             req.httpMethod = "POST"
-            req.httpBody = "account=\(account)".data(using: .utf8)
+            req.httpBody = "mid=\(mid)".data(using: .utf8)
             
             let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
                 let source = String(data: data!, encoding: .utf8)
@@ -72,7 +72,7 @@ class Groupdetail: UIViewController {
                             self.starttime.text = a["starttime"]
                             self.endtime.text = a["endtime"]
                             self.location.text = a["location"]
-                            
+                            self.subjectDescrption.text = a["detail"]
                             let url = URL(string:"\(a["subjectpic"])")
                             
                                 do{
@@ -89,22 +89,6 @@ class Groupdetail: UIViewController {
                                 }catch{
                                     print(error)
                                 }
-                            
-                                
-                            
-                           
-                            
-                            //var varsubjectpic = (a["subjectpic"]!)
-                           // self.subjectpic2.append(a["subjectpic"])
-                           // self.app.subjectpic = self.subjectpic2
-                           // self.app.subject.append(a["subject"]!)
-                            
-                            // print(self.subjectpic)
-                            
-                            
-                            
-                            
-                            
                         }
                         
                         
@@ -112,7 +96,8 @@ class Groupdetail: UIViewController {
                         
                     }catch {
                         print("thisis \(error)")
-                    }}
+                    }
+                }
                 
             })
             

@@ -65,7 +65,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         q.async {
             sleep(1)
-            self.loadDB()
+            self.loadmygroup()
         }
         
     }
@@ -194,64 +194,64 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         groupname.text = self.subject[mygroupControl.currentPage]
     }
     
-    func loadDB(){
-        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
-            
-            //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
-            let session = URLSession(configuration: .default)
-            print("123465")
-            
-            var req = URLRequest(url: url!)
-            
-            req.httpMethod = "POST"
-            req.httpBody = "mid=\(mid)".data(using: .utf8)
-            
-            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-                let source = String(data: data!, encoding: .utf8)
-                
-                //                print(source!)
-                
-                DispatchQueue.main.async {
-                    do{
-                        
-                        
-                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        
-                        for a in  jsonobj as! [[String:String]] {
-                            var nickname = a["nickname"]!
-                            var description = a["description"]
-                            
-                            self.nameText.text = nickname
-                            self.testlabel.text = description
-                            
-                            print("987654")
-                        }
-                        
-                        
-                        //self.tbView.reloadData()
-                        
-                    }catch {
-                        print("thisis \(error)")
-                    }}
-                
-                
-                
-                
-                
-            })
-            
-            task.resume()
-            
-            }else {
-            
-            //沒輸入帳號直接跑到的話 給他一個假帳號
-            print("no account")
-            
-            
-        }
-        
-    }
+//    func loadDB(){
+//        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+//            
+//            //c9資料庫 post
+//            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
+//            let session = URLSession(configuration: .default)
+//            print("123465")
+//            
+//            var req = URLRequest(url: url!)
+//            
+//            req.httpMethod = "POST"
+//            req.httpBody = "mid=\(mid)".data(using: .utf8)
+//            
+//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+//                let source = String(data: data!, encoding: .utf8)
+//                
+//                //                print(source!)
+//                
+//                DispatchQueue.main.async {
+//                    do{
+//                        
+//                        
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            var nickname = a["nickname"]!
+//                            var description = a["description"]
+//                            
+//                            self.nameText.text = nickname
+//                            self.testlabel.text = description
+//                            
+//                            print("987654")
+//                        }
+//                        
+//                        
+//                        //self.tbView.reloadData()
+//                        
+//                    }catch {
+//                        print("thisis \(error)")
+//                    }}
+//                
+//                
+//                
+//                
+//                
+//            })
+//            
+//            task.resume()
+//            
+//            }else {
+//            
+//            //沒輸入帳號直接跑到的話 給他一個假帳號
+//            print("no account")
+//            
+//            
+//        }
+//        
+//    }
     
     func loadmygroup(){
         
@@ -259,7 +259,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
             
             //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+            let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
             let session = URLSession(configuration: .default)
             
             
@@ -281,9 +281,16 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         for a in  jsonobj as! [[String:String]] {
                             
+                            var nickname = a["nickname"]!
+                            var description = a["description"]
+                            
+                            self.nameText.text = nickname
+                            self.testlabel.text = description
+  
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic.append(a["subjectpic"])
-                            self.subject.append(a["tid"]!)                            //print(self.subjectpic)
+                            self.subject.append(a["subject"]!)
+                            //print(self.subjectpic)
                             
                             
                         }
@@ -374,7 +381,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDB()
+        //loadDB()
         loadmygroup()
         //putimage()
         print(self.subject)
