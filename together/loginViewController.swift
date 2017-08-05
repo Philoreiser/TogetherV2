@@ -44,42 +44,41 @@ class loginViewController: UIViewController {
                 self.alertWrong()
             }else {
                 
-                do {
-                    
-                    //passwdText.isSecureTextEntry = true
-                    
-                     let account = self.emailText.text!
-                     let passwd = self.passwordText.text!
-                    
-                    
-                    
-                    let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
-                    let url = URL(string:urlString)
-                    let source = try String(contentsOf: url!, encoding: .utf8)
-                    if source == "pass" {
-                        self.app.account = account
-                        self.app.passwd = passwd
-                        self.app.id = self.id
-                        //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
-                        //show(vc!, sender: self)
-                        print("ok")
-                    }else if source == "passwdwrong"{
-                        print("抱歉，密碼錯誤．")
-                        self.alertWrong()
-                    }else if source == "accountwrong"{
-                        print("抱歉，帳號錯誤．")
-                        self.alertWrong()
-                    }
-                    
-                }catch{
-                    print(error)
-                }
-                self.alertSuccesslogin()
-                
-                
+//                do {
+//                    
+//                    //passwdText.isSecureTextEntry = true
+//                    
+//                     let account = self.emailText.text!
+//                     let passwd = self.passwordText.text!
+//                    
+//                    
+//                    
+//                    let urlString:String = "https://together-seventsai.c9users.io/checkLogin.php?account=\(account)&passwd=\(passwd)"
+//                    let url = URL(string:urlString)
+//                    let source = try String(contentsOf: url!, encoding: .utf8)
+//                    if source == "pass" {
+//                        self.app.account = account
+//                        self.app.passwd = passwd
+//                        self.app.id = self.id
+//                        //let vc = storyboard?.instantiateViewController(withIdentifier: "tableviewvc")
+//                        //show(vc!, sender: self)
+//                        print("ok")
+//                    }else if source == "passwdwrong"{
+//                        print("抱歉，密碼錯誤．")
+//                        self.alertWrong()
+//                    }else if source == "accountwrong"{
+//                        print("抱歉，帳號錯誤．")
+//                        self.alertWrong()
+//                    }
+//                    
+//                }catch{
+//                    print(error)
+//                }
+                self.app.account = self.emailText.text!
                 
                 Properties.user = User1(authData: user!)
                 
+                self.alertSuccesslogin()
                 
                 
                 
@@ -172,7 +171,7 @@ class loginViewController: UIViewController {
     }
     //alert 錯誤
     func alertWrong() {
-        let alertController = UIAlertController(title: "帳號登入", message: "帳號或密碼錯誤", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "帳號登入", message: "帳號不存在或密碼錯誤", preferredStyle: .alert)
         let okaction = UIAlertAction(title: "確認", style: .default, handler: {(action) in
             self.dismiss(animated: true, completion: nil)
         })
@@ -199,161 +198,161 @@ class loginViewController: UIViewController {
             let vc = storyboard?.instantiateViewController(withIdentifier: "MyfileViewController1")
             show(vc!, sender: self)
         }
-        
-        loadmygroup()
-        loadDB()
+        app.mid = Properties.user?.uid
+        //loadmygroup()
+        //loadDB()
         alertController.addAction(okaction)
         self.present(alertController, animated: true, completion: nil)
     }
     
     //read id
-    func loadDB(){
-        if let account = app.account {
-            
-            //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
-            let session = URLSession(configuration: .default)
-            
-            
-            var req = URLRequest(url: url!)
-            
-            req.httpMethod = "POST"
-            req.httpBody = "account=\(account)".data(using: .utf8)
-            
-            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-                let source = String(data: data!, encoding: .utf8)
-                
-                //                print(source!)
-                
-                DispatchQueue.main.async {
-                    do{
-                        
-                        
-                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        
-                        for a in  jsonobj as! [[String:String]] {
-                            var idmember = a["id"]!
-                            self.id = idmember
-                        }
-                        
-                        
-                        //self.tbView.reloadData()
-                        
-                    }catch {
-                        print("thisis \(error)")
-                    }}
-                
-                
-                
-                
-                
-            })
-            
-            task.resume()
-            
-        }else {
-            
-            //沒輸入帳號直接跑到的話 給他一個假帳號
-            print("no account")
-            
-        }
-        
-    }
-    
-    
-    //loadtogether
-    
-    
-    func loadmygroup(){
-        
-        
-        if let account = app.account {
-            
-            //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
-            let session = URLSession(configuration: .default)
-            
-            
-            var req = URLRequest(url: url!)
-            
-            req.httpMethod = "POST"
-            req.httpBody = "account=\(account)".data(using: .utf8)
-            
-            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-                let source = String(data: data!, encoding: .utf8)
-                
-                //                print(source!)
-                
-                DispatchQueue.main.async {
-                    do{
-                        
-                        
-                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        
-                        for a in  jsonobj as! [[String:String]] {
-                            
-                            //var varsubjectpic = (a["subjectpic"]!)
-                            self.subjectpic2.append(a["subjectpic"])
-                            self.app.subjectpic = self.subjectpic2
-                            self.app.subject.append(a["subject"]!)
-                            
-                            // print(self.subjectpic)
-                        }
-                        
-                        
-                        //self.tbView.reloadData()
-                        
-                    }catch {
-                        print("thisis \(error)")
-                    }}
-                
-            })
-            
-            task.resume()
-            
-        }else {
-            
-            //沒輸入帳號直接跑到的話 給他一個假帳號
-            print("no account")
-            
-            
-        }
-        
-        
-        //  sleep(1)
-        
-        
-        // func putimage() {
-        
-        
-        //      do{
-        
-        //        for i in 0..<subjectpic.count {
-        //            let url = URL(string:"\(subjectpic[i])")
-        
-        //let url = URL(string:"")
-        //            let data = try Data(contentsOf: url!)
-        //             images.append(UIImage(data: data)!)
-        //mygroupImage.image = UIImage(data: data)
-        //mygroupControl.numberOfPages = subjectpic.count
-        
-        
-        //        }
-        
-        
-        //     }catch{
-        //         print(error)
-        //     }
-        
-        //print(subjectpic)
-        //print(images)
-        //mygroupImage.image = images[0]
-        //mygroupControl.numberOfPages = images.count
-        
-        
-        //  }
-        
-    }
+//    func loadDB(){
+//        if let account = app.account {
+//            
+//            //c9資料庫 post
+//            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
+//            let session = URLSession(configuration: .default)
+//            
+//            
+//            var req = URLRequest(url: url!)
+//            
+//            req.httpMethod = "POST"
+//            req.httpBody = "account=\(account)".data(using: .utf8)
+//            
+//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+//                let source = String(data: data!, encoding: .utf8)
+//                
+//                //                print(source!)
+//                
+//                DispatchQueue.main.async {
+//                    do{
+//                        
+//                        
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            var idmember = a["id"]!
+//                            self.id = idmember
+//                        }
+//                        
+//                        
+//                        //self.tbView.reloadData()
+//                        
+//                    }catch {
+//                        print("thisis \(error)")
+//                    }}
+//                
+//                
+//                
+//                
+//                
+//            })
+//            
+//            task.resume()
+//            
+//        }else {
+//            
+//            //沒輸入帳號直接跑到的話 給他一個假帳號
+//            print("no account")
+//            
+//        }
+//        
+//    }
+//    
+//    
+//    //loadtogether
+//    
+//    
+//    func loadmygroup(){
+//        
+//        
+//        if let account = app.account {
+//            
+//            //c9資料庫 post
+//            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+//            let session = URLSession(configuration: .default)
+//            
+//            
+//            var req = URLRequest(url: url!)
+//            
+//            req.httpMethod = "POST"
+//            req.httpBody = "account=\(account)".data(using: .utf8)
+//            
+//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+//                let source = String(data: data!, encoding: .utf8)
+//                
+//                //                print(source!)
+//                
+//                DispatchQueue.main.async {
+//                    do{
+//                        
+//                        
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            
+//                            //var varsubjectpic = (a["subjectpic"]!)
+//                            self.subjectpic2.append(a["subjectpic"])
+//                            self.subjectpic = self.subjectpic2
+//                            self.subject.append(a["subject"]!)
+//                            
+//                            // print(self.subjectpic)
+//                        }
+//                        
+//                        
+//                        //self.tbView.reloadData()
+//                        
+//                    }catch {
+//                        print("thisis \(error)")
+//                    }}
+//                
+//            })
+//            
+//            task.resume()
+//            
+//        }else {
+//            
+//            //沒輸入帳號直接跑到的話 給他一個假帳號
+//            print("no account")
+//            
+//            
+//        }
+//        
+//        
+//        //  sleep(1)
+//        
+//        
+//        // func putimage() {
+//        
+//        
+//        //      do{
+//        
+//        //        for i in 0..<subjectpic.count {
+//        //            let url = URL(string:"\(subjectpic[i])")
+//        
+//        //let url = URL(string:"")
+//        //            let data = try Data(contentsOf: url!)
+//        //             images.append(UIImage(data: data)!)
+//        //mygroupImage.image = UIImage(data: data)
+//        //mygroupControl.numberOfPages = subjectpic.count
+//        
+//        
+//        //        }
+//        
+//        
+//        //     }catch{
+//        //         print(error)
+//        //     }
+//        
+//        //print(subjectpic)
+//        //print(images)
+//        //mygroupImage.image = images[0]
+//        //mygroupControl.numberOfPages = images.count
+//        
+//        
+//        //  }
+//        
+//    }
     
     
     

@@ -18,13 +18,13 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var subjectpic:Array<Any> = []
     var groupimg:Array<String> = []
     var images = [UIImage]()
-    
+    var subject:Array<String> = []
     
     @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
     @IBOutlet weak var Mygroupimage: UIImageView!
     @IBOutlet weak var testlabel: UITextView!
-        @IBAction func editBtn(_ sender: Any) {
+    @IBAction func editBtn(_ sender: Any) {
         
         let nickname = nameText.text!
         let description = testlabel.text!
@@ -75,7 +75,12 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var nameText: UITextField!
     
-    
+    @IBAction func loaddetail(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+        show(vc!, sender: self)
+        
+        
+    }
     
     @IBAction func uploadsubmit(_ sender: Any) {
         
@@ -170,10 +175,27 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
    
-    
+     @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.left:
+            //left swipe
+            if mygroupControl.currentPage < images.count {
+                mygroupControl.currentPage += 1
+            }
+        case UISwipeGestureRecognizerDirection.right:
+            //right swipe
+            if mygroupControl.currentPage > 0 {
+                mygroupControl.currentPage -= 1
+            }
+        default:
+            return
+        }
+        Mygroupimage.image = images[mygroupControl.currentPage]
+        groupname.text = self.subject[mygroupControl.currentPage]
+    }
     
     func loadDB(){
-        if let account = app.account {
+        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
             
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
@@ -183,7 +205,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             var req = URLRequest(url: url!)
             
             req.httpMethod = "POST"
-            req.httpBody = "account=\(account)".data(using: .utf8)
+            req.httpBody = "mid=\(mid)".data(using: .utf8)
             
             let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
                 let source = String(data: data!, encoding: .utf8)
@@ -234,7 +256,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     func loadmygroup(){
         
         
-        if let account = app.account {
+        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
             
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
@@ -244,7 +266,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             var req = URLRequest(url: url!)
             
             req.httpMethod = "POST"
-            req.httpBody = "account=\(account)".data(using: .utf8)
+            req.httpBody = "mid=\(mid)".data(using: .utf8)
             
             let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
                 let source = String(data: data!, encoding: .utf8)
@@ -261,11 +283,13 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic.append(a["subjectpic"])
+                            self.subject.append(a["tid"]!)                            //print(self.subjectpic)
                             
-                            //print(self.subjectpic)
+                            
                         }
-                        
-                        
+                        sleep(1)
+                        self.putimage()
+                        print("我是紗布傑克\(self.subject)")
                         //self.tbView.reloadData()
                         
                     }catch {
@@ -290,9 +314,9 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         
                 
-                for i in 0..<app.subjectpic.count {
+                for i in 0..<self.subjectpic.count {
                     
-                    var temp = app.subjectpic[i] as? String ?? ""
+                    var temp = self.subjectpic[i] as? String ?? ""
                     //print(type(of:temp))
                     //print(temp)
 //                    if temp != "" {
@@ -327,7 +351,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         //print(subjectpic)
         //print(images)
         Mygroupimage.image = images[0]
-        groupname.text =  app.subject[0]
+        groupname.text =  self.subject[0]
         mygroupControl.numberOfPages = images.count
         
         
@@ -337,32 +361,10 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         print(images)
     }
     
-    @IBAction func loaddetail(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
-        show(vc!, sender: self)
-        
-        
-    }
     
     
-    @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case UISwipeGestureRecognizerDirection.left:
-            //left swipe
-            if mygroupControl.currentPage < images.count {
-                mygroupControl.currentPage += 1
-            }
-        case UISwipeGestureRecognizerDirection.right:
-            //right swipe
-            if mygroupControl.currentPage > 0 {
-                mygroupControl.currentPage -= 1
-            }
-        default:
-            return
-        }
-        Mygroupimage.image = images[mygroupControl.currentPage]
-        groupname.text = app.subject[mygroupControl.currentPage]
-    }
+    
+   
     
     
     
@@ -373,17 +375,18 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDB()
-        //loadmygroup()
+        loadmygroup()
         //putimage()
-        print(app.subject)
+        print(self.subject)
+        print(app.mid)
         
-        DispatchQueue.global().sync {
-            putimage()
-        }
-        DispatchQueue.global().async {
-            sleep(2)
-            self.loadimages()
-        }
+//        DispatchQueue.global().sync {
+//            putimage()
+//        }
+//        DispatchQueue.global().async {
+//            sleep(2)
+//            self.loadimages()
+//        }
         //print(app.subjectpic)
         // Do any additional setup after loading the view.
     }

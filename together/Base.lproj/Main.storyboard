@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,43 +27,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="揪團頁"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BvF-ur-y1a">
-                                <rect key="frame" x="136" y="209" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-gk-L2Z">
-                                <rect key="frame" x="136" y="260" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOh-yJ-jOw">
-                                <rect key="frame" x="157" y="333" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="登入"/>
-                                <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TBd-gu-1RF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcF-pg-ERf">
-                                <rect key="frame" x="157" y="333" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="註冊"/>
-                                <connections>
-                                    <action selector="addMember:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qBs-Gk-TsI"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TYx-cd-v7o">
-                                <rect key="frame" x="136" y="260" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-AT-19z">
                                 <rect key="frame" x="124" y="131" width="121" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,13 +38,6 @@
                                     <action selector="segmentValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="Keh-Gd-gy6"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-ZT-tG3">
-                                <rect key="frame" x="136" y="209" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wud-cV-Bs7">
                                 <rect key="frame" x="199" y="595" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -157,13 +113,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="accountText" destination="BvF-ur-y1a" id="PNS-8f-tCR"/>
-                        <outlet property="addaccountText" destination="Lbl-ZT-tG3" id="YxL-d8-War"/>
-                        <outlet property="addpasswdText" destination="TYx-cd-v7o" id="WRV-mD-LkI"/>
-                        <outlet property="login" destination="oOh-yJ-jOw" id="fOY-LJ-UtR"/>
                         <outlet property="loginView" destination="3Xl-s8-5iz" id="wtf-bp-a1d"/>
-                        <outlet property="passwdText" destination="Xjb-gk-L2Z" id="Ilc-nS-Jux"/>
-                        <outlet property="register" destination="hcF-pg-ERf" id="800-gh-jta"/>
                         <outlet property="registerView" destination="FOQ-ej-dkk" id="uZ7-pQ-X0J"/>
                         <outlet property="segmentedController" destination="2jQ-AT-19z" id="wLZ-dj-BfC"/>
                     </connections>
@@ -527,7 +477,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="detail"/>
                                 <connections>
-                                    <action selector="loaddetail:" destination="9sH-T1-wyt" eventType="touchUpInside" id="Gsu-yb-A52"/>
+                                    <action selector="loaddetail:" destination="9sH-T1-wyt" eventType="touchUpInside" id="brS-Vb-epW"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q75-JT-VpC">
@@ -1443,8 +1393,8 @@
         <image name="question.jpg" width="640" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="StR-1s-fvO"/>
-        <segue reference="XtH-T5-JTD"/>
-        <segue reference="wNn-7z-toL"/>
+        <segue reference="YRE-tJ-Xuf"/>
+        <segue reference="g7e-cg-m6O"/>
+        <segue reference="yb0-tw-Yce"/>
     </inferredMetricsTieBreakers>
 </document>

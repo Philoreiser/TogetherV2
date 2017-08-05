@@ -25,7 +25,7 @@ class registerViewController: UIViewController {
     
     @IBAction func registerBtn(_ sender: Any) {
         
-        let url = URL(string: "https://together-seventsai.c9users.io/addMember.php")
+        let url = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php")
         var request = URLRequest(url: url!)
         if emailText.text != "" && passwordText.text != "" {
             
@@ -41,20 +41,20 @@ class registerViewController: UIViewController {
                     print("error")
                 }else {
                     
-                    //      }
-                    //    }
-                    
+                    Properties.user = User1(authData: user!)
+                    self.app.mid = Properties.user?.uid
+                    let mid = self.app.mid!
                     
                     do {
-                        let urlGet = URL(string: "https://together-seventsai.c9users.io/addMember.php?account=\(account)&passwd=\(passwd)")
+                        let urlGet = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php?account=\(account)&passwd=\(passwd)&mid=\(mid)")
                         let source = try String(contentsOf: urlGet!, encoding: .utf8)
                         
                         if source == "accountok" {
                             print("add OK")
                             self.app.account = account
                             
-                            //                    let vc = storyboard?.instantiateViewController(withIdentifier: "MainView")
-                            //                    show(vc!, sender: self)
+                            //Properties.user = User1(authData: user!)
+                            
                             
                             self.alertSuccess()
                             print("show")
@@ -120,7 +120,7 @@ class registerViewController: UIViewController {
     }
     //alert 錯誤
     func alertWrong() {
-        let alertController = UIAlertController(title: "帳號登入", message: "帳號或密碼錯誤", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "帳號登入", message: "帳號重複或密碼小於6碼", preferredStyle: .alert)
         let okaction = UIAlertAction(title: "確認", style: .default, handler: {(action) in
             self.dismiss(animated: true, completion: nil)
         })
@@ -130,19 +130,17 @@ class registerViewController: UIViewController {
     }
     //register 成功
     func alertSuccess() {
+        app.mid = Properties.user?.uid
+        
         let alertController = UIAlertController(title: "帳號註冊", message: "註冊成功", preferredStyle: .alert)
         let okaction = UIAlertAction(title: "確認", style: .default, handler: {(action) in
             go()
-            //            self.dismiss(animated: true, completion: {(action) in
-            //
-            //
-            //            })
         })
         
         
         func go(){
             
-            let vc = storyboard?.instantiateViewController(withIdentifier: "MainView")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "mapandlistvc")
             show(vc!, sender: self)
         }
         

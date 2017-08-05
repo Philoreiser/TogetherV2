@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //帳號
     var account:String?
     
-    var passwd:String?
+ //   var passwd:String?
     //memberID 使用者id
     var mid:String?
     var id:String?
@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    var mastername:String?
 //    var sentToDetailId:String?
-    var subjectpic:Array<Any> = []
-    var subject:Array<String> = []
+  //  var subjectpic:Array<Any> = []
+  //  var subject:Array<String> = []
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
