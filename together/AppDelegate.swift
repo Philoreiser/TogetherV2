@@ -13,11 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    
+    //帳號
     var account:String?
+    
     var passwd:String?
+    //memberID 使用者id
+    var mid:String?
     var id:String?
-    var mastername:String?
-    var sentToDetailId:String?
+    //togetherID 團名id
+    var tid:String?
+    
+//    var mastername:String?
+//    var sentToDetailId:String?
     var subjectpic:Array<Any> = []
     var subject:Array<String> = []
     

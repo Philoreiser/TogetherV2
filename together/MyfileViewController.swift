@@ -288,15 +288,15 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     func putimage() {
         
         
-            do{
+        
                 
                 for i in 0..<app.subjectpic.count {
                     
                     var temp = app.subjectpic[i] as? String ?? ""
                     //print(type(of:temp))
                     //print(temp)
-                    if temp != "" {
-                        
+//                    if temp != "" {
+                     do{
                         let url = URL(string:"\(temp)")
                         
                         if url != nil {
@@ -307,18 +307,19 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         //images.append(UIImage(data: data)!)
                         
                         
-                    }else {
-                        print("ok")
+//                    }else {
+//                        print("ok")
+//                        images.append(UIImage(named: "question.jpg")!)
+//                    }
+                     }catch{
+                        print(error)
                         images.append(UIImage(named: "question.jpg")!)
                     }
-                }
                 
                 
                 
                 
                 
-            }catch{
-                print(error)
             }
         
         
