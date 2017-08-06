@@ -195,7 +195,7 @@ class loginViewController: UIViewController {
         
         func go(){
             
-            let vc = storyboard?.instantiateViewController(withIdentifier: "MyfileViewController1")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
             show(vc!, sender: self)
         }
         app.mid = Properties.user?.uid

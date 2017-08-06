@@ -9,6 +9,8 @@
 import UIKit
 
 class resultMapListVC: UIViewController {
+    
+    var app = UIApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var contViewList: UIView!
@@ -62,6 +64,8 @@ class resultMapListVC: UIViewController {
         super.viewWillAppear(animated)
         
         self.changeShowMode(segmentedControl)
+        
+        self.loadTogetherDB()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,14 +74,25 @@ class resultMapListVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    public func loadTogetherDB() {
+        
+        let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
+        let session = URLSession(configuration: .default)
+        
+        var req = URLRequest(url: url!)
+        
+        req.httpMethod = "POST"
+        req.httpBody = "mid=\(app.mid!)".data(using: .utf8)
+        
+        let task = session.dataTask(with: req, completionHandler: {(data, response, error) in
+        
+            let source = String(data: data!, encoding: .utf8)
+            print(source)
+            
+        })
+        
+        task.resume()
     }
-    */
+
 
 }

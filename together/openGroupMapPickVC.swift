@@ -15,6 +15,7 @@ class openGroupMapPickVC: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    
     var isMapTapped:Bool!
     var annotation:MKPointAnnotation!
     var location:CLLocation!
@@ -68,6 +69,41 @@ class openGroupMapPickVC: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(annotation)
         isMapTapped = true
         
+        self.geocoder.reverseGeocodeLocation(self.location, completionHandler: { (placemarks, error) in
+            
+            if error != nil {
+                print("Reverse geocoder failed")
+                print(error!)
+                return
+            } else {
+                
+                for placemark in placemarks! {
+                    
+                    let addrDict = placemark.addressDictionary
+                    
+                    for key in (addrDict?.keys)! {
+//                        print(type(of: key))
+                        let value = addrDict?[key]
+                        let keyStr = String(describing: key)
+//                        print(keyStr)
+//                        if value is String {
+//                            print("\(key): \(value!)")
+//                        }
+                        
+                        if keyStr == "FormattedAddressLines" {
+                            for p in value as! NSArray {
+                                print("\(key): \(p)")
+                            }
+                        }
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+        })
     }
     
     
@@ -109,16 +145,33 @@ class openGroupMapPickVC: UIViewController, MKMapViewDelegate {
             vc.locationLat = self.annotation.coordinate.latitude
             vc.locationLng = self.annotation.coordinate.longitude
             
-            self.geocoder.reverseGeocodeLocation(self.location, completionHandler: { (placemark, error) in
-                guard error == nil else {
+            self.geocoder.reverseGeocodeLocation(self.location, completionHandler: { (placemarks, error) in
+                
+                if error != nil {
+                    print("Reverse geocoder failed")
+                    print(error!)
                     return
+                } else {
+                    
+                    for placemark in placemarks! {
+                        let addrDict = placemark.addressDictionary
+                        
+                        for key in (addrDict?.keys)! {
+                            let keyStr = String(describing: key)
+                            let value = addrDict?[key]
+//                            if value is String {
+//                                print("\(key): \(value!)")
+//                            }
+                        }
+                    }
+
+//                    let addrDict = placemarks?[0].addressDictionary
+//                    vc.locationAddr = addrDict?["Street"] as? String
+                    
                 }
                 
-                guard placemark == nil else {
-                    return
-                }
                 
-            
+                
             })
             
         }
