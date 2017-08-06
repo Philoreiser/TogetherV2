@@ -30,7 +30,6 @@
 		84E0EC131F347CA8007D370F /* resultMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC121F347CA8007D370F /* resultMapVC.swift */; };
 		84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC141F347F9E007D370F /* resultListTbCell.swift */; };
 		F73D8F1D1F2A404D006951F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F73D8F1C1F2A404D006951F7 /* GoogleService-Info.plist */; };
-		F73D8F1F1F2A4093006951F7 /* messageboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D8F1E1F2A4093006951F7 /* messageboard.swift */; };
 		F74756571F2C5D0200AF3631 /* question.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74756561F2C5D0200AF3631 /* question.jpg */; };
 		F74756591F2C734900AF3631 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74756581F2C734900AF3631 /* user.swift */; };
 		F747565B1F2C739D00AF3631 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747565A1F2C739D00AF3631 /* Properties.swift */; };
@@ -39,7 +38,6 @@
 		F75B3E3B1F32325900ECC498 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B3E3A1F32325900ECC498 /* registerViewController.swift */; };
 		F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */; };
 		F7748D121F2CE565007CF316 /* Groupdetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7748D111F2CE565007CF316 /* Groupdetail.swift */; };
-		F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +67,6 @@
 		84E0EC121F347CA8007D370F /* resultMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultMapVC.swift; sourceTree = "<group>"; };
 		84E0EC141F347F9E007D370F /* resultListTbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultListTbCell.swift; sourceTree = "<group>"; };
 		F73D8F1C1F2A404D006951F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F73D8F1E1F2A4093006951F7 /* messageboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messageboard.swift; sourceTree = "<group>"; };
 		F74756561F2C5D0200AF3631 /* question.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = question.jpg; sourceTree = "<group>"; };
 		F74756581F2C734900AF3631 /* user.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		F747565A1F2C739D00AF3631 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		F75B3E3A1F32325900ECC498 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
 		F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupReviewTableViewCell.swift; sourceTree = "<group>"; };
 		F7748D111F2CE565007CF316 /* Groupdetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Groupdetail.swift; sourceTree = "<group>"; };
-		F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgtableViewController.swift; sourceTree = "<group>"; };
 		FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,7 +123,6 @@
 				14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */,
 				14AAD73F1F1C694F00BC6E9E /* ViewController.swift */,
 				F747565C1F2C7EA300AF3631 /* Msgviewitem.swift */,
-				F7C1E84C1F2C819C00C13713 /* MsgtableViewController.swift */,
 				F74756581F2C734900AF3631 /* user.swift */,
 				F747565A1F2C739D00AF3631 /* Properties.swift */,
 				14AAD7411F1C694F00BC6E9E /* Main.storyboard */,
@@ -140,7 +135,6 @@
 				F75B3E3A1F32325900ECC498 /* registerViewController.swift */,
 				F7748D111F2CE565007CF316 /* Groupdetail.swift */,
 				F75B3E381F32320F00ECC498 /* loginViewController.swift */,
-				F73D8F1E1F2A4093006951F7 /* messageboard.swift */,
 				F74756561F2C5D0200AF3631 /* question.jpg */,
 				4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */,
 				4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */,
@@ -300,7 +294,6 @@
 				84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */,
 				F747565B1F2C739D00AF3631 /* Properties.swift in Sources */,
 				14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */,
-				F73D8F1F1F2A4093006951F7 /* messageboard.swift in Sources */,
 				F75B3E3B1F32325900ECC498 /* registerViewController.swift in Sources */,
 				14CBB69D1F341057006FA954 /* manageGroupVC.swift in Sources */,
 				14CBB69E1F341057006FA954 /* manageApplyViewVC.swift in Sources */,
@@ -316,7 +309,6 @@
 				84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */,
 				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,
 				F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */,
-				F7C1E84D1F2C819C00C13713 /* MsgtableViewController.swift in Sources */,
 				F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */,
 				84E0EC111F347C76007D370F /* resultListVC.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,

@@ -19,6 +19,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var groupimg:Array<String> = []
     var images = [UIImage]()
     var subject:Array<String> = []
+    var temptid:Array<String> = []
     
     @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
@@ -192,6 +193,8 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         Mygroupimage.image = images[mygroupControl.currentPage]
         groupname.text = self.subject[mygroupControl.currentPage]
+        app.tid = temptid[mygroupControl.currentPage]
+        print(app.tid)
     }
     
 //    func loadDB(){
@@ -290,6 +293,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic.append(a["subjectpic"])
                             self.subject.append(a["subject"]!)
+                            self.temptid.append(a["tid"]!)
                             //print(self.subjectpic)
                             
                             
@@ -368,13 +372,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         print(images)
     }
     
-    
-    
-    
-   
-    
-    
-    
+
     
     //let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
     //show(vc!, sender: self)
