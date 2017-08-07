@@ -9,7 +9,7 @@
 import UIKit
 
 class GroupReviewTableViewCell: UITableViewCell {
-    
+    @IBOutlet weak var ProfileImg: UIImageView!
     @IBOutlet weak var reViewTextView: UITextView!
     @IBOutlet weak var loginUser: UILabel!
     override func awakeFromNib() {

@@ -19,7 +19,9 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var groupimg:Array<String> = []
     var images = [UIImage]()
     var subject:Array<String> = []
-    
+    var temptid:Array<String> = []
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
     @IBOutlet weak var Mygroupimage: UIImageView!
@@ -65,16 +67,11 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         q.async {
             sleep(1)
-            self.loadDB()
+            self.loadmygroup()
         }
         
     }
 
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var nameText: UITextField!
-    
     @IBAction func loaddetail(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
         show(vc!, sender: self)
@@ -192,15 +189,78 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         Mygroupimage.image = images[mygroupControl.currentPage]
         groupname.text = self.subject[mygroupControl.currentPage]
+        app.tid = temptid[mygroupControl.currentPage]
+        print(app.tid)
     }
     
-    func loadDB(){
-        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+//    func loadDB(){
+//        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+//            
+//            //c9資料庫 post
+//            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
+//            let session = URLSession(configuration: .default)
+//            print("123465")
+//            
+//            var req = URLRequest(url: url!)
+//            
+//            req.httpMethod = "POST"
+//            req.httpBody = "mid=\(mid)".data(using: .utf8)
+//            
+//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+//                let source = String(data: data!, encoding: .utf8)
+//                
+//                //                print(source!)
+//                
+//                DispatchQueue.main.async {
+//                    do{
+//                        
+//                        
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            var nickname = a["nickname"]!
+//                            var description = a["description"]
+//                            
+//                            self.nameText.text = nickname
+//                            self.testlabel.text = description
+//                            
+//                            print("987654")
+//                        }
+//                        
+//                        
+//                        //self.tbView.reloadData()
+//                        
+//                    }catch {
+//                        print("thisis \(error)")
+//                    }}
+//                
+//                
+//                
+//                
+//                
+//            })
+//            
+//            task.resume()
+//            
+//            }else {
+//            
+//            //沒輸入帳號直接跑到的話 給他一個假帳號
+//            print("no account")
+//            
+//            
+//        }
+//        
+//    }
+    
+    func loadmygroup(){
+        
+        
+        if let mid = String("kO2iktB0BHRkDEhZVn8ds0s3G572") {
             
             //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
+            let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
             let session = URLSession(configuration: .default)
-            print("123465")
+            
             
             var req = URLRequest(url: url!)
             
@@ -219,77 +279,26 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         
                         for a in  jsonobj as! [[String:String]] {
+                            
                             var nickname = a["nickname"]!
                             var description = a["description"]
                             
                             self.nameText.text = nickname
                             self.testlabel.text = description
                             
-                            print("987654")
-                        }
-                        
-                        
-                        //self.tbView.reloadData()
-                        
-                    }catch {
-                        print("thisis \(error)")
-                    }}
-                
-                
-                
-                
-                
-            })
-            
-            task.resume()
-            
-            }else {
-            
-            //沒輸入帳號直接跑到的話 給他一個假帳號
-            print("no account")
-            
-            
-        }
-        
-    }
-    
-    func loadmygroup(){
-        
-        
-        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
-            
-            //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
-            let session = URLSession(configuration: .default)
-            
-            
-            var req = URLRequest(url: url!)
-            
-            req.httpMethod = "POST"
-            req.httpBody = "mid=\(mid)".data(using: .utf8)
-            
-            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-                let source = String(data: data!, encoding: .utf8)
-                
-                //                print(source!)
-                
-                DispatchQueue.main.async {
-                    do{
-                        
-                        
-                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        
-                        for a in  jsonobj as! [[String:String]] {
-                            
                             //var varsubjectpic = (a["subjectpic"]!)
                             self.subjectpic.append(a["subjectpic"])
-                            self.subject.append(a["tid"]!)                            //print(self.subjectpic)
+                            self.subject.append(a["subject"]!)
+                            self.temptid.append(a["tid"]!)
+                            //print(self.subjectpic)
                             
                             
                         }
                         sleep(1)
-                        self.putimage()
+                        
                         print("我是紗布傑克\(self.subject)")
+                        
+                        self.putimage()
                         //self.tbView.reloadData()
                         
                     }catch {
@@ -310,40 +319,41 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func putimage() {
-        
-        
-        
-                
+
                 for i in 0..<self.subjectpic.count {
                     
                     var temp = self.subjectpic[i] as? String ?? ""
                     //print(type(of:temp))
-                    //print(temp)
+                    print(temp)
 //                    if temp != "" {
                      do{
                         let url = URL(string:"\(temp)")
                         
+                      //  print("222\(url)")
+                        
                         if url != nil {
                             let data = try Data(contentsOf: url!)
+                            if (UIImage(data: data) != nil) {
+                            print("OK")
                             images.append(UIImage(data: data)!)
-                        }
-                        //let data = try Data(contentsOf: url!)
-                        //images.append(UIImage(data: data)!)
-                        
-                        
-//                    }else {
+                            }else {
+                            images.append(UIImage(named: "question.jpg")!)
+                            print("xx")
+                            }
+                            
+                            
+                            
+                           // images.append(UIImage(data: data)!)
+                       }
+//                            else {
 //                        print("ok")
 //                        images.append(UIImage(named: "question.jpg")!)
-//                    }
+//                       }
                      }catch{
                         print(error)
                         images.append(UIImage(named: "question.jpg")!)
                     }
-                
-                
-                
-                
-                
+      
             }
         
         
@@ -374,11 +384,20 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDB()
+        //loadDB()
         loadmygroup()
         //putimage()
+        
+        let layer = imageView.layer
+        layer.cornerRadius = 20.0
+        layer.masksToBounds = true
+        
+        let groupViewLayer = Mygroupimage.layer
+        groupViewLayer.cornerRadius = 20.0
+        groupViewLayer.masksToBounds = true
+        
         print(self.subject)
-        print(app.mid)
+        //print(app.mid)
         
 //        DispatchQueue.global().sync {
 //            putimage()
