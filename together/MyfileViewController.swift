@@ -273,7 +273,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 //                print(source!)
                 
-                DispatchQueue.main.async {
+                DispatchQueue.global().async {
                     do{
                         
                         
