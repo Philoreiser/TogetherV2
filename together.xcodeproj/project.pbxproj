@@ -22,7 +22,6 @@
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
 		1745F92F455B811D0C2306A6 /* Pods_together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
-		4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */; };
 		84E0EC0B1F345085007D370F /* openGroupMapPickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */; };
 		84E0EC0D1F3475B6007D370F /* resultMapListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */; };
 		84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */; };
@@ -59,7 +58,6 @@
 		27CA076D43421851F4BB5085 /* Pods-together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.release.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.release.xcconfig"; sourceTree = "<group>"; };
 		42866690544DDE4F6930258B /* Pods-together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.debug.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.debug.xcconfig"; sourceTree = "<group>"; };
 		4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyfileViewController.swift; sourceTree = "<group>"; };
-		4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditresumeView.swift; sourceTree = "<group>"; };
 		84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupMapPickVC.swift; sourceTree = "<group>"; };
 		84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultMapListVC.swift; sourceTree = "<group>"; };
 		84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchGroupVC.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				F7748D111F2CE565007CF316 /* Groupdetail.swift */,
 				F75B3E381F32320F00ECC498 /* loginViewController.swift */,
 				F74756561F2C5D0200AF3631 /* question.jpg */,
-				4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */,
 				4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */,
 				14AAD7441F1C694F00BC6E9E /* Assets.xcassets */,
 				14AAD7461F1C694F00BC6E9E /* LaunchScreen.storyboard */,
@@ -200,6 +197,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 95TF683BY5;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -304,7 +306,6 @@
 				14CBB6A41F341545006FA954 /* openGroupTbViCell.swift in Sources */,
 				84E0EC131F347CA8007D370F /* resultMapVC.swift in Sources */,
 				F74756591F2C734900AF3631 /* user.swift in Sources */,
-				4ACA6E4A1F1F3F0C002B1CA5 /* EditresumeView.swift in Sources */,
 				84E0EC0D1F3475B6007D370F /* resultMapListVC.swift in Sources */,
 				84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */,
 				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,

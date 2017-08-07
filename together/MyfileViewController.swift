@@ -21,6 +21,8 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     var subject:Array<String> = []
     var temptid:Array<String> = []
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var groupname: UILabel!
     @IBOutlet weak var mygroupControl: UIPageControl!
     @IBOutlet weak var Mygroupimage: UIImageView!
@@ -70,11 +72,6 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
     }
-
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var nameText: UITextField!
     
     @IBAction func loaddetail(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
@@ -197,69 +194,11 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         print(app.tid)
     }
     
-//    func loadDB(){
-//        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
-//            
-//            //c9資料庫 post
-//            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
-//            let session = URLSession(configuration: .default)
-//            print("123465")
-//            
-//            var req = URLRequest(url: url!)
-//            
-//            req.httpMethod = "POST"
-//            req.httpBody = "mid=\(mid)".data(using: .utf8)
-//            
-//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-//                let source = String(data: data!, encoding: .utf8)
-//                
-//                //                print(source!)
-//                
-//                DispatchQueue.main.async {
-//                    do{
-//                        
-//                        
-//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-//                        
-//                        for a in  jsonobj as! [[String:String]] {
-//                            var nickname = a["nickname"]!
-//                            var description = a["description"]
-//                            
-//                            self.nameText.text = nickname
-//                            self.testlabel.text = description
-//                            
-//                            print("987654")
-//                        }
-//                        
-//                        
-//                        //self.tbView.reloadData()
-//                        
-//                    }catch {
-//                        print("thisis \(error)")
-//                    }}
-//                
-//                
-//                
-//                
-//                
-//            })
-//            
-//            task.resume()
-//            
-//            }else {
-//            
-//            //沒輸入帳號直接跑到的話 給他一個假帳號
-//            print("no account")
-//            
-//            
-//        }
-//        
-//    }
-    
+//
     func loadmygroup(){
         
         
-        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+        if let mid = String("kO2iktB0BHRkDEhZVn8ds0s3G572") {
             
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
@@ -321,10 +260,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func putimage() {
-        
-        
-        
-                
+
                 for i in 0..<self.subjectpic.count {
                     
                     var temp = self.subjectpic[i] as? String ?? ""
@@ -371,17 +307,22 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     func loadimages(){
         print(images)
     }
-    
 
-    
     //let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
     //show(vc!, sender: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadDB()
+        
+        let layer = imageView.layer
+        layer.cornerRadius = 20.0
+        layer.masksToBounds = true
+        
+        let groupViewLayer = Mygroupimage.layer
+        groupViewLayer.cornerRadius = 20.0
+        groupViewLayer.masksToBounds = true
+        
         loadmygroup()
-        //putimage()
         print(self.subject)
         print(app.mid)
         
@@ -413,3 +354,64 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     */
 
 }
+
+
+
+//func loadDB(){
+//        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+//            
+//            //c9資料庫 post
+//            let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
+//            let session = URLSession(configuration: .default)
+//            print("123465")
+//            
+//            var req = URLRequest(url: url!)
+//            
+//            req.httpMethod = "POST"
+//            req.httpBody = "mid=\(mid)".data(using: .utf8)
+//            
+//            let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+//                let source = String(data: data!, encoding: .utf8)
+//                
+//                //                print(source!)
+//                
+//                DispatchQueue.main.async {
+//                    do{
+//                        
+//                        
+//                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                        
+//                        for a in  jsonobj as! [[String:String]] {
+//                            var nickname = a["nickname"]!
+//                            var description = a["description"]
+//                            
+//                            self.nameText.text = nickname
+//                            self.testlabel.text = description
+//                            
+//                            print("987654")
+//                        }
+//                        
+//                        
+//                        //self.tbView.reloadData()
+//                        
+//                    }catch {
+//                        print("thisis \(error)")
+//                    }}
+//                
+//                
+//                
+//                
+//                
+//            })
+//            
+//            task.resume()
+//            
+//            }else {
+//            
+//            //沒輸入帳號直接跑到的話 給他一個假帳號
+//            print("no account")
+//            
+//            
+//        }
+//        
+//    }

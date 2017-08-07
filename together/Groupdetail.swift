@@ -35,6 +35,7 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     @IBOutlet weak var ApplyBtn: UIButton!
     
+ 
     
     var groupReviews: [GroupReviewItem] = [GroupReviewItem]()
     
@@ -46,6 +47,7 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     var Gsubject:String?
     
+    //var TempCellProfileImg:String?
     
     //loadtogether
     
@@ -53,7 +55,7 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func loadmygroup(){
         
         
-        if let mid = String("8RM5OZY7f4cmj2YVPbN9eOIocm42") {
+        if let mid = String("kO2iktB0BHRkDEhZVn8ds0s3G572") {
             
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
@@ -84,8 +86,9 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
                             self.endtime.text = a["endtime"]
                             self.location.text = a["location"]
                             self.subjectDescrption.text = a["detail"]
-                            let url = URL(string:"\(a["subjectpic"])")
-                            
+                            var TempSubjectpic:String = a["subjectpic"]!
+                            let url = URL(string:"\(TempSubjectpic)")
+                          
                                 do{
                                     if url != nil{
                                         let data = try Data(contentsOf: url!)
@@ -100,6 +103,9 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
                                 }catch{
                                     print(error)
                                 }
+                            
+
+                            
                         }
                         
                         
@@ -124,6 +130,8 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
    
     }
     
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.groupReviews.count
     }
@@ -132,8 +140,44 @@ class Groupdetail: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupReviewTableViewCell", for: indexPath) as! GroupReviewTableViewCell
         
+        var temppic = self.groupReviews[indexPath.row].userId
+
+        let mid = "kO2iktB0BHRkDEhZVn8ds0s3G572"
+        
+        let url = URL(string: "https://together-seventsai.c9users.io/tableviewcellpersonalpic.php")
+        let session = URLSession(configuration: .default)
+        
+        var req = URLRequest(url: url!)
+        
+        req.httpMethod = "POST"
+        req.httpBody = "mid=\(temppic)".data(using: .utf8)
+        
+        let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+            
+            DispatchQueue.main.async {
+                let source = String(data: data!, encoding: .utf8)
+                
+                if source != "" {
+                    let url = URL(string:"\(source)")
+                    do{
+                        let data = try Data(contentsOf: url!)
+                        cell.ProfileImg.image = UIImage(data: data)!
+                    }catch{
+                        print(error)
+                    }
+                }else {
+                    cell.ProfileImg.image = UIImage(named:"question.jpg")
+                }
+
+            }
+        })
+        
+        task.resume()
+        
         cell.reViewTextView?.text = self.groupReviews[indexPath.row].groupReview
         cell.loginUser.text = self.groupReviews[indexPath.row].userEmail
+        
+        
         
         return cell
     }
