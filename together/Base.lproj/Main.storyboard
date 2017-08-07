@@ -150,22 +150,30 @@
                                 <rect key="frame" x="36" y="99" width="303" height="494"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="31z-sg-4aJ" kind="embed" id="3AW-vw-ZNI"/>
+                                    <segue destination="31z-sg-4aJ" kind="embed" identifier="segResultList" id="3AW-vw-ZNI"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-Ns-uN8" userLabel="contViewMap">
                                 <rect key="frame" x="36" y="99" width="303" height="494"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="ZDg-Xb-rX1" kind="embed" id="1nQ-Vb-SRw"/>
+                                    <segue destination="ZDg-Xb-rX1" kind="embed" identifier="segResultMap" id="1nQ-Vb-SRw"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wau-8B-DUS">
-                                <rect key="frame" x="141" y="601" width="92" height="30"/>
+                                <rect key="frame" x="62" y="601" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="設定搜尋條件"/>
                                 <connections>
                                     <action selector="toEditSearch:" destination="RCp-yW-nzL" eventType="touchUpInside" id="Xje-gX-4Jf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-hd-Uvf">
+                                <rect key="frame" x="216" y="601" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="測試 groupDict"/>
+                                <connections>
+                                    <action selector="testGroupDict:" destination="RCp-yW-nzL" eventType="touchUpInside" id="HV1-NH-lxn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1431,7 +1439,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QuA-N2-rfJ" userLabel="tableView">
-                                <rect key="frame" x="16" y="20" width="271" height="454"/>
+                                <rect key="frame" x="16" y="20" width="271" height="338"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1484,6 +1492,14 @@
                                     <outlet property="dataSource" destination="31z-sg-4aJ" id="YoH-5z-ZqG"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYQ-10-aca">
+                                <rect key="frame" x="100" y="391" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="測試 groupDict"/>
+                                <connections>
+                                    <action selector="testGroupDict:" destination="31z-sg-4aJ" eventType="touchUpInside" id="Q3Q-rX-PXz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1493,7 +1509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14W-ax-oPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4062" y="-1927"/>
+            <point key="canvasLocation" x="4061.5999999999999" y="-1927.7361319340332"/>
         </scene>
         <!--Result MapVC-->
         <scene sceneID="Goc-CR-GtM">

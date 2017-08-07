@@ -10,6 +10,24 @@ import UIKit
 
 class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBAction func testGroupDict(_ sender: Any) {
+        let parentVC = parent as! resultMapListVC
+        
+//        print(parentVC.groupDict?.description)
+        
+        if parentVC.groupDict != nil {
+            
+            print( parentVC.groupDict?.description)
+            
+            for group in parentVC.groupDict! {
+                for (key, value) in group {
+                    print("\(key): \(value)")
+                }
+            }
+        }
+    }
+
+    
     @IBOutlet weak var tableView: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,8 +57,9 @@ class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         
+        self.testGroupDict(self)
     }
     
     override func didReceiveMemoryWarning() {

@@ -11,6 +11,8 @@ import UIKit
 class resultMapListVC: UIViewController {
     
     var app = UIApplication.shared.delegate as! AppDelegate
+    
+    var groupDict:[[String:String]]?
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var contViewList: UIView!
@@ -21,6 +23,22 @@ class resultMapListVC: UIViewController {
         show(vc, sender: self)
         
     }
+    
+    @IBAction func testGroupDict(_ sender: Any) {
+        
+        if groupDict != nil {
+            
+            print(groupDict?.description)
+            
+            for group in groupDict! {
+                for (key, value) in group {
+                    print("\(key): \(value)")
+                }
+            }
+        }
+        
+    }
+    
     
     @IBAction func didEditSearch(_ sender: UIStoryboardSegue) {
         print("修改了搜尋條件")
@@ -58,6 +76,9 @@ class resultMapListVC: UIViewController {
 
         self.segmentedControl.selectedSegmentIndex = 1 // Map
         
+        groupDict = []
+        self.loadTogetherDB()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,13 +86,26 @@ class resultMapListVC: UIViewController {
         
         self.changeShowMode(segmentedControl)
         
-        self.loadTogetherDB()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        print(self.groupDict?.description)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segResultList" {
+//            let vc = segue.destination as! resultListVC
+//            
+//            vc.testGroupDict(self)
+//        }
+//    }
     
 
     public func loadTogetherDB() {
@@ -84,10 +118,29 @@ class resultMapListVC: UIViewController {
         req.httpMethod = "POST"
         req.httpBody = "mid=\(app.mid!)".data(using: .utf8)
         
-        let task = session.dataTask(with: req, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: req, completionHandler: {(data, response, session_error) in
         
-            let source = String(data: data!, encoding: .utf8)
-            print(source)
+            self.groupDict = []
+            
+            do {
+                let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                
+                let allObj = jsonObj as! [[String:String]]
+                var group:[String:String] = [:]
+                for obj in allObj {
+                    for (key, value) in obj {
+//                        print("\(key): \(value)")
+                        group["\(key)"] = value
+                    }
+                    
+                    self.groupDict! += [group]
+
+                }
+                
+                
+            } catch {
+                print(error)
+            }
             
         })
         
