@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1407D39B1F22AEFB0084AF64 /* classPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1407D39A1F22AEFB0084AF64 /* classPickerVC.swift */; };
+		142886951F3811B80047FA28 /* home24.png in Resources */ = {isa = PBXBuildFile; fileRef = 142886941F3811B80047FA28 /* home24.png */; };
+		142886971F3811BE0047FA28 /* home16.png in Resources */ = {isa = PBXBuildFile; fileRef = 142886961F3811BE0047FA28 /* home16.png */; };
+		1428869D1F381C110047FA28 /* list24.png in Resources */ = {isa = PBXBuildFile; fileRef = 1428869C1F381C110047FA28 /* list24.png */; };
+		142886A01F381C8F0047FA28 /* profile24.png in Resources */ = {isa = PBXBuildFile; fileRef = 1428869E1F381C8F0047FA28 /* profile24.png */; };
+		142886A11F381C8F0047FA28 /* open24.png in Resources */ = {isa = PBXBuildFile; fileRef = 1428869F1F381C8F0047FA28 /* open24.png */; };
 		14AAD73E1F1C694F00BC6E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */; };
 		14AAD7401F1C694F00BC6E9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAD73F1F1C694F00BC6E9E /* ViewController.swift */; };
 		14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AAD7411F1C694F00BC6E9E /* Main.storyboard */; };
@@ -44,6 +49,11 @@
 
 /* Begin PBXFileReference section */
 		1407D39A1F22AEFB0084AF64 /* classPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = classPickerVC.swift; sourceTree = "<group>"; };
+		142886941F3811B80047FA28 /* home24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home24.png; sourceTree = "<group>"; };
+		142886961F3811BE0047FA28 /* home16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home16.png; sourceTree = "<group>"; };
+		1428869C1F381C110047FA28 /* list24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list24.png; sourceTree = "<group>"; };
+		1428869E1F381C8F0047FA28 /* profile24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile24.png; sourceTree = "<group>"; };
+		1428869F1F381C8F0047FA28 /* open24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open24.png; sourceTree = "<group>"; };
 		14AAD73A1F1C694F00BC6E9E /* together.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = together.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14AAD73F1F1C694F00BC6E9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +113,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1428867B1F38049C0047FA28 /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				1428869E1F381C8F0047FA28 /* profile24.png */,
+				1428869F1F381C8F0047FA28 /* open24.png */,
+				1428869C1F381C110047FA28 /* list24.png */,
+				142886961F3811BE0047FA28 /* home16.png */,
+				142886941F3811B80047FA28 /* home24.png */,
+			);
+			name = imgs;
+			sourceTree = "<group>";
+		};
 		14AAD7311F1C694F00BC6E9E = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +146,7 @@
 		14AAD73C1F1C694F00BC6E9E /* together */ = {
 			isa = PBXGroup;
 			children = (
+				1428867B1F38049C0047FA28 /* imgs */,
 				14AAD73D1F1C694F00BC6E9E /* AppDelegate.swift */,
 				14AAD73F1F1C694F00BC6E9E /* ViewController.swift */,
 				F747565C1F2C7EA300AF3631 /* Msgviewitem.swift */,
@@ -233,9 +256,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F74756571F2C5D0200AF3631 /* question.jpg in Resources */,
+				142886A01F381C8F0047FA28 /* profile24.png in Resources */,
 				14AAD7481F1C694F00BC6E9E /* LaunchScreen.storyboard in Resources */,
+				142886951F3811B80047FA28 /* home24.png in Resources */,
 				F73D8F1D1F2A404D006951F7 /* GoogleService-Info.plist in Resources */,
+				142886A11F381C8F0047FA28 /* open24.png in Resources */,
+				1428869D1F381C110047FA28 /* list24.png in Resources */,
 				14AAD7451F1C694F00BC6E9E /* Assets.xcassets in Resources */,
+				142886971F3811BE0047FA28 /* home16.png in Resources */,
 				14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

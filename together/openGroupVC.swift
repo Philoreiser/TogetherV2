@@ -53,7 +53,8 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var classType:String?
     var detail:String?
     var subjectpicString:String?
-    
+//    var lat:String?
+//    var lng:String?
     //會員id
     var mid:String?
     //    var imgTaken:UIImage?
@@ -124,13 +125,13 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         //如果subjectpicString != nil 傳data參數至後端
         if subjectpicString != nil {
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
             
             
             print("has photo")
         }else {
             ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat)&lng=\(locationLng)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
             print("no photo")
         }
         
@@ -577,14 +578,22 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //// get memberID
         let app = UIApplication.shared.delegate as! AppDelegate
-        if app.id == nil {
+        mid = app.mid
+        
+        if mid == nil {
             mid = "0"
-        }else {
-            mid = app.id
         }
         
+        print("我是使用者：\(mid!)")
         
+        
+        //// location temp
+        locationLat  = Double(121.1)
+        locationLng = Double(23.2)
+        
+      
         
         //        let imgBtn = UIImage(named: "cat.png")
         //

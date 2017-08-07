@@ -182,11 +182,11 @@
             </objects>
             <point key="canvasLocation" x="3286" y="-1516"/>
         </scene>
-        <!--Item-->
+        <!--open-->
         <scene sceneID="uBN-sn-Btf">
             <objects>
                 <navigationController id="cJv-Lm-sCJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="H1c-ra-eqA"/>
+                    <tabBarItem key="tabBarItem" title="open" image="open24.png" id="H1c-ra-eqA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z97-VV-79j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -199,11 +199,11 @@
             </objects>
             <point key="canvasLocation" x="2510" y="-830"/>
         </scene>
-        <!--Item-->
+        <!--profile-->
         <scene sceneID="gQ9-C6-1pr">
             <objects>
                 <navigationController id="JS9-z3-8FM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3k6-P4-bg2"/>
+                    <tabBarItem key="tabBarItem" title="profile" image="profile24.png" id="3k6-P4-bg2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JcN-wN-08x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -216,11 +216,11 @@
             </objects>
             <point key="canvasLocation" x="2510" y="624"/>
         </scene>
-        <!--Item-->
+        <!--manage-->
         <scene sceneID="kwA-X6-Nbl">
             <objects>
                 <navigationController id="V68-Qz-lKX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="C8t-nx-NOV"/>
+                    <tabBarItem key="tabBarItem" title="manage" image="list24.png" id="C8t-nx-NOV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hu7-yg-2Kj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -684,11 +684,11 @@
             </objects>
             <point key="canvasLocation" x="-2372" y="-886"/>
         </scene>
-        <!--Item-->
+        <!--map-->
         <scene sceneID="4or-lF-UzI">
             <objects>
                 <navigationController id="T0x-3o-M9w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hzm-5y-ZOt"/>
+                    <tabBarItem key="tabBarItem" title="map" image="home24.png" id="hzm-5y-ZOt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rym-lu-ExJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1086,7 +1086,7 @@
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8ta-MB-p0z" id="SWb-k6-2xV">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL3-cC-MoB">
@@ -1165,7 +1165,7 @@
                                         <rect key="frame" x="0.0" y="28" width="317" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Vp-yi-Xp9" id="eMJ-K7-ByO" customClass="applyGroupTBVCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="317" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FGS-6c-K8X">
@@ -1243,7 +1243,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqi-jH-975" id="dbL-Ez-uyk" customClass="openGroupTbViCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V02-FS-1aP">
@@ -1433,7 +1433,7 @@
                                         <rect key="frame" x="0.0" y="28" width="271" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JpF-0K-m0v" id="5ZV-QH-naK" userLabel="contView">
-                                            <rect key="frame" x="0.0" y="0.0" width="271" height="67.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-66-OBz">
@@ -1518,11 +1518,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="home24.png" width="30" height="24"/>
+        <image name="list24.png" width="24" height="24"/>
+        <image name="open24.png" width="24" height="24"/>
+        <image name="profile24.png" width="24" height="24"/>
         <image name="question.jpg" width="640" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wNn-7z-toL"/>
+        <segue reference="yb0-tw-Yce"/>
         <segue reference="StR-1s-fvO"/>
-        <segue reference="XtH-T5-JTD"/>
-        <segue reference="g7e-cg-m6O"/>
     </inferredMetricsTieBreakers>
 </document>
