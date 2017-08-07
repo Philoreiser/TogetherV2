@@ -287,10 +287,11 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             self.testlabel.text = description
                             
                             //var varsubjectpic = (a["subjectpic"]!)
-                            self.subjectpic.append(a["subjectpic"])
+                            self.subjectpic.append(a["subjectpic"]!)
                             self.subject.append(a["subject"]!)
                             self.temptid.append(a["tid"]!)
-                            //print(self.subjectpic)
+                            print(self.subjectpic)
+                            
                             
                             
                         }
@@ -334,25 +335,25 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                         if url != nil {
                             let data = try Data(contentsOf: url!)
                             if (UIImage(data: data) != nil) {
-                            print("OK")
-                            images.append(UIImage(data: data)!)
+                                print("OK")
+                                images.append(UIImage(data: data)!)
                             }else {
-                            images.append(UIImage(named: "question.jpg")!)
-                            print("xx")
+                                images.append(UIImage(named: "question.jpg")!)
+                                print("xx")
                             }
                             
-                            
-                            
-                           // images.append(UIImage(data: data)!)
                        }
-//                            else {
-//                        print("ok")
-//                        images.append(UIImage(named: "question.jpg")!)
-//                       }
+                            else {
+                        print("ok")
+                        images.append(UIImage(named: "question.jpg")!)
+                       }
                      }catch{
                         print(error)
                         images.append(UIImage(named: "question.jpg")!)
-                    }
+                        }
+//        }else {
+//                        images.append(UIImage(named: "question.jpg")!)
+//                    }
       
             }
         

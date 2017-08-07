@@ -164,7 +164,9 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         cell.reViewTextView?.text = self.groupReviews[indexPath.row].groupReview
         cell.loginUser.text = self.groupReviews[indexPath.row].userEmail
         
-        
+        let layer = cell.ProfileImg.layer
+        layer.cornerRadius = 20.0
+        layer.masksToBounds = true
         
         return cell
     }
@@ -270,6 +272,10 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadmygroup()
+        
+        let groupViewLayer = subjectpicView.layer
+        groupViewLayer.cornerRadius = 20.0
+        groupViewLayer.masksToBounds = true
         
         let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("groupId-0000001")
         
