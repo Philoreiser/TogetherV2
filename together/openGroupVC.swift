@@ -65,7 +65,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var locationLat:CLLocationDegrees?
     var locationLng:CLLocationDegrees?
     
-
+    let dataEmpty:String = ""
     
     // 選取地點
     @IBAction func pickMapPlace(_ sender: Any) {
@@ -97,9 +97,6 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             detail = textViewDetail.text
         }
         
-        
-        
-        
         print(subject!)
         print(location!)
         print(starttime!)
@@ -107,15 +104,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         print(classType!)
         print(detail!)
         //        print(subjectpicString!)
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
@@ -131,7 +120,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             print("has photo")
         }else {
             ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat)&lng=\(locationLng)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(dataEmpty)".data(using: .utf8)
             print("no photo")
         }
         

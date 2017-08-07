@@ -121,6 +121,7 @@
 				1428869C1F381C110047FA28 /* list24.png */,
 				142886961F3811BE0047FA28 /* home16.png */,
 				142886941F3811B80047FA28 /* home24.png */,
+				F74756561F2C5D0200AF3631 /* question.jpg */,
 			);
 			name = imgs;
 			sourceTree = "<group>";
@@ -164,7 +165,6 @@
 				F7748D111F2CE565007CF316 /* Groupdetail.swift */,
 				F75B3E381F32320F00ECC498 /* loginViewController.swift */,
 				F73D8F1E1F2A4093006951F7 /* messageboard.swift */,
-				F74756561F2C5D0200AF3631 /* question.jpg */,
 				4ACA6E491F1F3F0C002B1CA5 /* EditresumeView.swift */,
 				4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */,
 				14AAD7441F1C694F00BC6E9E /* Assets.xcassets */,
