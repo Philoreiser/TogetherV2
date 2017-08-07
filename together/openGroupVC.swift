@@ -14,32 +14,19 @@ import MapKit
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
 class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    @IBOutlet weak var imgViewSbj: UIImageView!
+//    @IBOutlet weak var imgViewSbj: UIImageView!
     @IBOutlet weak var btnPicOutlet: UIButton!
     @IBOutlet weak var textFieldStartDate: UITextField!
     @IBOutlet weak var textFieldEndDate: UITextField!
     @IBOutlet weak var textFieldSubject: UITextField!
-    @IBOutlet weak var classLabel: UILabel!
+//    @IBOutlet weak var classLabel: UILabel!
 
     @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var textViewDetail: UITextView!
     
+   
     
-    
-//    @IBOutlet weak var imgViewSbj: UIImageView!
-//    @IBOutlet weak var btnPicOutlet: UIButton!
-//    @IBOutlet weak var textFieldStartDate: UITextField!
-//    @IBOutlet weak var textFieldEndDate: UITextField!
-//    @IBOutlet weak var textFieldSubject: UITextField!
-//    @IBOutlet weak var classLabel: UILabel!
-//    
-//    @IBOutlet weak var classTextField: UITextField!
-//    @IBOutlet weak var textViewDetail: UITextView!
-    
-    
-    
-    
-    var listClass = [String]()  //class list的空陣列
+    var listClass = ["美食","運動","旅遊","團康","其他"]   //////揪團類別
     
     var selectClass:String?  //class select的資料儲存
     
@@ -82,12 +69,44 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         }
     }
     
-    
-    /////////submit按鈕
+    @IBAction func cancelGroup(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
+        self.present(vc!, animated: true, completion: nil)
 
-    @IBAction func submit(_ sender: Any) {
+    }
+    
+    /////////////開團按鈕
+    @IBAction func openGroup(_ sender: Any) {
         
+        let alertController = UIAlertController(title: "您開團嗎?", message: "送出後即開團成功", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "送出", style: .default, handler: {(action) in
+          self.sentGroupData()
+            self.presentToManagevc()
+//
+
+        })
+        let cancelaction = UIAlertAction(title: "取消", style: .default, handler: {(action) in
+//            self.dismiss(animated: true, completion: nil)
+        })
         
+        alertController.addAction(okaction)
+        alertController.addAction(cancelaction)
+
+        self.present(alertController, animated: true, completion: nil)
+        
+    
+
+    }
+  
+    //////present to managevc。 API
+    func presentToManagevc() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
+        self.present(vc!, animated: true, completion: nil)
+
+    }
+    
+    //////開團 傳資料到後端 API
+    func sentGroupData(){
         subject = textFieldSubject.text
         location = "我家"
         
@@ -104,12 +123,12 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         print(classType!)
         print(detail!)
         //        print(subjectpicString!)
-
+        
         let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
         
-        ////STRING == 拍照或擷取相簿的base64String
+        ////STRING == 拍照或擷取相簿的base64String 用來傳給後端
         subjectpicString = imgDataBase64String
         
         //如果subjectpicString != nil 傳data參數至後端
@@ -119,19 +138,16 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             
             print("has photo")
         }else {
-            ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(dataEmpty)".data(using: .utf8)
+            ////如果沒有選照片 subjectpicString = nil 則傳送data空字串參數至後端
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
             print("no photo")
         }
         
-        
-        
+ 
         
         req.httpMethod = "POST"
         
-        
-        
-        
+
         let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
             if error == nil {
                 
@@ -143,12 +159,11 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             
             
         })
-        task.resume()
-        
-
-        
+                task.resume()
+    
     }
     
+
     
     ////拍照按鈕
 
@@ -233,10 +248,9 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         
-        imgViewSbj.image = imgTaken
+//        imgViewSbj.image = imgTaken
         
-        
-        
+        btnPicOutlet.setImage(imgTaken, for: .normal)
         
         //將UIImage 變為 jpeg   即為data
         let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
@@ -584,22 +598,12 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
       
         
-        //        let imgBtn = UIImage(named: "cat.png")
-        //
-        //        btnPicOutlet.setImage(imgBtn, for: .normal)
-        
-        
         //取得screenSize 似乎沒用到
         let fullScreenSize = UIScreen.main.bounds.size
         
         
         
-        //class的選擇清單
-        listClass.append("美食")
-        listClass.append("運動")
-        listClass.append("旅遊")
-        listClass.append("團康")
-        listClass.append("其他")
+   
         
         ////////////class PickerView 用
         setClassPicker(array: listClass)
@@ -631,14 +635,6 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

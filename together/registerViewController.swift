@@ -139,8 +139,8 @@ class registerViewController: UIViewController {
         
         
         func go(){
-            
-            let vc = storyboard?.instantiateViewController(withIdentifier: "mapandlistvc")
+            ////幫修改為tabbarvc
+            let vc = storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
             show(vc!, sender: self)
         }
         

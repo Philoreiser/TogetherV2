@@ -17,7 +17,8 @@ class manageGroupVC: UIViewController{
     @IBOutlet weak var containerManageGroup: UIView!
     @IBOutlet weak var containerApplyGroup: UIView!
 
-    
+    //會員id
+    var mid:String?
     
 
     
@@ -51,7 +52,14 @@ class manageGroupVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let app = UIApplication.shared.delegate as! AppDelegate
+        mid = app.mid
         
+        if mid == nil {
+            mid = "0"
+        }
+        
+        print("manageGroupVC我是使用者：\(mid!)")
         apperaPage1()
         
         

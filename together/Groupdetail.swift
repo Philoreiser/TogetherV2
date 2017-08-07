@@ -11,8 +11,10 @@ import Firebase
 import FirebaseAuth
 
 class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-   
+    //會員id
+    
+    var mid:String?
+    var tid:String?
     let app = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var subjectpicView: UIImageView!
@@ -22,6 +24,37 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBOutlet weak var starttime: UILabel!
     @IBOutlet weak var endtime: UILabel!
     @IBOutlet weak var Msgboard: UITableView!
+    
+    
+    ///////////申請加入揪團按鈕
+    @IBAction func applyGroup(_ sender: Any) {
+        
+        //////// 暫時給一個tid 
+       tid = "0"
+        
+        
+        let url = URL(string: "https://together-seventsai.c9users.io/applyGroup.php")
+        let session = URLSession(configuration: .default)
+        var req = URLRequest(url: url!)
+        
+        req.httpBody = "mid=\(mid)&tid=\(tid)".data(using: .utf8)
+        
+        req.httpMethod = "POST"
+        
+        let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+            //        print(data)
+            
+            let source  =  String(data: data!, encoding: .utf8)
+            
+            print(source!)
+            
+            
+            
+        })
+        
+        task.resume()
+        
+    }
     
     @IBAction func ReviewBtn(_ sender: Any) {
         
@@ -271,6 +304,13 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mid = app.mid
+        
+        if mid == nil {
+            mid = "0"
+        }
+        
         loadmygroup()
         
         let groupViewLayer = subjectpicView.layer
