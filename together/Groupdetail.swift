@@ -30,14 +30,14 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBAction func applyGroup(_ sender: Any) {
         
         //////// 暫時給一個tid 
-       tid = "0"
+       tid = "3"
         
         
         let url = URL(string: "https://together-seventsai.c9users.io/applyGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
         
-        req.httpBody = "mid=\(mid)&tid=\(tid)".data(using: .utf8)
+        req.httpBody = "mid=\(mid!)&tid=\(tid!)".data(using: .utf8)
         
         req.httpMethod = "POST"
         

@@ -25,9 +25,9 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     
     //暫時假裝登入者
-    let mid = "0"
+//    let mid = "0"
     
-    
+    var mid:String?
     
     
     //ＴＢV數量
@@ -237,7 +237,17 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("現在使用者是:\(mid)")
+        
+        let app = UIApplication.shared.delegate as! AppDelegate
+        ////取得目前使用者是誰
+        mid = app.mid
+        
+        if mid == nil {
+            mid = "0"
+        }
+        
+        print("manageApplyviewVC我是使用者：\(mid!)")
+
         loadDB()
         
         tbView.refreshControl = UIRefreshControl()

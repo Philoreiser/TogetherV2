@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -179,7 +179,7 @@
             <objects>
                 <navigationController id="cJv-Lm-sCJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="94揪團" image="open24.png" id="H1c-ra-eqA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Z97-VV-79j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z97-VV-79j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -196,7 +196,7 @@
             <objects>
                 <navigationController id="JS9-z3-8FM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="揪團管理" image="list24.png" id="3k6-P4-bg2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JcN-wN-08x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JcN-wN-08x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -213,7 +213,7 @@
             <objects>
                 <navigationController id="V68-Qz-lKX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的檔案" image="profile24.png" id="C8t-nx-NOV"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hu7-yg-2Kj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hu7-yg-2Kj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -469,7 +469,7 @@
                                 <rect key="frame" x="43" y="84" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="question.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Nsh-Xr-DjH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="question.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Nsh-Xr-DjH">
                                 <rect key="frame" x="87" y="397" width="200" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
@@ -672,7 +672,7 @@
             <objects>
                 <navigationController id="T0x-3o-M9w" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="圖揪" image="home24.png" id="hzm-5y-ZOt"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rym-lu-ExJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rym-lu-ExJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

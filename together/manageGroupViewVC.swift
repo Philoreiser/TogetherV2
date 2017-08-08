@@ -18,8 +18,9 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     
     //暫時假裝登入者
-    let mid = "0"
-    
+//    let mid = "0"
+    var mid:String?
+    var tid:String?
     
     //ＴＢV數量
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -238,8 +239,8 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         mydataMaid = []
         mydataStatus = []
         //先假裝給一個tid
-        let tid = "1"
-        
+         tid = "3"
+        print("我是目前的揪團tid:\(tid)")
         //c9資料庫 post
         let url = URL(string: "https://together-seventsai.c9users.io/getMyOpenGroup.php")
         let session = URLSession(configuration: .default)
@@ -248,7 +249,7 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         var req = URLRequest(url: url!)
         
         req.httpMethod = "POST"
-        req.httpBody = "tid=\(tid)&mid=\(mid)".data(using: .utf8)
+        req.httpBody = "tid=\(tid!)&mid=\(mid!)".data(using: .utf8)
         
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
             let source = String(data: data!, encoding: .utf8)
@@ -336,6 +337,15 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let app = UIApplication.shared.delegate as! AppDelegate
+        mid = app.mid
+        
+        if mid == nil {
+            mid = "0"
+        }
+        
+        print("manageGroupviewVC我是使用者：\(mid!)")
         
         loadDB()
         

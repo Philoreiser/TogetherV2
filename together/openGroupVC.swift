@@ -101,7 +101,8 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     //////present to managevc。 API
     func presentToManagevc() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
-        self.present(vc!, animated: true, completion: nil)
+//        self.present(vc!, animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = 2
 
     }
     

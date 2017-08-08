@@ -196,7 +196,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             return
         }
-        if self.subject.count == 0{
+        if self.subject.count == 0 {
             print("cannot swipe")
         }else {
             Mygroupimage.image = images[mygroupControl.currentPage]
@@ -228,6 +228,8 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //                print(source!)
                 
                 DispatchQueue.main.async {
+                    
+                
                     do{
                         
                         
@@ -280,21 +282,21 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 //                print(source!)
                 
-                //DispatchQueue.main.async {
+                DispatchQueue.main.async {
                     do{
                         
                         
                         let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         var counter = 0
                         for a in  jsonobj as! [[String:String]] {
-                            if counter >= 5 {
-                                break
-                            }
+//                            if counter >= 5 {
+//                                break
+//                            }
                             self.subjectpic.append(a["subjectpic"]!)
                             self.subject.append(a["subject"]!)
                             self.temptid.append(a["tid"]!)
                             print(self.subjectpic)
-                            counter += 1
+//                            counter += 1
                             
                         }
                         sleep(1)
@@ -312,7 +314,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                     }catch {
                         print("thisis \(error)")
                     }
-               // }
+                }
                 
             })
             

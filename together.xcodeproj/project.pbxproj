@@ -169,8 +169,8 @@
 				F768731B1F2F936B00C17849 /* GroupReviewTableViewCell.swift */,
 				14CBB6941F341057006FA954 /* applyGroupVC.swift */,
 				14CBB6971F341057006FA954 /* manageGroupVC.swift */,
-				14CBB6981F341057006FA954 /* manageApplyViewVC.swift */,
 				14CBB6991F341057006FA954 /* manageGroupViewVC.swift */,
+				14CBB6981F341057006FA954 /* manageApplyViewVC.swift */,
 			);
 			path = together;
 			sourceTree = "<group>";
