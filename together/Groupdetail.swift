@@ -24,13 +24,14 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBOutlet weak var starttime: UILabel!
     @IBOutlet weak var endtime: UILabel!
     @IBOutlet weak var Msgboard: UITableView!
+    @IBOutlet weak var btnApplyOulet: UIBarButtonItem!
     
     
     ///////////申請加入揪團按鈕
-    @IBAction func applyGroup(_ sender: Any) {
-        
-        //////// 暫時給一個tid 
-       tid = "3"
+    
+    @IBAction func btnApplyGroup(_ sender: Any) {
+        //////// tid == 從別頁帶進來的Gtid
+        tid = Gtid
         
         
         let url = URL(string: "https://together-seventsai.c9users.io/applyGroup.php")
@@ -71,7 +72,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     var groupReviews: [GroupReviewItem] = [GroupReviewItem]()
     
     //loadtogether
-
+    
     func loadmygroup(){
         
         Gtid = app.tid
@@ -118,18 +119,18 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
                                     }else {
                                         self.subjectpicView.image = UIImage(named:"question.jpg")
                                     }
-
+                                    
                                 }else {
                                     self.subjectpicView.image = UIImage(named:"question.jpg")
                                     
                                 }
-  
+                                
                             }catch{
                                 print(error)
                             }
-     
+                            
                         }
- 
+                        
                     }catch {
                         print("thisis \(error)")
                     }
@@ -142,8 +143,15 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         }else {
             
             print("no mid")
- 
+            
         }
+
+    }
+    
+    
+    
+    @IBAction func applyGroup(_ sender: Any) {
+        
         
     }
     
