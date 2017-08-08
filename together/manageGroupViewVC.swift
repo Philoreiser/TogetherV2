@@ -162,12 +162,11 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             
             sleep(1)
             
-            self.reload()
-            
+
+            self.handleRefresh()
             
             //            self.dismiss(animated: true, completion: nil
-            //重新讀取ＴＢＶＩＥＷ 不知道有沒有用
-            //                self.reload()
+//                            self.reload()
             
             //            )
             
@@ -208,10 +207,7 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             sleep(1)
             
             
-            self.reload()
-            
-            
-            
+            self.handleRefresh()
             
             //            self.dismiss(animated: true, completion:nil)
         })
@@ -224,8 +220,10 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func reload(){
         let vc = storyboard?.instantiateViewController(withIdentifier: "managegroupvc")
-        show(vc!, sender: self)
-        
+//        show(vc!, sender: self)
+//        self.tabBarController?.selectedIndex = 2
+//        self.handleRefresh()
+
     }
     
     
@@ -240,7 +238,7 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         mydataStatus = []
         //先假裝給一個tid
          tid = "3"
-        print("我是目前的揪團tid:\(tid)")
+        print("我是目前的揪團tid:\(tid!)")
         //c9資料庫 post
         let url = URL(string: "https://together-seventsai.c9users.io/getMyOpenGroup.php")
         let session = URLSession(configuration: .default)
@@ -275,15 +273,16 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
                         
                         //                        var displayLebel = "id:\(maid)的揪團主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
                         
-                        var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
-                        
+//                        var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
+                        var displayLebel = "maid:\(maid)申請者是\(applyUsermId)"
+
                         //                        print("manageid:\(maid)")
-                        print("mastatus:\(mastatus)")
+//                        print("mastatus:\(mastatus)")
                         //                        print("揪團主題是\(subject)")
                         //                        print("揪團ＩＤ是\(applyGrouptId)")
                         //                        print("創辦者是\(openGroupmId)")
                         //                        print("申請者是\(applyUsermId)")
-                        print("-----------")
+//                        print("-----------")
                         
                         //全部顯示用
                         
@@ -318,7 +317,7 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     
-    
+    ///////下拉更新用
     func handleRefresh(){
         
         tbView.refreshControl?.endRefreshing()

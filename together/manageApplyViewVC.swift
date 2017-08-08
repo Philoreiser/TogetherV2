@@ -51,17 +51,17 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
         //        cell.labelStatus.text = "申請中"
         //
         //        }
-        
+        ////Status 0為申請中 1為審核結束
         switch mydataStatus[indexPath.row] {
         case "0":
             cell.labelStatus.text = "申請中"
             
         case "1":
+            //////admitOrDeny 0為拒絕申請 1入團成功
             if mydataAdmitOrDeny[indexPath.row] == "0" {
                 cell.labelStatus.text = "拒絕申請"
-            }
-            if mydataAdmitOrDeny[indexPath.row] == "1" {
-                cell.labelStatus.text = "允許進入"
+            }else if mydataAdmitOrDeny[indexPath.row] == "1" {
+                cell.labelStatus.text = "入團成功"
                 
             }
         default:
@@ -104,7 +104,7 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
         mydataMaid = []
         mydataStatus = []
         //先假裝給一個tid
-        let tid = "1"
+        let tid = "3"
         
         //c9資料庫 post
         let url = URL(string: "https://together-seventsai.c9users.io/getMyApplyGroup.php")
@@ -114,10 +114,12 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
         var req = URLRequest(url: url!)
         
         req.httpMethod = "POST"
-        req.httpBody = "tid=\(tid)&mid=\(mid)".data(using: .utf8)
-        
+//        req.httpBody = "tid=\(tid)mid=\(mid!)".data(using: .utf8)
+        req.httpBody = "tid=3&mid=kO2iktB0BHRkDEhZVn8ds0s3G572".data(using: .utf8)
+
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
-            
+            print("data是我：\(data)")
+            print("error是我：\(error)")
             if data != nil{
                 let source = String(data: data!, encoding: .utf8)
                 
@@ -148,20 +150,25 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
                             
                             
                             
-                            //                        var displayLebel = "id:\(maid)的揪團主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
                             
-                            var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
                             
-                            //                        print("manageid:\(maid)")
+//                            var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
+                            var displayLebel = "maid:\(maid)"
+
+                                                    print("manageid:\(maid)")
+                                print(displayLebel)
                             print("mastatus:\(mastatus)")
-                            //                        print("揪團主題是\(subject)")
-                            //                        print("揪團ＩＤ是\(applyGrouptId)")
-                            //                        print("創辦者是\(openGroupmId)")
-                            //                        print("申請者是\(applyUsermId)")
+                                                    print("審核狀態是\(admitordeny)")
+
+//                                                    print("揪團主題是\(subject)")
+                                                    print("揪團ＩＤ是\(applyGrouptId)")
+//                                                    print("創辦者是\(openGroupmId)")
+                                                    print("申請者是\(applyUsermId)")
                             print("-----------")
                             
-                            //全部顯示用
-                            
+                           
+                            ///如果申請者mid 與 使用者mid 一致的話。才append進array
+                            ///目前顯示所有案件狀態
                             if  applyUsermId == self.mid {
                                 self.mydataStatus.append("\(mastatus)")
                                 self.mydataGroup.append("\(displayLebel)")
@@ -192,7 +199,7 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
                         self.tbView.reloadData()
                         
                     }catch {
-                        print("thisis \(error)")
+                        print("CATCH的錯誤是我 \(error)")
                     }}
                 
                 
