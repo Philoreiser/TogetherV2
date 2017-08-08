@@ -66,23 +66,26 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     var GEndtime:String?
     var GLocaion:String?
     var Gsubject:String?
+    var Gtid:String?
+    var Gmid:String?
     var groupReviews: [GroupReviewItem] = [GroupReviewItem]()
+    
     //loadtogether
 
     func loadmygroup(){
         
-        
-        if let mid = String("kO2iktB0BHRkDEhZVn8ds0s3G572") {
+        Gtid = app.tid
+        if let tid = Gtid {
             
             //c9資料庫 post
-            let url = URL(string: "https://together-seventsai.c9users.io/loadDBmembertogether.php")
+            let url = URL(string: "https://together-seventsai.c9users.io/loadtogetherdb.php")
             let session = URLSession(configuration: .default)
             
             
             var req = URLRequest(url: url!)
             
             req.httpMethod = "POST"
-            req.httpBody = "mid=\(mid)".data(using: .utf8)
+            req.httpBody = "tid=\(tid)".data(using: .utf8)
             
             let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
                 let source = String(data: data!, encoding: .utf8)
@@ -115,18 +118,12 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
                                     }else {
                                         self.subjectpicView.image = UIImage(named:"question.jpg")
                                     }
-                                    
-                                    
-                                    
-                                    
-                                    
+
                                 }else {
                                     self.subjectpicView.image = UIImage(named:"question.jpg")
                                     
                                 }
-                                
-                                
-                                
+  
                             }catch{
                                 print(error)
                             }
@@ -144,7 +141,6 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
             
         }else {
             
-            //沒輸入帳號直接跑到的話 給他一個假帳號
             print("no mid")
  
         }
@@ -162,7 +158,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
         var temppic = self.groupReviews[indexPath.row].userId
         
-        let mid = "kO2iktB0BHRkDEhZVn8ds0s3G572"
+        let Gmid = app.mid
         
         let url = URL(string: "https://together-seventsai.c9users.io/tableviewcellpersonalpic.php")
         let session = URLSession(configuration: .default)
@@ -170,7 +166,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         var req = URLRequest(url: url!)
         
         req.httpMethod = "POST"
-        req.httpBody = "mid=\(temppic)".data(using: .utf8)
+        req.httpBody = "mid=\(Gmid)".data(using: .utf8)
         
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
             
@@ -194,8 +190,8 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
         task.resume()
         
-        cell.reViewTextView?.text = self.groupReviews[indexPath.row].groupReview
-        cell.loginUser.text = self.groupReviews[indexPath.row].userEmail
+        cell.reViewTextView?.text = self.groupReviews.reversed()[indexPath.row].groupReview
+        cell.loginUser.text = self.groupReviews.reversed()[indexPath.row].userEmail
         
         let layer = cell.ProfileImg.layer
         layer.cornerRadius = 20.0
@@ -210,8 +206,8 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         let alert = UIAlertController(title: "輸入留言", message: "請輸入留言", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {(action) in
-            self.dismiss(animated: true, completion: nil)
-            
+            //self.dismiss(animated: true, completion: nil)
+            //self.go()
         })
         
         let reviewAction = UIAlertAction(title: "留言", style: .default, handler: {(action) in
@@ -225,8 +221,10 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 return
             }
             
+            self.Gtid = self.app.tid
+            
             // 新增節點資料
-            let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("groupId-0000001")
+            let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("\(self.Gtid)")
             let childRef: DatabaseReference = reference.childByAutoId() // 隨機生成的節點唯一識別碼，用來當儲存時的key值
             
             // get date
@@ -237,7 +235,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
             
             //id name 再修正為團名以及ID
             var movieReview: [String : AnyObject] = [String : AnyObject]()
-            movieReview["groupId"] = "groupId-0000001" as AnyObject
+            movieReview["groupId"] = "\(self.Gtid)" as AnyObject
             movieReview["childId"] = childRef.key as AnyObject
             movieReview["groupName"] = "\(self.Gsubject)" as AnyObject
             movieReview["groupReview"] = reviewText as AnyObject
@@ -259,7 +257,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 
                 // 返回上一頁
                 //_ = self.navigationController?.popViewController(animated: true)
-                self.go()
+                //self.go()
                 
                 
             }
@@ -274,7 +272,9 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         alert.addAction(cancelAction)
         alert.addAction(reviewAction)
         
-        show(alert, sender: self)
+        self.present(alert, animated: true, completion: nil)
+
+        //show(alert, sender: self)
         
         
     }
@@ -282,8 +282,12 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func go(){
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+        let vc = storyboard?.instantiateViewController(withIdentifier: "navadetailvc")
+        
+       // self.present(vc!, animated: true, completion: nil)
+
         show(vc!, sender: self)
+        //self.tabBarController?.selectedIndex = 4
     }
     
     
@@ -317,7 +321,9 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         groupViewLayer.cornerRadius = 20.0
         groupViewLayer.masksToBounds = true
         
-        let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("groupId-0000001")
+        self.Gtid = self.app.tid
+        
+        let reference: DatabaseReference! = Database.database().reference().child("groupReviews").child("\(self.Gtid)")
         
         reference.queryOrderedByKey().observe(.value, with: { snapshot in
             if snapshot.childrenCount > 0 {
