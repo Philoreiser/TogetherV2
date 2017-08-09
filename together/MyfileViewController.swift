@@ -367,17 +367,19 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         
         
-        
-        //print(subjectpic)
-        //print(images)
-        Mygroupimage.image = images[0]
-        ////先以揪團ＴＩＤ顯示
-//        groupname.text =  self.subject[0]
-        groupname.text =  self.temptid[0]
-
-        app.tid = temptid[0]
-        mygroupControl.numberOfPages = images.count
-        
+        DispatchQueue.main.async {
+            //print(subjectpic)
+            //print(images)
+            self.Mygroupimage.image = self.images[0]
+            ////先以揪團ＴＩＤ顯示
+            //        groupname.text =  self.subject[0]
+            self.groupname.text =  self.temptid[0]
+            
+            self.app.tid = self.temptid[0]
+            self.mygroupControl.numberOfPages = self.images.count
+            
+        }
+       
         
     }
     

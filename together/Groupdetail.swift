@@ -115,13 +115,20 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
                                     let data = try Data(contentsOf: url!)
                                     if (UIImage(data: data) != nil) {
                                         print("OK")
-                                        self.subjectpicView.image = UIImage(data: data)!
+                                        DispatchQueue.main.async {
+                                            self.subjectpicView.image = UIImage(data: data)!
+
+                                        }
                                     }else {
-                                        self.subjectpicView.image = UIImage(named:"question.jpg")
+                                        DispatchQueue.main.async {
+                                            self.subjectpicView.image = UIImage(named:"question.jpg")
+                                        }
                                     }
                                     
                                 }else {
-                                    self.subjectpicView.image = UIImage(named:"question.jpg")
+                                    DispatchQueue.main.async {
+                                        self.subjectpicView.image = UIImage(named:"question.jpg")
+                                    }
                                     
                                 }
                                 
