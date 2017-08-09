@@ -110,7 +110,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     func sentGroupData(){
         subject = textFieldSubject.text
         location = "我家"
-        
+        detail = textViewDetail.text
         if detail == nil {
             detail = "I'mDetail"
         }else{
