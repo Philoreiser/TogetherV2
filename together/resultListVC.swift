@@ -10,6 +10,7 @@ import UIKit
 
 class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var app = UIApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -43,9 +44,23 @@ class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail") as! Groupdetail
+        let parentVC = parent as! resultMapListVC
+        
+        app.tid = parentVC.groupDict?[indexPath.row]["tid"]
+        print("selected: \(app.tid)")
+        show(vc, sender: self)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {

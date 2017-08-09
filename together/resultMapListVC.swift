@@ -102,37 +102,52 @@ class resultMapListVC: UIViewController {
         req.httpMethod = "GET"
         req.httpBody = "".data(using: .utf8)
         
+        
         let task = session.dataTask(with: req, completionHandler: {(data, response, session_error) in
             
             self.groupDict = []
             
-            do {
-                let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            DispatchQueue.main.async {
                 
-                let allObj = jsonObj as! [[String:String]]
-                var group:[String:String] = [:]
                 
-                let queue = DispatchQueue(label: "saveDB")
-                
-                for obj in allObj {
+                do {
+                    let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                     
-                    queue.async {
+                    let allObj = jsonObj as! [[String:String]]
+                    var group:[String:String] = [:]
+                    
+                    for obj in allObj {
                         for (key, value) in obj {
-                            //                        print("\(key): \(value)")
                             group["\(key)"] = value
                         }
-                    }
-                    
-                    queue.async {
+                        
                         self.groupDict! += [group]
                     }
                     
-
+                    let queue = DispatchQueue(label: "saveDB")
+                    
+                    for obj in allObj {
+                        
+                        queue.async {
+                            for (key, value) in obj {
+                                //                        print("\(key): \(value)")
+                                group["\(key)"] = value
+                            }
+                        }
+                        
+                        queue.async {
+                            self.groupDict! += [group]
+                        }
+                        
+                        
+                    }
+                    
+                    sleep(1)
+                    
+                    
+                } catch {
+                    print(error)
                 }
-                
-                
-            } catch {
-                print(error)
             }
             
         })
