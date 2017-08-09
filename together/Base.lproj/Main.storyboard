@@ -23,11 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Grh-Zr-Sem">
-                                <rect key="frame" x="119" y="595" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="揪團頁"/>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-AT-19z">
                                 <rect key="frame" x="103" y="171" width="168" height="34"/>
                                 <segments>
@@ -38,36 +33,6 @@
                                     <action selector="segmentValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="Keh-Gd-gy6"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wud-cV-Bs7">
-                                <rect key="frame" x="246" y="595" width="107" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="已加入已開團"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6e-Zo-K5h">
-                                <rect key="frame" x="157" y="527" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="搜尋頁面"/>
-                                <connections>
-                                    <segue destination="tei-5W-kYj" kind="show" id="0nn-AY-cQP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Grr-4e-dJc">
-                                <rect key="frame" x="39" y="527" width="112" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="地圖與列表"/>
-                                <connections>
-                                    <segue destination="RCp-yW-nzL" kind="show" id="g7e-cg-m6O"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg5-SC-GSg">
-                                <rect key="frame" x="39" y="595" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="myfile"/>
-                                <connections>
-                                    <action selector="Gotomyile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pke-X9-XEa"/>
-                                    <segue destination="9sH-T1-wyt" kind="show" id="0hb-rb-cPG"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Xl-s8-5iz">
                                 <rect key="frame" x="16" y="204" width="343" height="310"/>
                                 <connections>
@@ -125,19 +90,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYy-5f-qU9" userLabel="contViewList">
-                                <rect key="frame" x="0.0" y="48" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="575"/>
                                 <connections>
                                     <segue destination="31z-sg-4aJ" kind="embed" identifier="segResultList" id="3AW-vw-ZNI"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-Ns-uN8" userLabel="contViewMap">
-                                <rect key="frame" x="0.0" y="48" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="575"/>
                                 <connections>
                                     <segue destination="ZDg-Xb-rX1" kind="embed" identifier="segResultMap" id="1nQ-Vb-SRw"/>
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gni-hr-I99">
-                                <rect key="frame" x="0.0" y="20" width="375" height="29"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
                                 <segments>
                                     <segment title="清單"/>
                                     <segment title="地圖"/>
@@ -172,9 +137,7 @@
                             <constraint firstItem="Gni-hr-I99" firstAttribute="top" secondItem="uNS-Hv-YEg" secondAttribute="bottom" id="xb1-0g-krp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="圖揪及清單揪" id="WlK-dV-frn">
-                        <barButtonItem key="rightBarButtonItem" title="test" id="uKr-8a-FhD"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="圖揪及清單揪" id="WlK-dV-frn"/>
                     <connections>
                         <outlet property="contViewList" destination="eYy-5f-qU9" id="F5z-zv-E2G"/>
                         <outlet property="contViewMap" destination="cMw-Ns-uN8" id="35W-s7-TLf"/>
@@ -330,7 +293,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="83"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4t7-cg-dqp" id="K5R-25-xyp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tAV-6d-s4F">
@@ -516,7 +479,7 @@
                                             <outletCollection property="gestureRecognizers" destination="Eww-J3-idu" appends="YES" id="e56-7y-eIy"/>
                                         </connections>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Nsh-Xr-DjH">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Nsh-Xr-DjH">
                                         <rect key="frame" x="0.0" y="329.5" width="375" height="66"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -721,7 +684,7 @@
         <scene sceneID="4or-lF-UzI">
             <objects>
                 <navigationController id="T0x-3o-M9w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="圖揪" image="home24.png" id="hzm-5y-ZOt"/>
+                    <tabBarItem key="tabBarItem" title="圖揪" image="map24.png" id="hzm-5y-ZOt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rym-lu-ExJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1022,7 +985,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Vp-yi-Xp9" id="eMJ-K7-ByO" customClass="applyGroupTBVCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FGS-6c-K8X">
@@ -1098,7 +1061,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nqi-jH-975" id="dbL-Ez-uyk" customClass="openGroupTbViCell" customModule="together" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V02-FS-1aP">
@@ -1293,18 +1256,18 @@
                         <viewControllerLayoutGuide type="bottom" id="eEo-rD-rlA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NnC-Ix-08u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QuA-N2-rfJ" userLabel="tableView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="resultcell" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultcell" rowHeight="68" id="JpF-0K-m0v" customClass="resultListTbCell" customModule="together" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JpF-0K-m0v" id="5ZV-QH-naK" userLabel="contView">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="團名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-66-OBz">
@@ -1375,10 +1338,10 @@
                         <viewControllerLayoutGuide type="bottom" id="aep-Ac-o3Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OwX-WA-x1P">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VWA-mF-b4m" userLabel="mapView">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VWA-mF-b4m" userLabel="mapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                             </mapView>
                         </subviews>
@@ -1400,14 +1363,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home24.png" width="30" height="24"/>
         <image name="list24.png" width="24" height="24"/>
+        <image name="map24.png" width="19" height="23"/>
         <image name="open24.png" width="24" height="24"/>
         <image name="profile24.png" width="24" height="24"/>
         <image name="question.jpg" width="640" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XtH-T5-JTD"/>
-        <segue reference="g7e-cg-m6O"/>
     </inferredMetricsTieBreakers>
 </document>

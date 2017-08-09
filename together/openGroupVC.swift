@@ -102,7 +102,7 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     func presentToManagevc() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
 //        self.present(vc!, animated: true, completion: nil)
-        self.tabBarController?.selectedIndex = 2
+        self.tabBarController?.selectedIndex = 0
 
     }
     

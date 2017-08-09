@@ -200,7 +200,8 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             print("cannot swipe")
         }else {
             Mygroupimage.image = images[mygroupControl.currentPage]
-            groupname.text = self.subject[mygroupControl.currentPage]
+//            groupname.text = self.subject[mygroupControl.currentPage]
+            groupname.text = self.temptid[mygroupControl.currentPage]
             app.tid = temptid[mygroupControl.currentPage]
             print(app.tid)
             
@@ -282,7 +283,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 //                print(source!)
                 
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     do{
                         
                         
@@ -295,13 +296,13 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                             self.subjectpic.append(a["subjectpic"]!)
                             self.subject.append(a["subject"]!)
                             self.temptid.append(a["tid"]!)
-                            print(self.subjectpic)
+//                            print("我是揪團ＩＤ：\(self.temptid)")
 //                            counter += 1
                             
                         }
                         sleep(1)
                         
-                        print("我是紗布傑克\(self.subject)")
+                        print("我是選擇的揪團：\(self.temptid)")
                         if self.subject.count == 0{
 
                             print("nothing here1")
@@ -314,7 +315,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                     }catch {
                         print("thisis \(error)")
                     }
-                }
+//                }
                 
             })
             
@@ -370,7 +371,10 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         //print(subjectpic)
         //print(images)
         Mygroupimage.image = images[0]
-        groupname.text =  self.subject[0]
+        ////先以揪團ＴＩＤ顯示
+//        groupname.text =  self.subject[0]
+        groupname.text =  self.temptid[0]
+
         app.tid = temptid[0]
         mygroupControl.numberOfPages = images.count
         
