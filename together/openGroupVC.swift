@@ -12,7 +12,7 @@ import UIKit
 import MapKit
 
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
-class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate , UITextFieldDelegate {
 
 //    @IBOutlet weak var imgViewSbj: UIImageView!
     @IBOutlet weak var btnPicOutlet: UIButton!
@@ -53,6 +53,11 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var locationLng:CLLocationDegrees?
     
     let dataEmpty:String = ""
+    
+    /////for 點鍵盤 畫面上移用
+    private var currentTextField: UITextField?
+    private var isKeyboardShown = false
+    
     
     // 選取地點
     @IBAction func pickMapPlace(_ sender: Any) {
@@ -571,13 +576,81 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     
     
-    //隱藏鍵盤手勢
+    //隱藏鍵盤手勢(點擊其他地方)
     func hideKeyborad(tapG: UITapGestureRecognizer) {
         
         self.view.endEditing(true)
+        ////加入 點擊外面整個view回到原來位置
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+
     }
 
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        //結束編輯 把鍵盤隱藏 view放下
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+        return true
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textView:UITextField) {
+        //view彈起
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = -210
+        })
+    }
+    
+    
+    /////////鍵盤出現 畫面上移
+    // 開始編輯時 view上移
+     func textViewDidBeginEditing(_ textView: UITextView) {
+        //view 往上移
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = -210
+        })
+    }
+    // 結束編輯時 view下移
+    func textViewDidEndEditing(_ textView: UITextView) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+    }
+    
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        currentTextField = textField
+//    }
+//    
+//    func keyboardWillShow(note: NSNotification) {
+//        if isKeyboardShown {
+//            return
+//        }
+//        if (currentTextField != textFieldSubject) {
+//            return
+//        }
+//        let keyboardAnimationDetail = note.userInfo as! [String: AnyObject]
+//        let duration = TimeInterval(keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey]! as! NSNumber)
+//        let keyboardFrameValue = keyboardAnimationDetail[UIKeyboardFrameBeginUserInfoKey]! as! NSValue
+//        let keyboardFrame = keyboardFrameValue.cgRectValue
+//        
+//        UIView.animate(withDuration: duration, animations: { () -> Void in
+//            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: -keyboardFrame.size.height)
+//        })
+//        isKeyboardShown = true
+//    }
+//    
+//    func keyboardWillHide(note: NSNotification) {
+//        let keyboardAnimationDetail = note.userInfo as! [String: AnyObject]
+//        let duration = TimeInterval(keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey]! as! NSNumber)
+//        UIView.animate(withDuration: duration, animations: { () -> Void in
+//            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: -self.view.frame.origin.y)
+//        })
+//        isKeyboardShown = false
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -627,9 +700,25 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         self.view.addGestureRecognizer(tapBack)
         
+//        /////for 點鍵盤 畫面上移用
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: "keyboardWillShow:",
+//            name: NSNotification.Name.UIKeyboardWillShow,
+//            object: nil)
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: "keyboardWillHide:",
+//            name: NSNotification.Name.UIKeyboardWillHide,
+//            object: nil)
         
             }
 
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
