@@ -17,6 +17,7 @@ class manageGroupVC: UIViewController{
     @IBOutlet weak var containerManageGroup: UIView!
     @IBOutlet weak var containerApplyGroup: UIView!
 
+    @IBOutlet weak var containerMyAllOpenGroup: UIView!
     //會員id
     var mid:String?
     
@@ -45,11 +46,13 @@ class manageGroupVC: UIViewController{
     
     
     func apperaPage1(){
-        containerManageGroup.isHidden = false
+      containerManageGroup.isHidden = true
+        containerMyAllOpenGroup.isHidden = false
         containerApplyGroup.isHidden = true
     }
     func apperaPage2(){
-        containerManageGroup.isHidden = true
+//        containerManageGroup.isHidden = true
+        containerMyAllOpenGroup.isHidden = true
         containerApplyGroup.isHidden = false
     }
     

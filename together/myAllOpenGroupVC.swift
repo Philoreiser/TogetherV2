@@ -87,33 +87,12 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             //table 我的揪團審核用
 //            
             let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
-            cell.labelCell.text = mydataGroup[indexPath.row]
-//
-//            //如果mastatus 狀態 = 0的時候可以點選
-//            //        if mydataStatus[indexPath.row] == "0" {
-//            
-//            
-            cell.labelStatus.text = "待審核"
-            cell.labelStatus.textColor = UIColor.blue
-//
-//            //        alertAdmitOrDeny(selectWhich:indexPath.row)
-//            //        }
-//            //        else if mydataStatus[indexPath.row] == "1" {
-//            //            cell.labelStatus.text = "通過申請"
-//            //            cell.labelStatus.textColor = UIColor.black
-//            //            cell.selectionStyle = UITableViewCellSelectionStyle.none
-//            //
-//            //        }else if mydataStatus[indexPath.row] == "2" {
-//            //            cell.labelStatus.text = "拒絕申請"
-//            //            cell.labelStatus.textColor = UIColor.black
-//            //            cell.selectionStyle = UITableViewCellSelectionStyle.none
-//            //        }
-//            
-//            
-//            
-//
-            
-            
+//            cell.labelCell.text = mydataGroup[indexPath.row]
+//        
+//            cell.labelStatus.text = "待審核"
+//            cell.labelStatus.textColor = UIColor.blue
+            let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
+            show(vc!, sender: self)
         }
         
 
@@ -172,7 +151,7 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                             //                        var displayLebel = "id:\(maid)的揪團主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
                             
                             //                        var displayLebel = "maid:\(maid)主題是\(subject),創辦者是\(openGroupmId),申請者是\(applyUsermId)"
-                            var displayLebel = "tid:\(tid)申請者是\(opengroupmid)"
+                            var displayLebel = "tid:\(tid)開團者是\(opengroupmid)"
                             
                             //                        print("manageid:\(maid)")
                             //                        print("mastatus:\(mastatus)")
