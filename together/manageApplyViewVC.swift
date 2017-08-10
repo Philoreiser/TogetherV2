@@ -115,7 +115,7 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
         
         req.httpMethod = "POST"
 //        req.httpBody = "tid=\(tid)mid=\(mid!)".data(using: .utf8)
-        req.httpBody = "tid=3&mid=kO2iktB0BHRkDEhZVn8ds0s3G572".data(using: .utf8)
+        req.httpBody = "mid=\(mid!)".data(using: .utf8)
 
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
             print("data是我：\(data)")
@@ -267,7 +267,10 @@ class manageApplyViewVC: UIViewController,UITableViewDelegate,UITableViewDataSou
         super.viewDidAppear(animated)
         
         tbView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中")
+        loadDB()
+        tbView.reloadData()
     }
+    
     
     
     override func didReceiveMemoryWarning() {

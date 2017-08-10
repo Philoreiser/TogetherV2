@@ -17,13 +17,14 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         var mydatatid:Array<String> = []
         var mydataStatus:Array<String> = []
         var mydataPic:Array<String> = []
-        
-        
+        let app = UIApplication.shared.delegate as! AppDelegate
+
+    
         //暫時假裝登入者
         //    let mid = "0"
         var mid:String?
         var tid:String?
-        
+    var myAllGroupSelectedTid:String?
         //ＴＢV數量
         public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             
@@ -40,10 +41,8 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
 //            let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
             
             let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
-//
-//            
+          
             cell.labelCell.text = mydataGroup[indexPath.row]
-//            //        cell.labelStatus.text = "0"
                     if mydataStatus[indexPath.row] == "" {
             cell.labelStatus.text = "沒資料"
             cell.labelStatus.textColor = UIColor.blue
@@ -57,20 +56,15 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                         cell.labelStatus.text = "揪團結束"
                         cell.labelStatus.textColor = UIColor.black
                     }
-//
-//            
-//            
-//            
-//            ////////////這是table 我的申請 用的
-//            
-//            
+   
             
             return cell
             
             
             
         }
-        
+    
+   
         
         //選擇ＴＢV的實作
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,13 +78,28 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             
             
             
-            //table 我的揪團審核用
-//            
+      
             let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
-//            cell.labelCell.text = mydataGroup[indexPath.row]
-//        
-//            cell.labelStatus.text = "待審核"
-//            cell.labelStatus.textColor = UIColor.blue
+           
+            ////點擊後的顯示文字。要讓他不變
+            cell.labelCell.text = mydataGroup[indexPath.row]
+            if mydataStatus[indexPath.row] == "" {
+                cell.labelStatus.text = "沒資料"
+                cell.labelStatus.textColor = UIColor.blue
+                
+            }
+            else if mydataStatus[indexPath.row] == "0" {
+                cell.labelStatus.text = "揪團中"
+                cell.labelStatus.textColor = UIColor.black
+                
+            }else if mydataStatus[indexPath.row] == "1" {
+                cell.labelStatus.text = "揪團結束"
+                cell.labelStatus.textColor = UIColor.black
+            }
+            
+            /////將選擇的tid值傳給appdelegate
+            app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
+            print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
             let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
             show(vc!, sender: self)
         }
@@ -206,16 +215,42 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
         
         
-        
-        
-        
+    
+//        func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//        
+//        //ask where it is first tab bar item
+//        if self.tabBarController?.selectedIndex == 1 {
+//            // your action, e.g.:
+//            self.loadDB()
+//            self.tbView.reloadData()
+//            print("從1來成功")
+//        }
+//        if self.tabBarController?.selectedIndex == 2 {
+//            // your action, e.g.:
+//            self.loadDB()
+//            self.tbView.reloadData()
+//            print("從2來成功")
+//        }
+//        
+//        if self.tabBarController?.selectedIndex == 3 {
+//            // your action, e.g.:
+//            self.loadDB()
+//            self.tbView.reloadData()
+//            print("從3來成功")
+//        }
+//    }
+//    
+    
+    
         
         
         
         override func viewDidLoad() {
             super.viewDidLoad()
+
             
-            let app = UIApplication.shared.delegate as! AppDelegate
+            
+            
             mid = app.mid
             
             if mid == nil {
@@ -239,7 +274,21 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             super.viewDidAppear(animated)
             
             tbView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中")
+            loadDB()
+            tbView.reloadData()
+            print("開團過來會執行嗎？？？")
         }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//             loadDB()
+//        tbView.reloadData()
+//        print("點ＴＡＢ會執行嗎？？？")
+    }
+    
+    
+    
+    
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
             // Dispose of any resources that can be recreated.

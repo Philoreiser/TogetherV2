@@ -12,7 +12,7 @@ import UIKit
 import MapKit
 
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
-class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate , UITextFieldDelegate {
+class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate , UITextFieldDelegate  {
 
 //    @IBOutlet weak var imgViewSbj: UIImageView!
     @IBOutlet weak var btnPicOutlet: UIButton!
@@ -107,8 +107,10 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     func presentToManagevc() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
 //        self.present(vc!, animated: true, completion: nil)
-        self.tabBarController?.selectedIndex = 0
-
+        self.tabBarController?.selectedIndex = 2
+//        tabBarController?.delegate = self as! UITabBarControllerDelegate
+        
+    
     }
     
     //////開團 傳資料到後端 API

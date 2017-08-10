@@ -21,11 +21,18 @@ class manageGroupVC: UIViewController{
     //會員id
     var mid:String?
     
-    //////btn to 我的所有揪團
-    @IBAction func toMyAllGroup(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "myallopengroupvc")
-        show(vc!, sender: self)
+    
+    
+    @IBAction func logout(_ sender: Any) {
+        dismiss(animated: true , completion: nil)
     }
+    
+    
+//    //////btn to 我的所有揪團
+//    @IBAction func toMyAllGroup(_ sender: Any) {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "myallopengroupvc")
+//        show(vc!, sender: self)
+//    }
     
     @IBAction func segmetAction(_ sender: Any) {
         switch segmentOutlet.selectedSegmentIndex {

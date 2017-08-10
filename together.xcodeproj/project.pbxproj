@@ -29,6 +29,9 @@
 		14CBB69F1F341057006FA954 /* manageGroupViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6991F341057006FA954 /* manageGroupViewVC.swift */; };
 		14CBB6A41F341545006FA954 /* openGroupTbViCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6A21F341545006FA954 /* openGroupTbViCell.swift */; };
 		14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBB6A31F341545006FA954 /* applyGroupTBVCell.swift */; };
+		14CF3BA21F3CE1770046F932 /* tabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF3BA11F3CE1770046F932 /* tabBarVC.swift */; };
+		14CF3BA41F3CF44D0046F932 /* whoJoinProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF3BA31F3CF44D0046F932 /* whoJoinProfileVC.swift */; };
+		14CF3BA61F3CF74C0046F932 /* profile48.png in Resources */ = {isa = PBXBuildFile; fileRef = 14CF3BA51F3CF74C0046F932 /* profile48.png */; };
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
 		1745F92F455B811D0C2306A6 /* Pods_together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
@@ -74,6 +77,9 @@
 		14CBB6991F341057006FA954 /* manageGroupViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manageGroupViewVC.swift; sourceTree = "<group>"; };
 		14CBB6A21F341545006FA954 /* openGroupTbViCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupTbViCell.swift; sourceTree = "<group>"; };
 		14CBB6A31F341545006FA954 /* applyGroupTBVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = applyGroupTBVCell.swift; sourceTree = "<group>"; };
+		14CF3BA11F3CE1770046F932 /* tabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarVC.swift; sourceTree = "<group>"; };
+		14CF3BA31F3CF44D0046F932 /* whoJoinProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = whoJoinProfileVC.swift; sourceTree = "<group>"; };
+		14CF3BA51F3CF74C0046F932 /* profile48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile48.png; sourceTree = "<group>"; };
 		14F439531F1CA27D0060D839 /* openGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupVC.swift; sourceTree = "<group>"; };
 		27CA076D43421851F4BB5085 /* Pods-together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.release.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.release.xcconfig"; sourceTree = "<group>"; };
 		42866690544DDE4F6930258B /* Pods-together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.debug.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 				142886961F3811BE0047FA28 /* home16.png */,
 				142886941F3811B80047FA28 /* home24.png */,
 				F74756561F2C5D0200AF3631 /* question.jpg */,
+				14CF3BA51F3CF74C0046F932 /* profile48.png */,
 			);
 			name = imgs;
 			sourceTree = "<group>";
@@ -183,9 +190,11 @@
 				14CBB6991F341057006FA954 /* manageGroupViewVC.swift */,
 				14CBB6981F341057006FA954 /* manageApplyViewVC.swift */,
 				14967EDF1F3BB09E004F4948 /* myAllOpenGroupVC.swift */,
-				14967EDD1F3BAC15004F4948 /* myAllOpenGroupTBVCell.swift */,
 				14424DAD1F3C659800E6C126 /* whoJoinMyOpenGroupVC.swift */,
+				14CF3BA31F3CF44D0046F932 /* whoJoinProfileVC.swift */,
+				14967EDD1F3BAC15004F4948 /* myAllOpenGroupTBVCell.swift */,
 				14424DAF1F3C6D3C00E6C126 /* whojoinmyopengroupTBVCell.swift */,
+				14CF3BA11F3CE1770046F932 /* tabBarVC.swift */,
 			);
 			path = together;
 			sourceTree = "<group>";
@@ -270,6 +279,7 @@
 				142886A11F381C8F0047FA28 /* open24.png in Resources */,
 				1428869D1F381C110047FA28 /* list24.png in Resources */,
 				14AAD7451F1C694F00BC6E9E /* Assets.xcassets in Resources */,
+				14CF3BA61F3CF74C0046F932 /* profile48.png in Resources */,
 				142886971F3811BE0047FA28 /* home16.png in Resources */,
 				14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */,
 			);
@@ -333,6 +343,7 @@
 				14CBB69F1F341057006FA954 /* manageGroupViewVC.swift in Sources */,
 				F75B3E391F32320F00ECC498 /* loginViewController.swift in Sources */,
 				14967EE01F3BB09E004F4948 /* myAllOpenGroupVC.swift in Sources */,
+				14CF3BA41F3CF44D0046F932 /* whoJoinProfileVC.swift in Sources */,
 				84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */,
 				F747565B1F2C739D00AF3631 /* Properties.swift in Sources */,
 				14CBB6A51F341545006FA954 /* applyGroupTBVCell.swift in Sources */,
@@ -353,6 +364,7 @@
 				84E0EC151F347F9E007D370F /* resultListTbCell.swift in Sources */,
 				14CBB69A1F341057006FA954 /* applyGroupVC.swift in Sources */,
 				F747565D1F2C7EA300AF3631 /* Msgviewitem.swift in Sources */,
+				14CF3BA21F3CE1770046F932 /* tabBarVC.swift in Sources */,
 				F768731C1F2F936B00C17849 /* GroupReviewTableViewCell.swift in Sources */,
 				84E0EC111F347C76007D370F /* resultListVC.swift in Sources */,
 				14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */,

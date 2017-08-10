@@ -361,8 +361,13 @@ class manageGroupViewVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         super.viewDidAppear(animated)
         
         tbView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中")
+       
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       
+    }
     
     
     
