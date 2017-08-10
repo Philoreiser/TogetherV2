@@ -69,6 +69,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     var Gsubject:String?
     var Gtid:String?
     var Gmid:String?
+    //var nickname:String?
     var groupReviews: [GroupReviewItem] = [GroupReviewItem]()
     
     //loadtogether
@@ -171,42 +172,100 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupReviewTableViewCell", for: indexPath) as! GroupReviewTableViewCell
         
-        var temppic = self.groupReviews[indexPath.row].userId
+        //var temppic = self.groupReviews[indexPath.row].userId
         
-        let Gmid = app.mid
+        Gmid = app.mid
         
-        let url = URL(string: "https://together-seventsai.c9users.io/tableviewcellpersonalpic.php")
+        //print("why\(Gmid)")
+        let url = URL(string: "https://together-seventsai.c9users.io/loadDatafromtable.php")
         let session = URLSession(configuration: .default)
         
         var req = URLRequest(url: url!)
         
         req.httpMethod = "POST"
-        req.httpBody = "mid=\(Gmid)".data(using: .utf8)
+        req.httpBody = "mid=\(Gmid!)".data(using: .utf8)
         
+        
+        //print("hjjjjjjj")
         let task = session.dataTask(with: req, completionHandler: {(data, response,error) in
+
+            let source = String(data: data!, encoding: .utf8)
             
+            //print("qeqweqwe\(source)")
             DispatchQueue.main.async {
-                let source = String(data: data!, encoding: .utf8)
                 
-                if source != "" {
-                    let url = URL(string:"\(source)")
-                    do{
-                        let data = try Data(contentsOf: url!)
-                        cell.ProfileImg.image = UIImage(data: data)!
-                    }catch{
-                        print(error)
+                //print("hjjjjkkkkkjjj")
+ 
+                do{
+                    
+                    let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                    
+                    for a in  jsonobj as! [[String:String]] {
+                        var nickname = a["nickname"]!
+                        var personalpic = a["personalpic"]!
+                        //self.nickname = nickname
+                        cell.loginUser.text = nickname
+                        //print("why?")
+                        do{
+                            let url = URL(string:"\(personalpic)")
+                            
+                            //  print("222\(url)")
+                            //處理圖片路徑錯誤或者破圖
+                            if url != nil {
+                                let data = try Data(contentsOf: url!)
+                                if (UIImage(data: data) != nil) {
+                                    print("OK")
+                                    cell.ProfileImg.image = UIImage(data: data)!
+                                    //                                    self.takepictureBtn.setImage(UIImage(data: data)!, for: .normal)
+                                    //print("isnn")
+                                }else {
+                                    cell.ProfileImg.image = UIImage(named:"question.jpg")
+                                    //                                    self.takepictureBtn.setImage(UIImage(named: "question.jpg")!, for: .normal)
+                                    print("xx")
+                                }
+                                
+                            }
+                            else {
+                                print("ok")
+                                cell.ProfileImg.image = UIImage(named:"question.jpg")
+                                
+                            }
+                        }catch{
+                            print(error)
+                            cell.ProfileImg.image = UIImage(named:"question.jpg")
+                            
+                        }
+                        
+                        
+                        //print("987654")
                     }
-                }else {
-                    cell.ProfileImg.image = UIImage(named:"question.jpg")
+                    
+                }catch {
+                    print("thisis \(error)")
                 }
-                
             }
+//                        DispatchQueue.main.async {
+//                            let source = String(data: data!, encoding: .utf8)
+//            
+//                            if source != "" {
+//                                let url = URL(string:"\(source)")
+//                                do{
+//                                    let data = try Data(contentsOf: url!)
+//                                    cell.ProfileImg.image = UIImage(data: data)!
+//                                }catch{
+//                                    print(error)
+//                                }
+//                            }else {
+//                                cell.ProfileImg.image = UIImage(named:"question.jpg")
+//                            }
+//                            
+//                        }
         })
         
         task.resume()
-        
+        //cell.loginUser.text = self.nickname
         cell.reViewTextView?.text = self.groupReviews.reversed()[indexPath.row].groupReview
-        cell.loginUser.text = self.groupReviews.reversed()[indexPath.row].userEmail
+        //cell.loginUser.text = self.groupReviews.reversed()[indexPath.row].userEmail
         
         let layer = cell.ProfileImg.layer
         layer.cornerRadius = 20.0
@@ -257,7 +316,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
             movieReview["userId"] = (Properties.user?.uid)! as AnyObject
             movieReview["userEmail"] = (Properties.user?.email)! as AnyObject
             movieReview["createDate"] = "\(string)" as AnyObject
-            
+            //movieReview["nickname"] = "\(nickname)" as AnyObject
             
             
             

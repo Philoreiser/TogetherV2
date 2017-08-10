@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -392,14 +392,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elJ-Rk-eDV">
-                                <rect key="frame" x="309" y="380" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="編輯"/>
-                                <connections>
-                                    <action selector="editBtn:" destination="9sH-T1-wyt" eventType="touchUpInside" id="MMo-Nm-eae"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ztL-0P-pSI">
                                 <rect key="frame" x="0.0" y="70" width="375" height="527"/>
                                 <subviews>
@@ -409,22 +401,16 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QuU-b4-gpd">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2Ts-jo-h2M">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="66"/>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRT-9c-XaH">
-                                                        <rect key="frame" x="125" y="0.0" width="125" height="66"/>
-                                                        <state key="normal" title="upload"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRT-9c-XaH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="66"/>
+                                                        <state key="normal" title="takepicture" image="question.jpg"/>
                                                         <connections>
-                                                            <action selector="uploadsubmit:" destination="9sH-T1-wyt" eventType="touchUpInside" id="NQa-NA-Ce8"/>
+                                                            <action selector="takepic:" destination="9sH-T1-wyt" eventType="touchUpInside" id="LKo-ZM-GNr"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZw-ct-DuN">
-                                                        <rect key="frame" x="250" y="0.0" width="125" height="66"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="66"/>
                                                         <state key="normal" title="takepic"/>
-                                                        <connections>
-                                                            <action selector="takepic:" destination="9sH-T1-wyt" eventType="touchUpInside" id="Xn0-EU-q6r"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -450,23 +436,23 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEw-AN-bj9">
                                         <rect key="frame" x="0.0" y="132" width="375" height="65.5"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit " translatesAutoresizingMaskIntoConstraints="NO" id="q75-JT-VpC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="簡介" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbS-z9-pMA">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCu-1U-4Pu">
                                         <rect key="frame" x="0.0" y="197.5" width="375" height="66"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="簡介" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbS-z9-pMA">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit " translatesAutoresizingMaskIntoConstraints="NO" id="q75-JT-VpC">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的揪團" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYm-9z-k9z">
@@ -493,7 +479,7 @@
                                     </pageControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59u-aQ-Quv">
                                         <rect key="frame" x="0.0" y="461" width="375" height="66"/>
-                                        <state key="normal" title="detail"/>
+                                        <state key="normal" title="詳細資料"/>
                                         <connections>
                                             <action selector="loaddetail:" destination="9sH-T1-wyt" eventType="touchUpInside" id="F3u-wX-NeB"/>
                                         </connections>
@@ -513,14 +499,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="個人資料" id="aEL-9G-1CG">
-                        <barButtonItem key="rightBarButtonItem" title="編輯" id="lwP-ve-SdU"/>
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="lwP-ve-SdU">
+                            <connections>
+                                <action selector="SaveinfoBtn:" destination="9sH-T1-wyt" id="0Ml-Fv-WVl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="Mygroupimage" destination="Nsh-Xr-DjH" id="9cr-Xb-nka"/>
                         <outlet property="groupname" destination="sYm-9z-k9z" id="kgt-52-v21"/>
-                        <outlet property="imageView" destination="2Ts-jo-h2M" id="Ums-dL-pAa"/>
                         <outlet property="mygroupControl" destination="s4w-XP-62j" id="z1C-2S-MLr"/>
                         <outlet property="nameText" destination="CZz-iB-Tw6" id="FBe-Ar-Y47"/>
+                        <outlet property="takepictureBtn" destination="qRT-9c-XaH" id="yV8-ol-yS7"/>
                         <outlet property="testlabel" destination="q75-JT-VpC" id="E1y-r8-jer"/>
                     </connections>
                 </viewController>
@@ -1223,23 +1213,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5F-N1-UU5">
-                                <rect key="frame" x="155.5" y="125" width="31" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5F-N1-UU5">
+                                <rect key="frame" x="156" y="182" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="註冊"/>
                                 <connections>
                                     <action selector="registerBtn:" destination="Tki-4S-tCt" eventType="touchUpInside" id="EdW-1n-9zf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ujZ-ot-dng">
+                                <rect key="frame" x="66" y="131" width="211" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z5F-N1-UU5" firstAttribute="leading" secondItem="xEd-FF-VjD" secondAttribute="leadingMargin" constant="139.5" id="2X9-PV-sbt"/>
                             <constraint firstItem="UzN-FM-uEq" firstAttribute="top" secondItem="rza-Z8-TJn" secondAttribute="bottom" constant="30" id="5Zz-Jr-UTP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UzN-FM-uEq" secondAttribute="trailing" constant="50" id="AUS-8E-Rby"/>
                             <constraint firstItem="o9B-fd-Opl" firstAttribute="leading" secondItem="xEd-FF-VjD" secondAttribute="leadingMargin" constant="50" id="CQ0-E5-Z51"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Z5F-N1-UU5" secondAttribute="trailing" constant="140.5" id="EO0-Gt-eTg"/>
-                            <constraint firstItem="Z5F-N1-UU5" firstAttribute="top" secondItem="o9B-fd-Opl" secondAttribute="bottom" constant="15" id="Irq-Y9-aBz"/>
-                            <constraint firstItem="Z5F-N1-UU5" firstAttribute="centerX" secondItem="o9B-fd-Opl" secondAttribute="centerX" id="N2k-4Y-L1B"/>
                             <constraint firstItem="UzN-FM-uEq" firstAttribute="centerX" secondItem="xEd-FF-VjD" secondAttribute="centerX" id="ROK-1t-T1Q"/>
                             <constraint firstItem="UzN-FM-uEq" firstAttribute="leading" secondItem="xEd-FF-VjD" secondAttribute="leadingMargin" constant="50" id="fWV-A3-B7I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o9B-fd-Opl" secondAttribute="trailing" constant="50" id="k6B-gd-Jwy"/>
@@ -1248,12 +1242,13 @@
                     </view>
                     <connections>
                         <outlet property="emailText" destination="UzN-FM-uEq" id="wxa-CR-UdA"/>
+                        <outlet property="nicknameText" destination="ujZ-ot-dng" id="HFs-6F-XTm"/>
                         <outlet property="passwordText" destination="o9B-fd-Opl" id="zHF-22-eze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdq-J6-Gcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-918" y="235"/>
+            <point key="canvasLocation" x="-919.20000000000005" y="234.33283358320841"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BPP-tQ-AEp">
@@ -1327,7 +1322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EhI-zH-hYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-918" y="-166"/>
+            <point key="canvasLocation" x="-919.20000000000005" y="-166.41679160419793"/>
         </scene>
         <!--Result ListVC-->
         <scene sceneID="vBv-1U-Jo0">
