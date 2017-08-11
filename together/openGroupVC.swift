@@ -32,11 +32,15 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     var formatter: DateFormatter! = nil
     var formatter2: DateFormatter! = nil
-    
+    var formatterForShow: DateFormatter! = nil
+//    var formatter2: DateFormatter! = nil
+
     var subject:String?
     var location:String?
     var starttime:String?
+    var starttimeForShow:String?
     var endtime:String?
+    var endtimeForShow:String?
     var classType:String?
     var detail:String?
     var subjectpicString:String?
@@ -85,9 +89,34 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         let alertController = UIAlertController(title: "您開團嗎?", message: "送出後即開團成功", preferredStyle: .alert)
         let okaction = UIAlertAction(title: "送出", style: .default, handler: {(action) in
-          self.sentGroupData()
-            self.presentToManagevc()
-//
+//          self.sentGroupData()
+//            self.presentToManagevc()
+
+            
+            print(self.starttime!)
+            print(self.endtime!)
+            
+            if self.starttime! > self.endtime! {
+                print("大於")
+                self.sentGroupData()
+                //            self.presentToManagevc()
+
+                
+                self.alert(title: "開團失敗", message: "結束日期不能小於開團日期", actionTitle: "返回")
+                
+            }else if self.starttime! < self.endtime!{
+                print("小魚")
+                self.sentGroupData()
+                //            self.presentToManagevc()
+                
+            }else if self.starttime! == self.endtime!{
+                print("等於")
+                self.sentGroupData()
+                
+            }
+
+            
+            
 
         })
         let cancelaction = UIAlertAction(title: "取消", style: .default, handler: {(action) in
@@ -103,6 +132,20 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 
     }
   
+    ////////開團錯誤的alert
+    func alert(title:String,message:String,actionTitle:String){
+        let alertController = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "\(actionTitle)", style: .default, handler: {(action) in
+            
+        })
+        alertController.addAction(okaction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
     //////present to managevc。 API
     func presentToManagevc() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
@@ -446,7 +489,10 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     //////////DatePicker API  建構一個datePicker 取代鍵盤
     func setStartDatePicker(textField:UITextField){
         formatter = DateFormatter()   //date picker 初始化 日期格式
-        formatter.dateFormat = "yyyy年MM月dd日HH時mm分"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterForShow = DateFormatter()
+        formatterForShow.dateFormat = "yyyy日MM月dd日 HH時mm分"
+        
         
         
         var textField = textField
@@ -471,13 +517,15 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         textField.inputView = myDatePicker
         
         //預設內容
-        textField.text = formatter.string(from: myDatePicker.date)
-        
+       formatter.string(from: myDatePicker.date)
+        textField.text = formatterForShow.string(from: myDatePicker.date)
         textField.tag = 200
         
         
-        //讓變數starttime 取得改變後的值 以利後續傳值至後端
-        starttime = textField.text!
+        
+        //讓變數starttime 取得改變後的值 以利後續傳值至後端  (格式化得值)
+        starttime = formatter.string(from: myDatePicker.date)
+        
     }
     
     
@@ -493,12 +541,14 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         //        let textField2 = self.view.viewWithTag(300) as? UITextField
         
         //改變日期時 文字也改變
-        textField?.text = formatter.string(for: datePicker.date)
+//        textField?.text = formatter.string(for: datePicker.date)
+        textField?.text = formatterForShow.string(for: datePicker.date)
+
         //        textField2?.text = formatter2.string(from: datePicker.date)
         //        starttime = textField?.text
         
         //讓變數starttime 取得改變後的值 以利後續傳值至後端
-        starttime = textField?.text!
+        starttime = formatter.string(for: datePicker.date)
         
     }
     
@@ -518,7 +568,9 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     // endDatePicker 的 API  建構一個mydatePicker2
     func setEndDatePicker(textField:UITextField){
         formatter2 = DateFormatter()   //date picker 初始化 日期格式
-        formatter2.dateFormat = "yyyy年MM月dd日HH時mm分"
+        formatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterForShow = DateFormatter()
+        formatterForShow.dateFormat = "yyyy日MM月dd日 HH時mm分"
         
         
         var textField2 = textField
@@ -543,13 +595,13 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         textField2.inputView = myDatePicker2
         
         //預設內容
-        textField2.text = formatter2.string(from: myDatePicker2.date)
+        textField2.text = formatterForShow.string(from: myDatePicker2.date)
         
         textField2.tag = 300
         
         
         //讓變數endtime 取得改變後的值 以利後續傳值至後端
-        endtime = textField2.text!
+        endtime = formatter2.string(from: myDatePicker2.date)
     }
     
     
@@ -563,12 +615,12 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         //改變日期時 文字也改變
         //        textField?.text = formatter.string(for: datePicker.date)
-        textField2?.text = formatter2.string(from: datePicker.date)
+        textField2?.text = formatterForShow.string(from: datePicker.date)
         //        starttime = textField?.text
         
         //讓變數endtime 取得改變後的值 以利後續傳值至後端
         
-        endtime = textField2?.text
+        endtime = formatter2.string(from: datePicker.date)
     }
     
     
@@ -669,8 +721,8 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         
         //// location temp
-        locationLat  = Double(121.1)
-        locationLng = Double(23.2)
+        locationLat  = Double(23.2)
+        locationLng = Double(121.1)
         
       
         

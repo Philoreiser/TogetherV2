@@ -17,6 +17,11 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         var mydatatid:Array<String> = []
         var mydataStatus:Array<String> = []
         var mydataPic:Array<String> = []
+    var mydataStartTime:Array<String> = []
+    var mydataEndTime:Array<String> = []
+    
+    
+    
         let app = UIApplication.shared.delegate as! AppDelegate
 
     
@@ -41,22 +46,77 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
 //            let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
             
             let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
-          
-            cell.labelCell.text = mydataGroup[indexPath.row]
-                    if mydataStatus[indexPath.row] == "" {
-            cell.labelStatus.text = "沒資料"
-            cell.labelStatus.textColor = UIColor.blue
-
-                    }
-                    else if mydataStatus[indexPath.row] == "0" {
-                    cell.labelStatus.text = "揪團中"
-                        cell.labelStatus.textColor = UIColor.black
+            var formatter: DateFormatter! = nil
             
-                    }else if mydataStatus[indexPath.row] == "1" {
-                        cell.labelStatus.text = "揪團結束"
-                        cell.labelStatus.textColor = UIColor.black
-                    }
-   
+            formatter = DateFormatter()   //date picker 初始化 日期格式
+//            formatter.dateFormat = "yyyy年MM月dd日HH時mm分"
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //////取得現在時間字串
+            let now = Date()
+            var nowDateString = formatter.string(from: now)
+            print("現在是\(nowDateString)")
+            
+            
+            var startDateAsString = mydataStartTime[indexPath.row]
+            var endDateAsString = mydataEndTime[indexPath.row]
+            
+            //            var date1 = formatter.date(from: dateAsString)
+            
+            
+            print("我是資料庫讀出來的starttime:\(startDateAsString)")
+            print("我是資料庫讀出來的endtime:\(endDateAsString)")
+            /////////status label
+            if endDateAsString > nowDateString && startDateAsString > nowDateString  {
+                cell.labelStatus.text = "揪團熱烈邀請中"
+                cell.labelStatus.textColor = UIColor.blue
+                print("結束時間大於現在且未開團")
+            }else if endDateAsString > nowDateString && startDateAsString < nowDateString {
+                cell.labelStatus.text = "揪團舉行中"
+                cell.labelStatus.textColor = UIColor.blue
+                print("結束時間大於現在且已開團")
+            }else if  endDateAsString < nowDateString  {
+                cell.labelStatus.text = "揪團結束"
+                cell.labelStatus.textColor = UIColor.black
+                print("結束時間小於現在")
+            }else if endDateAsString == nowDateString    {
+                print("結束時間等於現在")
+                cell.labelStatus.text = "非常幸運揪團正在舉行"
+                cell.labelStatus.textColor = UIColor.black
+            }
+            
+            
+            
+            
+            
+            
+            
+            ////time label
+            cell.starttime.text = mydataStartTime[indexPath.row]
+            cell.endtime.text = mydataEndTime[indexPath.row]
+            
+            
+            /////group label
+            cell.labelCell.text = mydataGroup[indexPath.row]
+            ///////////***************************************************
+            
+            //                    if mydataStatus[indexPath.row] == "" {
+            //            cell.labelStatus.text = "沒資料"
+            //            cell.labelStatus.textColor = UIColor.blue
+            //
+            //                    }
+            //                    else if mydataStatus[indexPath.row] == "0" {
+            //                    cell.labelStatus.text = "揪團中"
+            //                        cell.labelStatus.textColor = UIColor.black
+            //
+            //                    }else if mydataStatus[indexPath.row] == "1" {
+            //                        cell.labelStatus.text = "揪團結束"
+            //                        cell.labelStatus.textColor = UIColor.black
+            //                    }
+            
+            
+            /////cell 樣式
+            cell.accessoryType = .disclosureIndicator
+            //            tbView.separatorColor = nil
             
             return cell
             
@@ -80,29 +140,75 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             
       
             let cell = tbView.dequeueReusableCell(withIdentifier: "myallopengroupcell", for: indexPath) as! myAllOpenGroupTBVCell
-           
-            ////點擊後的顯示文字。要讓他不變
-            cell.labelCell.text = mydataGroup[indexPath.row]
-            if mydataStatus[indexPath.row] == "" {
-                cell.labelStatus.text = "沒資料"
+            ////////cell style
+            ///有指標
+            cell.accessoryType = .disclosureIndicator
+            ////選擇後沒有樣式
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            //            tbView.separatorColor = UIColor.red
+            //////////點擊後的顯示文字。要讓他不變
+            
+            var formatter: DateFormatter! = nil
+            
+            formatter = DateFormatter()   //date picker 初始化 日期格式
+//            formatter.dateFormat = "yyyy年MM月dd日HH時mm分"
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //////取得現在時間字串
+            let now = Date()
+            var nowDateString = formatter.string(from: now)
+            print("現在是\(nowDateString)")
+            
+            
+            var startDateAsString = mydataStartTime[indexPath.row]
+            var endDateAsString = mydataEndTime[indexPath.row]
+            
+            //            var date1 = formatter.date(from: dateAsString)
+            
+            
+            print("我是資料庫讀出來的starttime:\(startDateAsString)")
+            print("我是資料庫讀出來的endtime:\(endDateAsString)")
+            /////////status label
+            if endDateAsString > nowDateString && startDateAsString > nowDateString  {
+                cell.labelStatus.text = "揪團熱烈邀請中"
                 cell.labelStatus.textColor = UIColor.blue
                 
-            }
-            else if mydataStatus[indexPath.row] == "0" {
-                cell.labelStatus.text = "揪團中"
-                cell.labelStatus.textColor = UIColor.black
+                /////將選擇的tid值傳給appdelegate
+                app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
+                print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
+                let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
+                show(vc!, sender: self)
                 
-            }else if mydataStatus[indexPath.row] == "1" {
+                print("結束時間大於現在且未開團")
+            }else if endDateAsString > nowDateString && startDateAsString < nowDateString {
+                cell.labelStatus.text = "揪團舉行中"
+                cell.labelStatus.textColor = UIColor.blue
+                print("結束時間大於現在且已開團")
+                /////將選擇的tid值傳給appdelegate
+                app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
+                print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
+                let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
+                show(vc!, sender: self)
+            }else if  endDateAsString < nowDateString  {
                 cell.labelStatus.text = "揪團結束"
                 cell.labelStatus.textColor = UIColor.black
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
+                cell.isUserInteractionEnabled = false
+                
+                print("結束時間小於現在")
+            }else if endDateAsString == nowDateString    {
+                print("結束時間等於現在")
+                cell.labelStatus.text = "非常幸運揪團正在舉行"
+                cell.labelStatus.textColor = UIColor.black
+                
             }
             
-            /////將選擇的tid值傳給appdelegate
-            app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
-            print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
-            let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
-            show(vc!, sender: self)
-        }
+            ////time label
+            cell.starttime.text = mydataStartTime[indexPath.row]
+            cell.endtime.text = mydataEndTime[indexPath.row]
+            
+            
+            /////group label
+            cell.labelCell.text = mydataGroup[indexPath.row]        }
         
 
     
@@ -172,16 +278,31 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                             
                             //全部顯示用
                             
+                            var formatter: DateFormatter! = nil
+                            
+                            formatter = DateFormatter()   //date picker 初始化 日期格式
+//                            formatter.dateFormat = "yyyy年MM月dd日HH時mm分"
+                            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            //////取得現在時間字串
+                            let now = Date()
+                            var nowDateString = formatter.string(from: now)
                             
                             
+                            ///如果結束時間大於現在時間 才append進陣列
+                            //                            if nowDateString < endtime {
                             
-                            //
-                            //                        if mastatus == "0" &&  openGroupmId == self.mid {
                             self.mydataStatus.append("\(groupstatus)")
                             self.mydataGroup.append("\(displayLebel)")
                             self.mydatatid.append("\(tid)")
                             self.mydataPic.append("\(subjectpic)")
-                            //                        }
+                            
+                            
+                            
+                            self.mydataStartTime.append("\(starttime)")
+                            self.mydataEndTime.append("\(endtime)")
+                            
+                            //                            }
+
                             
                         }
                         print("我的所有開團tid是：\(self.mydatatid)")
@@ -274,8 +395,8 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             super.viewDidAppear(animated)
             
             tbView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中")
-            loadDB()
-            tbView.reloadData()
+//            loadDB()
+//            tbView.reloadData()
             print("開團過來會執行嗎？？？")
         }
     

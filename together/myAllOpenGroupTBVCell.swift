@@ -11,7 +11,9 @@ import UIKit
 class myAllOpenGroupTBVCell: UITableViewCell {
    
     
+    @IBOutlet weak var starttime: UILabel!
     
+    @IBOutlet weak var endtime: UILabel!
     @IBOutlet weak var labelCell: UILabel!
     @IBOutlet weak var labelStatus: UILabel!
     

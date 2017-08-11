@@ -17,6 +17,89 @@ class ViewController: UIViewController {
    
     let loginObj = loginViewController()
     
+    @IBAction func testDate(_ sender: Any) {
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-mm-yyyy" //Your date format
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
+        let date = dateFormatter.date(from: "01-01-2017") //according to date format your date string
+        print(date ?? "") //Convert String to Date
+        
+        dateFormatter.dateFormat = "MMM d, yyyy" //Your New Date format as per requirement change it own
+        let newDate = dateFormatter.string(from: date!) //pass Date here
+        print(newDate) //New formatted Date string
+        
+        
+        
+        
+        
+        
+        let myDatePicker = UIDatePicker()
+        
+        //模式
+        myDatePicker.datePickerMode = .dateAndTime
+        
+        //時區
+        myDatePicker.locale = Locale(identifier: "zh_TW")
+        
+        //預設日期
+        
+        
+//        myDatePicker.date = Date()
+//        
+//        myDatePicker.addTarget(self, action: #selector(datePickerChanged(datePicker:)), for: .valueChanged)
+//        
+//        //鍵盤置換
+//        textField.inputView = myDatePicker
+//        
+//        //預設內容
+//        textField.text = formatter.string(from: myDatePicker.date)
+//
+//        
+//        
+//        
+//        
+//        
+//        let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
+//        let session = URLSession(configuration: .default)
+//        var req = URLRequest(url: url!)
+//        
+//        ////STRING == 拍照或擷取相簿的base64String 用來傳給後端
+//        subjectpicString = imgDataBase64String
+//        
+//        //如果subjectpicString != nil 傳data參數至後端
+//        if subjectpicString != nil {
+//            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+//            
+//            
+//            print("has photo")
+//        }else {
+//            ////如果沒有選照片 subjectpicString = nil 則傳送data空字串參數至後端
+//            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+//            print("no photo")
+//        }
+//        
+//        
+//        
+//        req.httpMethod = "POST"
+//        
+//        
+//        let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
+//            if error == nil {
+//                
+//                print("add success")
+//                let source = String(data: data!, encoding: .utf8)
+//                print(source!)
+//                
+//            }else{ print(error)}
+//            
+//            
+//        })
+//        task.resume()
+//        
+        
+    }
     /////直接以a帳號登入用
     @IBAction func aAccountLogin(_ sender: Any) {
         app.mid = "kO2iktB0BHRkDEhZVn8ds0s3G572"

@@ -13,7 +13,9 @@ class whojoinmyopengroupTBVCell: UITableViewCell {
     @IBOutlet weak var labelCell: UILabel!
     @IBOutlet weak var labelStatus: UILabel!
     
+    @IBOutlet weak var starttime: UILabel!
     
+    @IBOutlet weak var endtime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
