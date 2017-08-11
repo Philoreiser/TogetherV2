@@ -8,17 +8,31 @@
 
 import UIKit
 import MapKit
+//import CoreLocation
 
 class resultMapVC: UIViewController, MKMapViewDelegate {
     
+    var app = UIApplication.shared.delegate as! AppDelegate
+//    var lmgr:CLLocationManager?
+
     @IBOutlet weak var mapView: MKMapView!
+    
+    func initStat() {
+        
+        
+//        lmgr = CLLocationManager()
+//        lmgr?.requestWhenInUseAuthorization()
+//        lmgr?.desiredAccuracy = kCLLocationAccuracyBest
+//        lmgr?.delegate = self
+
+        mapView.delegate = self
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let app = UIApplication.shared.delegate as! AppDelegate
 
          print("我是使用者：\(app.mid!)")
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {

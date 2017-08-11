@@ -36,12 +36,12 @@ class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let parentVC = parent as! resultMapListVC
         
        
-//            cell.groupTitle.text = parentVC.groupDict?[indexPath.row]["subject"]
+            cell.groupTitle.text = parentVC.groupDict?[indexPath.row]["subject"]
         
         ///先顯示 tid
-        cell.groupTitle.text = parentVC.groupDict?[indexPath.row]["tid"]
-//            cell.groupContent.text = parentVC.groupDict?[indexPath.row]["detail"]
-        cell.groupContent.text = parentVC.groupDict?[indexPath.row]["opengroupmid"]
+//        cell.groupTitle.text = parentVC.groupDict?[indexPath.row]["tid"]
+            cell.groupContent.text = parentVC.groupDict?[indexPath.row]["detail"]
+//        cell.groupContent.text = parentVC.groupDict?[indexPath.row]["opengroupmid"]
             cell.groupStatus.text = "Hot"
             cell.groupClass.text = parentVC.groupDict?[indexPath.row]["class"]
             
