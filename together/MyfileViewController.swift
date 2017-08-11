@@ -9,7 +9,7 @@
 import UIKit
 
 class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate {
-
+    
     let app = UIApplication.shared.delegate as! AppDelegate
     var nametext:String?
     var detailtext:String?
@@ -28,7 +28,9 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var mygroupControl: UIPageControl!
     @IBOutlet weak var Mygroupimage: UIImageView!
     @IBOutlet weak var testlabel: UITextView!
-    
+    @IBOutlet var SwipeRight: UISwipeGestureRecognizer!
+    @IBOutlet var SwipeLeft: UISwipeGestureRecognizer!
+    @IBOutlet var Tap: UITapGestureRecognizer!
     
     @IBAction func SaveinfoBtn(_ sender: Any) {
         
@@ -63,21 +65,6 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
     
-    
-
-    @IBAction func loaddetail(_ sender: Any) {
-        
-        if self.subject.count == 0{
-            print("do not move")
-        }else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
-            show(vc!, sender: self)
-            
-        }
-  
-    }
-    
-    
     //圖片使用照相機拍攝後的圖片或者本機端圖片
     @IBAction func takepic(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -86,11 +73,11 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
         let libraryAction = UIAlertAction(title: "use library", style: .default, handler: {(action) in
             openLibrary()
-        
-        
+            
+            
         })
         let cancelAction = UIAlertAction(title: "cancel", style: .destructive, handler: {(action) in
-           self.dismiss(animated: true, completion: nil)
+            //           self.dismiss(animated: true, completion: nil)
         })
         
         alertController.addAction(cameraAction)
@@ -125,11 +112,25 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
             present(imgPickGetVC, animated: true, completion: nil)
         }
-   
+        
     }
     
-      //swipe手勢功能
-     @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
+    
+    //tap 手勢功能
+    
+    @IBAction func handleTapGesture(_ sender: UITapGestureRecognizer) {
+        
+        if self.subject.count == 0{
+            print("do not move")
+        }else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+            show(vc!, sender: self)
+            
+        }
+    }
+    
+    //swipe手勢功能
+    @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.left:
             //left swipe
@@ -148,7 +149,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             print("cannot swipe")
         }else {
             Mygroupimage.image = images[mygroupControl.currentPage]
-//            groupname.text = self.subject[mygroupControl.currentPage]
+            //            groupname.text = self.subject[mygroupControl.currentPage]
             groupname.text = self.temptid[mygroupControl.currentPage]
             app.tid = temptid[mygroupControl.currentPage]
             print(app.tid)
@@ -157,7 +158,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     
-    //讀取相片後將資料放入uiimage中 
+    //讀取相片後將資料放入uiimage中
     //轉乘database64 配合放入mysql儲存
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         //print("99999")
@@ -176,32 +177,15 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func imagePickerControllerDidCancel(_picker: UIImagePickerController){
-        dismiss(animated: true, completion: nil)
+        //        dismiss(animated: true, completion: nil)
     }
-
     
     
     
     
-//    func imagePickerController(_picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-//        //print("")
-//        let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        //imageView.image = imgTaken
-//        takepictureBtn.setImage(imgTaken, for: .normal)
-//        
-//        let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
-//        
-//        let imgDataBase64 = imgData?.base64EncodedData()
-//        
-//        imgDataBase64String = imgData?.base64EncodedString()
-//        
-//        dismiss(animated: true, completion: nil)
-//    }
-//    
-//    func imagePickerControllerDidCancel(_picker: UIImagePickerController){
-//        dismiss(animated: true, completion: nil)
-//    }
-
+    
+    
+    
     
     //讀取個人資料
     
@@ -227,7 +211,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 DispatchQueue.main.async {
                     
-                
+                    
                     do{
                         
                         
@@ -264,7 +248,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 print(error)
                                 self.takepictureBtn.setImage(UIImage(named: "question.jpg")!, for: .normal)
                             }
-
+                            
                             
                             print("987654")
                         }
@@ -278,7 +262,7 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             task.resume()
             
-            }else {
+        }else {
             
             print("no account")
             
@@ -309,39 +293,39 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 //                print(source!)
                 
-//                DispatchQueue.main.async {
-                    do{
+                //                DispatchQueue.main.async {
+                do{
+                    
+                    
+                    let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                    var counter = 0
+                    for a in  jsonobj as! [[String:String]] {
+                        //                            if counter >= 5 {
+                        //                                break
+                        //                            }
+                        self.subjectpic.append(a["subjectpic"]!)
+                        self.subject.append(a["subject"]!)
+                        self.temptid.append(a["tid"]!)
+                        //                            print("我是揪團ＩＤ：\(self.temptid)")
+                        //                            counter += 1
                         
-                        
-                        let jsonobj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        var counter = 0
-                        for a in  jsonobj as! [[String:String]] {
-//                            if counter >= 5 {
-//                                break
-//                            }
-                            self.subjectpic.append(a["subjectpic"]!)
-                            self.subject.append(a["subject"]!)
-                            self.temptid.append(a["tid"]!)
-//                            print("我是揪團ＩＤ：\(self.temptid)")
-//                            counter += 1
-                            
-                        }
-                        sleep(1)
-                        
-                        print("我是選擇的揪團：\(self.temptid)")
-                        if self.subject.count == 0{
-
-                            print("nothing here1")
-                        }else {
-                            DispatchQueue.main.async {
-                              self.putimage()
-                            }
-                        }
-                        
-                    }catch {
-                        print("thisis \(error)")
                     }
-//                }
+                    sleep(1)
+                    
+                    print("我是選擇的揪團：\(self.temptid)")
+                    if self.subject.count == 0{
+                        
+                        print("nothing here1")
+                    }else {
+                        DispatchQueue.main.async {
+                            self.putimage()
+                        }
+                    }
+                    
+                }catch {
+                    print("thisis \(error)")
+                }
+                //                }
                 
             })
             
@@ -357,42 +341,42 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     //將陣列中的字串轉成圖片資料
     func putimage() {
-
-                for i in 0..<self.subjectpic.count {
+        
+        for i in 0..<self.subjectpic.count {
+            
+            var temp = self.subjectpic[i] as? String ?? ""
+            //print(type(of:temp))
+            print(temp)
+            //                    if temp != "" {
+            do{
+                let url = URL(string:"\(temp)")
+                
+                //  print("222\(url)")
+                
+                if url != nil {
+                    let data = try Data(contentsOf: url!)
+                    if (UIImage(data: data) != nil) {
+                        print("OK")
+                        images.append(UIImage(data: data)!)
+                    }else {
+                        images.append(UIImage(named: "question.jpg")!)
+                        print("xx")
+                    }
                     
-                    var temp = self.subjectpic[i] as? String ?? ""
-                    //print(type(of:temp))
-                    print(temp)
-//                    if temp != "" {
-                     do{
-                        let url = URL(string:"\(temp)")
-                        
-                      //  print("222\(url)")
-                        
-                        if url != nil {
-                            let data = try Data(contentsOf: url!)
-                            if (UIImage(data: data) != nil) {
-                                print("OK")
-                                images.append(UIImage(data: data)!)
-                            }else {
-                                images.append(UIImage(named: "question.jpg")!)
-                                print("xx")
-                            }
-                            
-                       }
-                            else {
-                        print("ok")
-                        images.append(UIImage(named: "question.jpg")!)
-                       }
-                     }catch{
-                        print(error)
-                        images.append(UIImage(named: "question.jpg")!)
-                        }
-//        }else {
-//                        images.append(UIImage(named: "question.jpg")!)
-//                    }
-      
+                }
+                else {
+                    print("ok")
+                    images.append(UIImage(named: "question.jpg")!)
+                }
+            }catch{
+                print(error)
+                images.append(UIImage(named: "question.jpg")!)
             }
+            //        }else {
+            //                        images.append(UIImage(named: "question.jpg")!)
+            //                    }
+            
+        }
         
         
         DispatchQueue.main.async {
@@ -407,19 +391,14 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.mygroupControl.numberOfPages = self.images.count
             
         }
-       
+        
         
     }
-    
-    //let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
-    //show(vc!, sender: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDB()
         loadmygroup()
-        //putimage()
-        //self.loadDetail.isEnabled = false
         let layer = takepictureBtn.layer
         layer.cornerRadius = 20.0
         layer.masksToBounds = true
@@ -427,7 +406,9 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
         let groupViewLayer = Mygroupimage.layer
         groupViewLayer.cornerRadius = 20.0
         groupViewLayer.masksToBounds = true
-        
+        //手勢衝突時，判斷
+        Tap.require(toFail: SwipeRight)
+        Tap.require(toFail: SwipeLeft)
         print(self.subject)
         print(app.mid)
         
@@ -514,4 +495,35 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        task.resume()
 //    }
 
+//    @IBAction func loaddetail(_ sender: Any) {
+//
+//        if self.subject.count == 0{
+//            print("do not move")
+//        }else {
+//            let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+//            show(vc!, sender: self)
+//
+//        }
+//
+//    }
+
+
+//    func imagePickerController(_picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+//        //print("")
+//        let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        //imageView.image = imgTaken
+//        takepictureBtn.setImage(imgTaken, for: .normal)
+//
+//        let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
+//
+//        let imgDataBase64 = imgData?.base64EncodedData()
+//
+//        imgDataBase64String = imgData?.base64EncodedString()
+//
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerControllerDidCancel(_picker: UIImagePickerController){
+//        dismiss(animated: true, completion: nil)
+//    }
 
