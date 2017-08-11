@@ -1,17 +1,20 @@
 //
-//  GroupReviewTableViewCell.swift
+//  myAllOpenGroupTBVCell.swift
 //  together
 //
-//  Created by ooo on 01/08/2017.
-//  Copyright © 2017 Seven Tsai. All rights reserved.
+//  Created by Seven Tsai on 2017/8/10.
+//  Copyright © 2017年 Seven Tsai. All rights reserved.
 //
 
 import UIKit
 
-class GroupReviewTableViewCell: UITableViewCell {
-    @IBOutlet weak var ProfileImg: UIImageView!
-    @IBOutlet weak var reViewTextView: UITextView!
-    @IBOutlet weak var loginUser: UILabel!
+class myAllOpenGroupTBVCell: UITableViewCell {
+   
+    
+    
+    @IBOutlet weak var labelCell: UILabel!
+    @IBOutlet weak var labelStatus: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

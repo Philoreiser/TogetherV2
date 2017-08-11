@@ -15,7 +15,9 @@ class resultMapVC: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let app = UIApplication.shared.delegate as! AppDelegate
+
+         print("我是使用者：\(app.mid!)")
         // Do any additional setup after loading the view.
     }
     

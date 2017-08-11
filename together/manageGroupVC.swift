@@ -17,9 +17,22 @@ class manageGroupVC: UIViewController{
     @IBOutlet weak var containerManageGroup: UIView!
     @IBOutlet weak var containerApplyGroup: UIView!
 
+    @IBOutlet weak var containerMyAllOpenGroup: UIView!
+    //會員id
+    var mid:String?
     
     
-
+    
+    @IBAction func logout(_ sender: Any) {
+        dismiss(animated: true , completion: nil)
+    }
+    
+    
+//    //////btn to 我的所有揪團
+//    @IBAction func toMyAllGroup(_ sender: Any) {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "myallopengroupvc")
+//        show(vc!, sender: self)
+//    }
     
     @IBAction func segmetAction(_ sender: Any) {
         switch segmentOutlet.selectedSegmentIndex {
@@ -40,18 +53,27 @@ class manageGroupVC: UIViewController{
     
     
     func apperaPage1(){
-        containerManageGroup.isHidden = false
+      containerManageGroup.isHidden = true
+        containerMyAllOpenGroup.isHidden = false
         containerApplyGroup.isHidden = true
     }
     func apperaPage2(){
-        containerManageGroup.isHidden = true
+//        containerManageGroup.isHidden = true
+        containerMyAllOpenGroup.isHidden = true
         containerApplyGroup.isHidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let app = UIApplication.shared.delegate as! AppDelegate
+        mid = app.mid
         
+        if mid == nil {
+            mid = "0"
+        }
+        
+        print("manageGroupVC我是使用者：\(mid!)")
         apperaPage1()
         
         

@@ -12,34 +12,21 @@ import UIKit
 import MapKit
 
 //因委託給自己所以要加  UIPickerViewDelegate, UIPickerViewDataSource
-class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate , UITextFieldDelegate  {
 
-    @IBOutlet weak var imgViewSbj: UIImageView!
+//    @IBOutlet weak var imgViewSbj: UIImageView!
     @IBOutlet weak var btnPicOutlet: UIButton!
     @IBOutlet weak var textFieldStartDate: UITextField!
     @IBOutlet weak var textFieldEndDate: UITextField!
     @IBOutlet weak var textFieldSubject: UITextField!
-    @IBOutlet weak var classLabel: UILabel!
+//    @IBOutlet weak var classLabel: UILabel!
 
     @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var textViewDetail: UITextView!
     
+   
     
-    
-//    @IBOutlet weak var imgViewSbj: UIImageView!
-//    @IBOutlet weak var btnPicOutlet: UIButton!
-//    @IBOutlet weak var textFieldStartDate: UITextField!
-//    @IBOutlet weak var textFieldEndDate: UITextField!
-//    @IBOutlet weak var textFieldSubject: UITextField!
-//    @IBOutlet weak var classLabel: UILabel!
-//    
-//    @IBOutlet weak var classTextField: UITextField!
-//    @IBOutlet weak var textViewDetail: UITextView!
-    
-    
-    
-    
-    var listClass = [String]()  //class list的空陣列
+    var listClass = ["美食","運動","旅遊","團康","其他"]   //////揪團類別
     
     var selectClass:String?  //class select的資料儲存
     
@@ -53,7 +40,8 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var classType:String?
     var detail:String?
     var subjectpicString:String?
-    
+//    var lat:String?
+//    var lng:String?
     //會員id
     var mid:String?
     //    var imgTaken:UIImage?
@@ -64,7 +52,12 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     var locationLat:CLLocationDegrees?
     var locationLng:CLLocationDegrees?
     
-
+    let dataEmpty:String = ""
+    
+    /////for 點鍵盤 畫面上移用
+    private var currentTextField: UITextField?
+    private var isKeyboardShown = false
+    
     
     // 選取地點
     @IBAction func pickMapPlace(_ sender: Any) {
@@ -81,23 +74,55 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         }
     }
     
-    
-    /////////submit按鈕
+    @IBAction func cancelGroup(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
+        self.present(vc!, animated: true, completion: nil)
 
-    @IBAction func submit(_ sender: Any) {
+    }
+    
+    /////////////開團按鈕
+    @IBAction func openGroup(_ sender: Any) {
         
+        let alertController = UIAlertController(title: "您開團嗎?", message: "送出後即開團成功", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "送出", style: .default, handler: {(action) in
+          self.sentGroupData()
+            self.presentToManagevc()
+//
+
+        })
+        let cancelaction = UIAlertAction(title: "取消", style: .default, handler: {(action) in
+//            self.dismiss(animated: true, completion: nil)
+        })
         
+        alertController.addAction(okaction)
+        alertController.addAction(cancelaction)
+
+        self.present(alertController, animated: true, completion: nil)
+        
+    
+
+    }
+  
+    //////present to managevc。 API
+    func presentToManagevc() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarvc")
+//        self.present(vc!, animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = 2
+//        tabBarController?.delegate = self as! UITabBarControllerDelegate
+        
+    
+    }
+    
+    //////開團 傳資料到後端 API
+    func sentGroupData(){
         subject = textFieldSubject.text
         location = "我家"
-        
+        detail = textViewDetail.text
         if detail == nil {
             detail = "I'mDetail"
         }else{
             detail = textViewDetail.text
         }
-        
-        
-        
         
         print(subject!)
         print(location!)
@@ -107,41 +132,30 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         print(detail!)
         //        print(subjectpicString!)
         
-        
-        
-        
-        
-        
-        
-        
-        
         let url = URL(string: "https://together-seventsai.c9users.io/openGroup.php")
         let session = URLSession(configuration: .default)
         var req = URLRequest(url: url!)
         
-        ////STRING == 拍照或擷取相簿的base64String
+        ////STRING == 拍照或擷取相簿的base64String 用來傳給後端
         subjectpicString = imgDataBase64String
         
         //如果subjectpicString != nil 傳data參數至後端
         if subjectpicString != nil {
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)&data=\(subjectpicString!)".data(using: .utf8)
             
             
             print("has photo")
         }else {
-            ////如果沒有選照片 subjectpicString = nil 則不傳送data參數至後端
-            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
+            ////如果沒有選照片 subjectpicString = nil 則傳送data空字串參數至後端
+            req.httpBody = "mid=\(mid!)&subject=\(subject!)&location=\(location!)&lat=\(locationLat!)&lng=\(locationLng!)&starttime=\(starttime!)&endtime=\(endtime!)&class=\(classType!)&detail=\(detail!)".data(using: .utf8)
             print("no photo")
         }
         
-        
-        
+ 
         
         req.httpMethod = "POST"
         
-        
-        
-        
+
         let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
             if error == nil {
                 
@@ -153,12 +167,11 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
             
             
         })
-        task.resume()
-        
-
-        
+                task.resume()
+    
     }
     
+
     
     ////拍照按鈕
 
@@ -243,10 +256,9 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         let imgTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         
-        imgViewSbj.image = imgTaken
+//        imgViewSbj.image = imgTaken
         
-        
-        
+        btnPicOutlet.setImage(imgTaken, for: .normal)
         
         //將UIImage 變為 jpeg   即為data
         let imgData = UIImageJPEGRepresentation(imgTaken, 0.3)
@@ -566,42 +578,108 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     
     
-    //隱藏鍵盤手勢
+    //隱藏鍵盤手勢(點擊其他地方)
     func hideKeyborad(tapG: UITapGestureRecognizer) {
         
         self.view.endEditing(true)
+        ////加入 點擊外面整個view回到原來位置
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+
     }
 
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        //結束編輯 把鍵盤隱藏 view放下
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+        return true
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textView:UITextField) {
+        //view彈起
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = -210
+        })
+    }
+    
+    
+    /////////鍵盤出現 畫面上移
+    // 開始編輯時 view上移
+     func textViewDidBeginEditing(_ textView: UITextView) {
+        //view 往上移
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = -210
+        })
+    }
+    // 結束編輯時 view下移
+    func textViewDidEndEditing(_ textView: UITextView) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.frame.origin.y = 0
+        })
+    }
+    
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        currentTextField = textField
+//    }
+//    
+//    func keyboardWillShow(note: NSNotification) {
+//        if isKeyboardShown {
+//            return
+//        }
+//        if (currentTextField != textFieldSubject) {
+//            return
+//        }
+//        let keyboardAnimationDetail = note.userInfo as! [String: AnyObject]
+//        let duration = TimeInterval(keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey]! as! NSNumber)
+//        let keyboardFrameValue = keyboardAnimationDetail[UIKeyboardFrameBeginUserInfoKey]! as! NSValue
+//        let keyboardFrame = keyboardFrameValue.cgRectValue
+//        
+//        UIView.animate(withDuration: duration, animations: { () -> Void in
+//            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: -keyboardFrame.size.height)
+//        })
+//        isKeyboardShown = true
+//    }
+//    
+//    func keyboardWillHide(note: NSNotification) {
+//        let keyboardAnimationDetail = note.userInfo as! [String: AnyObject]
+//        let duration = TimeInterval(keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey]! as! NSNumber)
+//        UIView.animate(withDuration: duration, animations: { () -> Void in
+//            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: -self.view.frame.origin.y)
+//        })
+//        isKeyboardShown = false
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //// get memberID
         let app = UIApplication.shared.delegate as! AppDelegate
-        if app.id == nil {
+        mid = app.mid
+        
+        if mid == nil {
             mid = "0"
-        }else {
-            mid = app.id
         }
         
+        print("我是使用者：\(mid!)")
         
         
-        //        let imgBtn = UIImage(named: "cat.png")
-        //
-        //        btnPicOutlet.setImage(imgBtn, for: .normal)
+        //// location temp
+        locationLat  = Double(121.1)
+        locationLng = Double(23.2)
         
+      
         
         //取得screenSize 似乎沒用到
         let fullScreenSize = UIScreen.main.bounds.size
         
         
         
-        //class的選擇清單
-        listClass.append("美食")
-        listClass.append("運動")
-        listClass.append("旅遊")
-        listClass.append("團康")
-        listClass.append("其他")
+   
         
         ////////////class PickerView 用
         setClassPicker(array: listClass)
@@ -624,23 +702,31 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
         self.view.addGestureRecognizer(tapBack)
         
+//        /////for 點鍵盤 畫面上移用
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: "keyboardWillShow:",
+//            name: NSNotification.Name.UIKeyboardWillShow,
+//            object: nil)
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: "keyboardWillHide:",
+//            name: NSNotification.Name.UIKeyboardWillHide,
+//            object: nil)
         
             }
 
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }
