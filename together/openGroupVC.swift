@@ -159,11 +159,13 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     //////開團 傳資料到後端 API
     func sentGroupData(){
         subject = textFieldSubject.text
-        location = "我家"
+        location = "地點"
         detail = textViewDetail.text
         if detail == nil {
-            detail = "I'mDetail"
-        }else{
+            detail = "空無一物"
+        }else if detail == ""{
+            detail = "空無一物"
+        }else {
             detail = textViewDetail.text
         }
         
@@ -706,6 +708,11 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
 //        isKeyboardShown = false
 //    }
     
+    
+   
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -718,6 +725,9 @@ class openGroupVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         }
         
         print("我是使用者：\(mid!)")
+        
+        textFieldSubject.clearsOnInsertion = true
+        
         
         
         //// location temp
