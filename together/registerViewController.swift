@@ -34,9 +34,9 @@ class registerViewController: UIViewController {
             
             passwordText.isSecureTextEntry = true
             
-            let account = emailText.text!
-            let passwd = passwordText.text!
-            let nickname = nicknameText.text!
+            let account:String = emailText.text!
+            let passwd:String = passwordText.text!
+            let nickname:String = nicknameText.text!
             
             Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
                 if error != nil {
@@ -49,8 +49,10 @@ class registerViewController: UIViewController {
                     let mid = self.app.mid!
                     
                     do {
+                    
                         let urlGet = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php?account=\(account)&passwd=\(passwd)&mid=\(mid)&nickname=\(nickname)")
                         let source = try String(contentsOf: urlGet!, encoding: .utf8)
+
                         
                         if source == "accountok" {
                             print("add OK")
