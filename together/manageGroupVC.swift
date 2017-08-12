@@ -5,7 +5,7 @@
 //  Created by Seven Tsai on 2017/7/28.
 //  Copyright © 2017年 Seven Tsai. All rights reserved.
 //
-
+/////////管理揪團主頁。其container為 manageApplyViewVC & myAllOpenGroupVC
 import UIKit
 
 class manageGroupVC: UIViewController{

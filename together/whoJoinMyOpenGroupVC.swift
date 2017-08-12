@@ -56,13 +56,19 @@ class whoJoinMyOpenGroupVC: UIViewController,UITableViewDataSource,UITableViewDe
             
         }
         else if mydataStatus[indexPath.row] == "0" {
-            cell.labelStatus.text = "揪團中"
+            cell.labelStatus.text = "審核中"
             cell.labelStatus.textColor = UIColor.black
             
         }else if mydataStatus[indexPath.row] == "1" {
-            cell.labelStatus.text = "揪團結束"
+            cell.labelStatus.text = "審核結束"
             cell.labelStatus.textColor = UIColor.black
         }
+        
+        
+        ////樣式有 向右指標
+        cell.accessoryType = .disclosureIndicator
+
+        
        
         return cell
         
@@ -84,11 +90,26 @@ class whoJoinMyOpenGroupVC: UIViewController,UITableViewDataSource,UITableViewDe
       
        
         let cell = tbView.dequeueReusableCell(withIdentifier: "whojoinmyopengroupcell", for: indexPath) as! whojoinmyopengroupTBVCell
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+
+        
         cell.labelCell.text = mydataGroup[indexPath.row]
         
-        cell.labelStatus.text = "待審核"
-        cell.labelStatus.textColor = UIColor.blue
-        
+        if mydataStatus[indexPath.row] == "" {
+            cell.labelStatus.text = "沒資料"
+            cell.labelStatus.textColor = UIColor.blue
+            
+        }
+        else if mydataStatus[indexPath.row] == "0" {
+            cell.labelStatus.text = "審核中"
+            cell.labelStatus.textColor = UIColor.black
+            
+        }else if mydataStatus[indexPath.row] == "1" {
+            cell.labelStatus.text = "審核結束"
+            cell.labelStatus.textColor = UIColor.black
+        }
+
         
         /////令delegate whojoinGroupSelectApplyUserMid = 選到的使用者mid
         app.whojoinGroupSelectApplyUserMid = mydataApplyMid[indexPath.row]
@@ -171,16 +192,17 @@ class whoJoinMyOpenGroupVC: UIViewController,UITableViewDataSource,UITableViewDe
                         
                         
                         //
-                        //                        if mastatus == "0" &&  openGroupmId == self.mid {
+                                                if mastatus == "0"  {
                         self.mydataStatus.append("\(mastatus)")
                         self.mydataGroup.append("\(displayLebel)")
                         self.mydatamaid.append("\(maid)")
                         self.mydataApplyMid.append("\(applyusermid)")
-                        //                        }
+                                                }
                         
                     }
                     print("申請我揪團的maid是：\(self.mydatamaid)")
-                    
+                    print("申請我揪團的使用者mid是：\(self.mydataApplyMid)")
+
                     self.tbView.reloadData()
                     
                 }catch {

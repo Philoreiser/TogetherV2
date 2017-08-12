@@ -114,10 +114,11 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             //                    }
             
             
-            /////cell 樣式
+            /////cell 樣式  有向右指標
             cell.accessoryType = .disclosureIndicator
             //            tbView.separatorColor = nil
-            
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+
             return cell
             
             
@@ -183,6 +184,7 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                 cell.labelStatus.text = "揪團舉行中"
                 cell.labelStatus.textColor = UIColor.blue
                 print("結束時間大於現在且已開團")
+                
                 /////將選擇的tid值傳給appdelegate
                 app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
                 print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
@@ -192,13 +194,27 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                 cell.labelStatus.text = "揪團結束"
                 cell.labelStatus.textColor = UIColor.black
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                cell.isUserInteractionEnabled = false
+                ////結束的揪團 直接指定不能選
+                //                cell.isUserInteractionEnabled = false
+                ///結束得揪團 指定到詳細頁面
+                //delegate的tid = 選擇的tid
+                app.tid = mydatatid[indexPath.row]
                 
+                let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
+                show(vc!, sender: self)
+                
+                //
+                app.tid = mydatatid[indexPath.row]
                 print("結束時間小於現在")
             }else if endDateAsString == nowDateString    {
                 print("結束時間等於現在")
                 cell.labelStatus.text = "非常幸運揪團正在舉行"
                 cell.labelStatus.textColor = UIColor.black
+                /////將選擇的tid值傳給appdelegate
+                app.myAllGroupSelectedTid =  mydatatid[indexPath.row]
+                print("我的揪團選到的揪團tid是\(app.myAllGroupSelectedTid!)")
+                let vc = storyboard?.instantiateViewController(withIdentifier: "whojoinmyopengroupvc")
+                show(vc!, sender: self)
                 
             }
             
@@ -230,7 +246,9 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             mydataGroup = []
             mydatatid = []
             mydataStatus = []
-            
+             mydataPic = []
+             mydataStartTime = []
+             mydataEndTime = []
             //c9資料庫 post
             let url = URL(string: "https://together-seventsai.c9users.io/getMyAllGroup.php")
             let session = URLSession(configuration: .default)
