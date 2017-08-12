@@ -32,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var whojoinGroupSelectMaid:String?
     
     
+    
+    
+    /////////傳到detail頁面前。先知道這個開團者是誰
+    var openGroupMid:String?
+    
+    
+    
 //    var mastername:String?
 //    var sentToDetailId:String?
   //  var subjectpic:Array<Any> = []

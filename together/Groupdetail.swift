@@ -15,6 +15,7 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     var mid:String?
     var tid:String?
+    var openGroupmid:String?
     let app = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var subjectpicView: UIImageView!
@@ -27,9 +28,20 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBOutlet weak var btnApplyOulet: UIBarButtonItem!
     
     
+    
+    
+    
+    
+    
+    
+    
     ///////////申請加入揪團按鈕
     
     @IBAction func btnApplyGroup(_ sender: Any) {
+        
+        
+        
+        
         //////// tid == 從別頁帶進來的Gtid
         tid = Gtid
         
@@ -389,6 +401,17 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
             mid = "0"
         }
         
+        print("detail頁面目前使用者是\(mid)")
+        ////判斷使用者是不是創團者。
+        
+        openGroupmid = app.openGroupMid
+        print("detail頁面目前創團者是\(openGroupmid)")
+//        btnApplyOulet.isEnabled = false
+        
+        //如果是同一個人 不顯示申請加入按鈕
+        if mid == openGroupmid {
+            self.navigationItem.rightBarButtonItem = nil
+        }
         loadmygroup()
         
         let groupViewLayer = subjectpicView.layer

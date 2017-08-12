@@ -19,7 +19,7 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         var mydataPic:Array<String> = []
     var mydataStartTime:Array<String> = []
     var mydataEndTime:Array<String> = []
-    
+   var  mydataOpenGroupMid:Array<String> = []
     
     
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -196,10 +196,10 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
                 ////結束的揪團 直接指定不能選
                 //                cell.isUserInteractionEnabled = false
-                ///結束得揪團 指定到詳細頁面
+                ///結束的揪團 指定到詳細頁面
                 //delegate的tid = 選擇的tid
                 app.tid = mydatatid[indexPath.row]
-                
+                app.openGroupMid = mydataOpenGroupMid[indexPath.row]
                 let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail")
                 show(vc!, sender: self)
                 
@@ -313,7 +313,7 @@ class myAllOpenGroupVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                             self.mydataGroup.append("\(displayLebel)")
                             self.mydatatid.append("\(tid)")
                             self.mydataPic.append("\(subjectpic)")
-                            
+                            self.mydataOpenGroupMid.append("\(opengroupmid)")
                             
                             
                             self.mydataStartTime.append("\(starttime)")

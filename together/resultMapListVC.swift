@@ -13,7 +13,7 @@ class resultMapListVC: UIViewController {
     var app = UIApplication.shared.delegate as! AppDelegate
     
     var groupDict:[[String:String]]?
-
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var contViewList: UIView!
     @IBOutlet weak var contViewMap: UIView!
@@ -62,6 +62,9 @@ class resultMapListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
         self.segmentedControl.selectedSegmentIndex = 0 // List
         
         groupDict = []

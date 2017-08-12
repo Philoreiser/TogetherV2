@@ -11,7 +11,10 @@ import UIKit
 class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var app = UIApplication.shared.delegate as! AppDelegate
-
+    var mid:String?
+    var tid:String?
+    var openGroupmid:String?
+    
     @IBOutlet weak var tableView: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,18 +60,68 @@ class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let parentVC = parent as! resultMapListVC
         
         app.tid = parentVC.groupDict?[indexPath.row]["tid"]
+        ///////////////////*********************加來判斷  開團者是誰
+
+        app.openGroupMid = parentVC.groupDict?[indexPath.row]["opengroupmid"]
+        ///////////////////*****************************************
+
         print("selected: \(app.tid)")
         show(vc, sender: self)
         
     }
     
     
+    
+    ///////*********************************************下拉更新用
+    func handleRefresh(){
+        
+        tableView.refreshControl?.endRefreshing()
+        
+        ///改為你loaddb
+//        loadDB()
+        testGroupDict()
+
+        tableView.reloadData()
+    }
+    ///////////////////*****************************************
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ///////////////////*********************加來判斷 目前使用者是誰
+        mid = app.mid
+        
+        if mid == nil {
+            mid = "0"
+        }
+        
+        print("List頁面目前使用者是\(mid)")
+        
+        
+      
+        ///////////////////*****************************************
+
+        
+        
         tableView.dataSource = self
         tableView.delegate = self
+        
+        
+        
+        ///////////////////*****************************************
+
+        
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
+        ///////////////////*****************************************
+
+        
+        
     }
+    
+    
+ 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -77,7 +130,11 @@ class resultListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        ///////////////////*****************************************
+
+        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中")
+        ///////////////////*****************************************
+
         testGroupDict()
         sleep(1)
         tableView.reloadData()
