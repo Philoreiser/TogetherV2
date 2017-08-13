@@ -10,6 +10,10 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class MyAnnotation: MKPointAnnotation {
+    var tidTag:Int?
+}
+
 class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var app = UIApplication.shared.delegate as! AppDelegate
@@ -20,21 +24,12 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
 
     @IBOutlet weak var mapView: MKMapView!
 
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
-        let sub = view.annotation?.subtitle!
-        print("\(sub!)")
-        
-//        let label = UILabel()
-//        label.text = sub!
-//
-//        view.detailCalloutAccessoryView = label
-//        view.canShowCallout = true
-
-    }
-
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? MyAnnotation else {
+            return nil
+        }
         
         let reuseId = "pin"
         var annView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
@@ -44,14 +39,14 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         }
         
         let btnDetail = UIButton(type: .detailDisclosure)
-        btnDetail.tag = 100
+        btnDetail.tag = annotation.tidTag!
         btnDetail.addTarget(self, action: #selector(btnDetailPress(_:)), for: .touchUpInside)
         
         annView?.rightCalloutAccessoryView = btnDetail
 
         
         let labelCont = UILabel()
-        labelCont.text = "我的老天鵝啊啊啊啊啊啊..."
+        labelCont.text = annotation.subtitle!
         annView?.detailCalloutAccessoryView = labelCont
         
         
@@ -61,10 +56,14 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
     }
     
     func btnDetailPress( _ sender: UIButton ) {
-        if sender.tag == 100 {
-            print("tag: \(sender.tag)")
-//            show(....)
-        }
+        
+        print("tag: \(sender.tag)")
+        app.tid = String(sender.tag)
+//        print("app.tag: \(app.tid!)")
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Gpdetail") as! Groupdetail
+        show(vc, sender: self)
+        
     }
     
     
@@ -78,17 +77,6 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        let parentVC = parent as! resultMapListVC
-//        
-//        for _ in 1...3 {
-//        
-//            sleep(1)
-//            if parentVC.groupDict != nil {
-//                self.createGroupPins()
-//                break
-//            }
-//        }
         
         createGroupPins()
 
@@ -120,13 +108,14 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         
     }
     
-    private func makePin( title:String, subtitle:String, coordinate: CLLocationCoordinate2D ) -> MKPointAnnotation {
-        let annotation:MKPointAnnotation = MKPointAnnotation()
+    private func makePin( tid:String, title:String, subtitle:String, coordinate: CLLocationCoordinate2D ) -> MyAnnotation {
+//        let annotation:MKPointAnnotation = MKPointAnnotation()
+        let annotation:MyAnnotation = MyAnnotation()
         
         annotation.title = title
         annotation.subtitle = subtitle
         annotation.coordinate = coordinate
-        
+        annotation.tidTag = (tid as NSString).integerValue
         
         return annotation
     }
@@ -154,8 +143,9 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
                 let coor = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
                 print("\(tid): \(coor.latitude), \(coor.longitude)")
 
-                self.groupPins! += [self.makePin(title: group["subject"]!, subtitle: group["detail"]!, coordinate: coor)]
-                
+                self.groupPins! += [self.makePin( tid: group["tid"]!, title: group["subject"]!, subtitle: group["detail"]!, coordinate: coor)]
+//                self.groupPins! += [self.makePin(title: group["subject"]!, subtitle: group["tid"]!, coordinate: coor)]
+
             }
         }
         
