@@ -24,6 +24,8 @@ class resultMapListVC: UIViewController {
         
     }
     
+    
+    
     @IBAction func didEditSearch(_ sender: UIStoryboardSegue) {
         print("修改了搜尋條件")
     }
@@ -95,6 +97,7 @@ class resultMapListVC: UIViewController {
         print("loadTogetherDB()")
         
         let url = URL(string: "https://together-seventsai.c9users.io/searchTogetherDB.php")
+//        let url = URL(string: "http://127.0.0.1/searchTogetherDB.php")
         let session = URLSession(configuration: .default)
         
         var req = URLRequest(url: url!)

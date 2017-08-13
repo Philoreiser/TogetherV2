@@ -35,6 +35,9 @@
 		14F439541F1CA27D0060D839 /* openGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F439531F1CA27D0060D839 /* openGroupVC.swift */; };
 		1745F92F455B811D0C2306A6 /* Pods_together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7C2700CBEA5CAD4EECE9FE /* Pods_together.framework */; };
 		4ACA6E481F1EF5C6002B1CA5 /* MyfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */; };
+		84BEA4AF1F40EA8200B144F3 /* zoom_in_32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEA4AD1F40EA8200B144F3 /* zoom_in_32px.png */; };
+		84BEA4B01F40EA8200B144F3 /* zoom_out_32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEA4AE1F40EA8200B144F3 /* zoom_out_32px.png */; };
+		84BEA4B21F40ECB600B144F3 /* location_32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BEA4B11F40ECB600B144F3 /* location_32px.png */; };
 		84E0EC0B1F345085007D370F /* openGroupMapPickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */; };
 		84E0EC0D1F3475B6007D370F /* resultMapListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */; };
 		84E0EC0F1F347BD2007D370F /* searchGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */; };
@@ -84,6 +87,9 @@
 		27CA076D43421851F4BB5085 /* Pods-together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.release.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.release.xcconfig"; sourceTree = "<group>"; };
 		42866690544DDE4F6930258B /* Pods-together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-together.debug.xcconfig"; path = "Pods/Target Support Files/Pods-together/Pods-together.debug.xcconfig"; sourceTree = "<group>"; };
 		4ACA6E471F1EF5C6002B1CA5 /* MyfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyfileViewController.swift; sourceTree = "<group>"; };
+		84BEA4AD1F40EA8200B144F3 /* zoom_in_32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoom_in_32px.png; path = imgs/zoom_in_32px.png; sourceTree = "<group>"; };
+		84BEA4AE1F40EA8200B144F3 /* zoom_out_32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoom_out_32px.png; path = imgs/zoom_out_32px.png; sourceTree = "<group>"; };
+		84BEA4B11F40ECB600B144F3 /* location_32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location_32px.png; path = imgs/location_32px.png; sourceTree = "<group>"; };
 		84E0EC0A1F345085007D370F /* openGroupMapPickVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openGroupMapPickVC.swift; sourceTree = "<group>"; };
 		84E0EC0C1F3475B6007D370F /* resultMapListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultMapListVC.swift; sourceTree = "<group>"; };
 		84E0EC0E1F347BD2007D370F /* searchGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchGroupVC.swift; sourceTree = "<group>"; };
@@ -126,6 +132,9 @@
 		1428867B1F38049C0047FA28 /* imgs */ = {
 			isa = PBXGroup;
 			children = (
+				84BEA4B11F40ECB600B144F3 /* location_32px.png */,
+				84BEA4AD1F40EA8200B144F3 /* zoom_in_32px.png */,
+				84BEA4AE1F40EA8200B144F3 /* zoom_out_32px.png */,
 				14B256641F3AD0C000084325 /* map24.png */,
 				1428869E1F381C8F0047FA28 /* profile24.png */,
 				1428869F1F381C8F0047FA28 /* open24.png */,
@@ -277,10 +286,13 @@
 				142886951F3811B80047FA28 /* home24.png in Resources */,
 				F73D8F1D1F2A404D006951F7 /* GoogleService-Info.plist in Resources */,
 				142886A11F381C8F0047FA28 /* open24.png in Resources */,
+				84BEA4B21F40ECB600B144F3 /* location_32px.png in Resources */,
 				1428869D1F381C110047FA28 /* list24.png in Resources */,
+				84BEA4B01F40EA8200B144F3 /* zoom_out_32px.png in Resources */,
 				14AAD7451F1C694F00BC6E9E /* Assets.xcassets in Resources */,
 				14CF3BA61F3CF74C0046F932 /* profile48.png in Resources */,
 				142886971F3811BE0047FA28 /* home16.png in Resources */,
+				84BEA4AF1F40EA8200B144F3 /* zoom_in_32px.png in Resources */,
 				14AAD7431F1C694F00BC6E9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

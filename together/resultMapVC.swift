@@ -17,13 +17,47 @@ class MyAnnotation: MKPointAnnotation {
 class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var app = UIApplication.shared.delegate as! AppDelegate
-//    var lmgr:CLLocationManager?
+    var lmgr:CLLocationManager?
 
     var groupPins:[MKPointAnnotation]?
 
 
     @IBOutlet weak var mapView: MKMapView!
 
+    @IBAction func mapToUserLoc(_sender: Any) {
+        print("user location")
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+    }
+    
+    @IBAction func mapZoomIn(_ sender: Any) {
+        print("zoom in")
+        var region = MKCoordinateRegion()
+        // 還有另一個建構式: MKCoordinateRegion(center: CLLocationCoordinate2D, span: MKCoordinateSpan)
+        
+        let latDelta = mapView.region.span.latitudeDelta * 0.5
+        let lngDelta = mapView.region.span.longitudeDelta * 0.5
+        
+        region.span.latitudeDelta = latDelta
+        region.span.longitudeDelta = lngDelta
+        region.center = mapView.region.center
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
+    @IBAction func mapZoomOut(_ sender: Any) {
+        print("zoom out")
+        
+        var region = MKCoordinateRegion()
+        
+        let latDelta = mapView.region.span.latitudeDelta * 2
+        let lngDelta = mapView.region.span.longitudeDelta * 2
+        
+        region.span.latitudeDelta = latDelta
+        region.span.longitudeDelta = lngDelta
+        region.center = mapView.region.center
+        
+        mapView.setRegion(region, animated: true)
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -66,30 +100,39 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let loc = locations.last!
+        
+        print("locationManager: \(loc.coordinate.latitude), \(loc.coordinate.longitude)")
+        
+        let center = CLLocationCoordinate2D(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) )
+        
+        self.mapView.setRegion(region, animated: true)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.initStat()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        createGroupPins()
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(groupPins!.description)
-        sleep(1)
+//        print(groupPins!.description)
+//        sleep(1)
         
+        self.createGroupPins()
         self.refreshGroupPins()
-//        mapView.setNeedsDisplay()
+        mapView.setNeedsDisplay()
 
     }
     
@@ -100,9 +143,19 @@ class resultMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
 
 
     
+    
     private func initStat() {
-        
-//        groupPins = []
+
+        if CLLocationManager.locationServicesEnabled() {
+            lmgr = CLLocationManager()
+            
+            lmgr?.delegate = self
+            lmgr?.desiredAccuracy = kCLLocationAccuracyBest
+            lmgr?.requestWhenInUseAuthorization()
+            lmgr?.startUpdatingLocation()
+            lmgr?.distanceFilter = CLLocationDistance(10)
+            
+        }
         
         mapView.delegate = self
         
