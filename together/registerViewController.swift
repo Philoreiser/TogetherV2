@@ -28,20 +28,17 @@ class registerViewController: UIViewController {
     
     @IBAction func registerBtn(_ sender: Any) {
         
-        let url = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php")
-        var request = URLRequest(url: url!)
         if emailText.text != "" && passwordText.text != "" && nicknameText.text != ""{
             
             passwordText.isSecureTextEntry = true
             
-            let account:String = emailText.text!
-            let passwd:String = passwordText.text!
-            let nickname:String = nicknameText.text!
-            
+            let account = emailText.text!
+            let passwd = passwordText.text!
+            let nickname = nicknameText.text!
             Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
                 if error != nil {
                     self.alertWrong()
-                    print("error")
+                    
                 }else {
                     
                     Properties.user = User1(authData: user!)
@@ -49,31 +46,37 @@ class registerViewController: UIViewController {
                     let mid = self.app.mid!
                     
                     do {
-                    
-                        let urlGet = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php?account=\(account)&passwd=\(passwd)&mid=\(mid)&nickname=\(nickname)")
-                        let source = try String(contentsOf: urlGet!, encoding: .utf8)
-
+                        let url = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php")
+                        let session = URLSession(configuration: .default)
+                        var req = URLRequest(url: url!)
                         
-                        if source == "accountok" {
-                            print("add OK")
-                            self.app.account = account
-                            
-                            //Properties.user = User1(authData: user!)
-                            
-                            
-                            self.alertSuccess()
-                            print("show")
-                            
-                            
-                        }else if source == "accountexist" {
-                            
-                            print("exist")
-                            self.alertExist()
-                            
-                            
-                        }else {
-                            print("else")
-                        }
+                       
+                        
+                        req.httpBody = "account=\(account)&passwd=\(passwd)&mid=\(mid)&nickname=\(nickname)".data(using: .utf8)
+                        req.httpMethod = "POST"
+                        
+                        let task = session.dataTask(with: req, completionHandler: {(data,response,error) in
+                            if error == nil {
+                                let source = String(data: data!, encoding: .utf8)
+                                
+                                if source == "accountok" {
+                                    print("add OK")
+                                    print("show")
+                                }else if source == "accountexist" {
+                                    print("exist")
+                                    self.alertExist()
+                                }else {
+                                    print("else")
+                                }
+                                print("add success")
+                                //print(data)
+                            }else{
+                                print(error)
+                            }
+                        })
+                        
+                        task.resume()
+                        self.alertSuccess()
                         
                         
                     }catch{
@@ -88,6 +91,71 @@ class registerViewController: UIViewController {
             print("no words")
             alertEmpty()
         }
+        
+        
+        
+        
+        
+//        let url = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php")
+//        var request = URLRequest(url: url!)
+//        if emailText.text != "" && passwordText.text != "" && nicknameText.text != ""{
+//            
+//            passwordText.isSecureTextEntry = true
+//            
+//            let account:String = emailText.text!
+//            let passwd:String = passwordText.text!
+//            let nickname:String = nicknameText.text!
+//            
+//            Auth.auth().createUser(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
+//                if error != nil {
+//                    self.alertWrong()
+//                    print("error")
+//                }else {
+//                    
+//                    Properties.user = User1(authData: user!)
+//                    self.app.mid = Properties.user?.uid
+//                    let mid = self.app.mid!
+//                    
+//                    do {
+//                    
+//                        let urlGet = URL(string: "https://together-seventsai.c9users.io/addMemberv2.php?account=\(account)&passwd=\(passwd)&mid=\(mid)&nickname=\(nickname)")
+//                        let source = try String(contentsOf: urlGet!, encoding: .utf8)
+//
+//                        
+//                        if source == "accountok" {
+//                            print("add OK")
+//                            self.app.account = account
+//                            
+//                            //Properties.user = User1(authData: user!)
+//                            
+//                            
+//                            self.alertSuccess()
+//                            print("show")
+//                            
+//                            
+//                        }else if source == "accountexist" {
+//                            
+//                            print("exist")
+//                            self.alertExist()
+//                            
+//                            
+//                        }else {
+//                            print("else")
+//                        }
+//                        
+//                        
+//                    }catch{
+//                        print(error)
+//                    }
+//                    
+//                }
+//            }
+//            
+//            
+//        }else {
+//            print("no words")
+//            alertEmpty()
+//        }
         
     }
     
@@ -125,7 +193,7 @@ class registerViewController: UIViewController {
     }
     //alert 錯誤
     func alertWrong() {
-        let alertController = UIAlertController(title: "帳號登入", message: "帳號重複或密碼小於6碼", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "帳號註冊", message: "帳號重複或密碼小於6碼", preferredStyle: .alert)
         let okaction = UIAlertAction(title: "確認", style: .default, handler: {(action) in
             self.dismiss(animated: true, completion: nil)
         })

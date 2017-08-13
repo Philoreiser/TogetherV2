@@ -68,15 +68,15 @@ class MyfileViewController: UIViewController, UIImagePickerControllerDelegate, U
     //圖片使用照相機拍攝後的圖片或者本機端圖片
     @IBAction func takepic(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "use camera", style: .default, handler: {(action) in
+        let cameraAction = UIAlertAction(title: "使用相機", style: .default, handler: {(action) in
             openCamera()
         })
-        let libraryAction = UIAlertAction(title: "use library", style: .default, handler: {(action) in
+        let libraryAction = UIAlertAction(title: "使用相簿", style: .default, handler: {(action) in
             openLibrary()
             
             
         })
-        let cancelAction = UIAlertAction(title: "cancel", style: .destructive, handler: {(action) in
+        let cancelAction = UIAlertAction(title: "取消", style: .destructive, handler: {(action) in
             //           self.dismiss(animated: true, completion: nil)
         })
         

@@ -278,6 +278,13 @@ class Groupdetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         //cell.loginUser.text = self.nickname
         cell.reViewTextView?.text = self.groupReviews.reversed()[indexPath.row].groupReview
         //cell.loginUser.text = self.groupReviews.reversed()[indexPath.row].userEmail
+        cell.Timelabel.text = self.groupReviews.reversed()[indexPath.row].createDate
+        let mmid = app.mid
+        if mmid == self.groupReviews.reversed()[indexPath.row].userId {
+            //cell.backgroundColor = UIColor.blue
+           // cell.reViewTextView.backgroundColor = UIColor.blue
+            cell.loginUser.textColor = UIColor.darkGray
+        }
         
         let layer = cell.ProfileImg.layer
         layer.cornerRadius = 20.0
